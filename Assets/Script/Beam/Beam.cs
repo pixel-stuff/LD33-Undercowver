@@ -2,13 +2,17 @@
 using System.Collections;
 
 public class Beam : MonoBehaviour {
-	public float x_base = 1.0f;
-	public float x_top = 0.8f;
-	public float y_base = 0.0f;
-	public float y_top = 10.0f;
+	public float m_x_base = 1.0f;
+	public float m_x_top = 0.8f;
+	public float m_y_base = 0.0f;
+	public float m_y_top = 10.0f;
+
+	private Cow m_catched;
 
 	// Use this for initialization
 	void Start () {
+		m_catched = null;
+
 		GameObject beam = transform.gameObject;
 		MeshFilter mesh_filter = beam.GetComponent<MeshFilter>();
 		MeshRenderer mesh_renderer = beam.GetComponent<MeshRenderer>();
@@ -17,33 +21,28 @@ public class Beam : MonoBehaviour {
 		mesh_rigidBody2D.isKinematic = true;
 		mesh_boxCollider2D.isTrigger = true;
 		Vector2 boxColl2D_center = mesh_boxCollider2D.offset;
-		boxColl2D_center = new Vector2 ((x_base - x_top) / 2.0f, (y_top-y_base)/2.0f);
+		boxColl2D_center = new Vector2 ((m_x_base - m_x_top) / 2.0f, (m_y_top-m_y_base)/2.0f);
 		mesh_boxCollider2D.offset = boxColl2D_center;
 		Vector2 boxColl2D_size = mesh_boxCollider2D.size;
-		boxColl2D_size = new Vector2 ((x_base>x_top?x_base:x_top)*2.0f, (y_top>y_base?y_top:y_base));
+		boxColl2D_size = new Vector2 ((m_x_base>m_x_top?m_x_base:m_x_top)*2.0f, (m_y_top>m_y_base?m_y_top:m_y_base));
 		mesh_boxCollider2D.size = boxColl2D_size;
-		//mesh_boxCollider2D.
 		BuildBeamMesh (mesh_filter.mesh);
-		//mesh_collider.sharedMesh = new Mesh ();
-		//mesh_collider.isTrigger = true;
-		//BuildBeamMesh (mesh_collider.sharedMesh);
-
-		//mesh_collider = (MeshCollider)CreateBeamMesh ();
-		//mesh_renderer = (MeshRenderer)CreateBeamMesh ();
+		ParticleSystem beam_particles = beam.GetComponentInChildren<ParticleSystem> ();
+		beam_particles.transform.localPosition = new Vector3 (transform.localPosition.x, m_y_base, 0.0f);
 	}
 	
 	Mesh BuildBeamMesh(Mesh mesh) {
 		Vector3[] vertices = new Vector3[]
 		{
-			new Vector3( x_base, y_base, 0),
-			new Vector3(x_top, y_top, 0),
-			new Vector3(-x_top, y_top, 0),
-			new Vector3(-x_base, y_base, 0),
+			new Vector3(m_x_base, m_y_base, 0),
+			new Vector3(m_x_top, m_y_top, 0),
+			new Vector3(-m_x_top, m_y_top, 0),
+			new Vector3(-m_x_base, m_y_base, 0),
 		};
 		Vector2[] uv = new Vector2[]
 		{
-			new Vector2(1, 1),
 			new Vector2(1, 0),
+			new Vector2(1, 1),
 			new Vector2(0, 1),
 			new Vector2(0, 0),
 		};
@@ -61,7 +60,9 @@ public class Beam : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log ("pute");
+		if (m_catched!=null && other.GetComponent<Cow> ()!=null) {
+			m_catched = other.GetComponent<Cow>();
+		}
 	}
 	
 	// Update is called once per frame
