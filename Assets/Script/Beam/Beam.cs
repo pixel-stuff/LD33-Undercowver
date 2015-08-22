@@ -2,9 +2,13 @@
 using System.Collections;
 
 public class Beam : MonoBehaviour {
+	[SerializeField]
 	public float m_x_base = 1.0f;
+	[SerializeField]
 	public float m_x_top = 0.8f;
+	[SerializeField]
 	public float m_y_base = 0.0f;
+	[SerializeField]
 	public float m_y_top = 10.0f;
 
 	private Cow m_catched;

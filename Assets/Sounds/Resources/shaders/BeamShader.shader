@@ -5,7 +5,9 @@
 		_NormalTex ("Normal map", 2D) = "bump" {}
 	}
 	SubShader {
-		Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+		Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+		ZWrite Off
+		//Blend SrcAlpha OneMinusSrcAlpha
 		LOD 200
 		
 		CGPROGRAM
@@ -31,16 +33,23 @@
 			// Albedo comes from a texture tinted by color
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			fixed4 n = tex2D (_NormalTex, IN.uv_BumpMap);
-			o.Albedo = c.rgb;
 			// Metallic and smoothness come from slider variables
-			float lambertTerm = dot(normalize(IN.viewDir), n.rgb);
+			float lambertTerm = dot(normalize(IN.viewDir), o.Normal);
 			//if(c.r<=1.0 && c.g<=1.0 && c.b<=1.0)
 			//	c.a = 0.0;
-			o.Alpha = c.a;//+lambertTerm;
-			float rim = saturate(dot(normalize(IN.viewDir), o.Normal));
-			if (rim >= 0.98) {
-			//	o.Emission = 5.5; // or any large value
-			}
+			fixed alpha = abs(IN.uv_MainTex-0.5);
+			fixed col_sample = 1-alpha;
+			fixed3 col = fixed3(col_sample, col_sample, col_sample);
+			//if(1-alpha*2.0f<0.4f)
+			//	alpha = 0.0f;
+			o.Albedo = c.rgb;
+			o.Normal = n.rgb;
+			o.Alpha = alpha;
+			o.Albedo = clamp(col, 0.1, 1.0);
+			//float rim = saturate(lambertTerm);
+			//if (rim >= 0.98) {
+				//o.Emission = 1.5; // or any large value
+			//}
 		}
 		ENDCG
 	} 
