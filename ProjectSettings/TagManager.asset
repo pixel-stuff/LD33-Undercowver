@@ -10,6 +10,15 @@ TagManager:
   - MenuManager
   - GameOverManager
   - PlayerManager
+  - CameraManager
+  - SpawnArea
+  - BeaversManager
+  - TreeBrotherPosition
+  - PivotPoint
+  - ParallaxManager
+  - TreeManager
+  - Beaver
+  - AudioManager
   layers:
   - Default
   - TransparentFX
@@ -19,7 +28,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Beam
   - 
   - 
   - 

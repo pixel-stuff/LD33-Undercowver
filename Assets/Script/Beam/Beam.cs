@@ -22,7 +22,6 @@ public class Beam : MonoBehaviour {
 
 		GameObject beam = transform.gameObject;
 		MeshFilter mesh_filter = beam.GetComponent<MeshFilter>();
-		MeshRenderer mesh_renderer = beam.GetComponent<MeshRenderer>();
 		Rigidbody2D mesh_rigidBody2D = beam.GetComponent<Rigidbody2D> ();
 		BoxCollider2D mesh_boxCollider2D = beam.GetComponent<BoxCollider2D> ();
 		mesh_rigidBody2D.isKinematic = true;
@@ -49,6 +48,10 @@ public class Beam : MonoBehaviour {
 		m_border_right.transform.Rotate (new Vector3 (0.0f, 0.0f, 10.0f));
 		m_border_right.transform.localScale = new Vector3 (0.1f, m_y_top-m_y_base, 0.0f);
 		m_border_right.transform.localPosition = new Vector3 (m_x_top, (m_y_top-m_y_base)/2.0f, 0.0f);
+		m_border_right = GameObject.CreatePrimitive (PrimitiveType.Quad);
+		m_border_right.transform.parent = transform;
+		m_border_right.transform.localScale = new Vector3 (1.0f, 1.0f, 0.0f);
+		m_border_right.transform.localPosition = new Vector3 (0.0f, m_y_top-0.5f, 0.0f);
 
 	}
 	
@@ -83,7 +86,7 @@ public class Beam : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (m_catched!=null && other.GetComponent<Cow> ()!=null) {
 			m_catched = other.GetComponent<Cow>();
-			m_catched.setCowState(CowState.BeingLift);
+			m_catched.setCowState(CowState.BeingLiftToShip);
 		}
 	}
 	
