@@ -22,7 +22,7 @@ public class CowManager : MonoBehaviour {
 			obj.transform.parent = this.transform;
 
 			cow = obj.GetComponent<Cow>();
-			cow.Init("Cow_" + i);
+			cow.Init(i,"Cow_" + i);
 			m_listCow.Add(cow);
 		}
 	
