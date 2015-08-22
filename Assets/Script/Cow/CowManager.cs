@@ -19,8 +19,9 @@ public class CowManager : MonoBehaviour {
 			obj = (GameObject)Instantiate(m_cowPrefab,Vector3.zero,Quaternion.identity);
 			obj.transform.parent = this.transform;
 
-			cow = GetComponent<Cow>();
-			m_listCow.Add(obj.GetComponent<Cow>());
+			cow = obj.GetComponent<Cow>();
+			cow.Init("Cow_" + i);
+			m_listCow.Add(cow);
 		}
 	
 	}

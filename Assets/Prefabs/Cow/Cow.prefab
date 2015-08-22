@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 496014}
   - 114: {fileID: 11464924}
   - 212: {fileID: 21262094}
+  - 61: {fileID: 6152210}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -29,6 +30,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!61 &6152210
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100824}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: .75}
 --- !u!114 &11464924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40,6 +54,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7eecf8399bb74569b58055af70899d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isUFOCatched: 0
+  m_cowState: 0
 --- !u!212 &21262094
 SpriteRenderer:
   m_ObjectHideFlags: 1

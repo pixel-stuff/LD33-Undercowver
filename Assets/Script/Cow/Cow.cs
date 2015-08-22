@@ -22,6 +22,10 @@ public class Cow : MonoBehaviour {
 	void Start () {
 		m_cowState = CowState.Idle;
 	}
+
+	public void Init(string name){
+		this.name = name;
+	}
 	
 	// Update is called once per frame
 	void Update () {
