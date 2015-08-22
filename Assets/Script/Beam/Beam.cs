@@ -9,6 +9,9 @@ public class Beam : MonoBehaviour {
 
 	private Cow m_catched;
 
+	private GameObject m_border_left;
+	private GameObject m_border_right;
+
 	// Use this for initialization
 	void Start () {
 		m_catched = null;
@@ -29,6 +32,20 @@ public class Beam : MonoBehaviour {
 		BuildBeamMesh (mesh_filter.mesh);
 		ParticleSystem beam_particles = beam.GetComponentInChildren<ParticleSystem> ();
 		beam_particles.transform.localPosition = new Vector3 (transform.localPosition.x, m_y_base, 0.0f);
+
+		m_border_left = GameObject.CreatePrimitive (PrimitiveType.Quad);
+		m_border_left.transform.parent = transform;
+		m_border_left.transform.localPosition = new Vector3 (0, 0, 0);
+		m_border_left.transform.Rotate (new Vector3 (0.0f, 0.0f, -10.0f));
+		m_border_left.transform.localScale = new Vector3 (0.1f, m_y_top-m_y_base, 0.0f);
+		m_border_left.transform.localPosition = new Vector3 (-m_x_top, (m_y_top-m_y_base)/2.0f, 0.0f);
+		m_border_right = GameObject.CreatePrimitive (PrimitiveType.Quad);
+		m_border_right.transform.parent = transform;
+		m_border_right.transform.localPosition = new Vector3 (0, 0, 0);
+		m_border_right.transform.Rotate (new Vector3 (0.0f, 0.0f, 10.0f));
+		m_border_right.transform.localScale = new Vector3 (0.1f, m_y_top-m_y_base, 0.0f);
+		m_border_right.transform.localPosition = new Vector3 (m_x_top, (m_y_top-m_y_base)/2.0f, 0.0f);
+
 	}
 	
 	Mesh BuildBeamMesh(Mesh mesh) {
@@ -62,6 +79,7 @@ public class Beam : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (m_catched!=null && other.GetComponent<Cow> ()!=null) {
 			m_catched = other.GetComponent<Cow>();
+			m_catched.setCowState(CowState.BeingLift);
 		}
 	}
 	

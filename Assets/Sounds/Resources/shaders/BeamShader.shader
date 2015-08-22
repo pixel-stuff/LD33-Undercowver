@@ -29,12 +29,14 @@
 
 		void surf (Input IN, inout SurfaceOutput o) {
 			// Albedo comes from a texture tinted by color
-			float4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-			float4 n = tex2D (_NormalTex, IN.uv_BumpMap);
+			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+			fixed4 n = tex2D (_NormalTex, IN.uv_BumpMap);
 			o.Albedo = c.rgb;
 			// Metallic and smoothness come from slider variables
 			float lambertTerm = dot(normalize(IN.viewDir), n.rgb);
-			o.Alpha = c.a*lambertTerm;
+			//if(c.r<=1.0 && c.g<=1.0 && c.b<=1.0)
+			//	c.a = 0.0;
+			o.Alpha = c.a;//+lambertTerm;
 			float rim = saturate(dot(normalize(IN.viewDir), o.Normal));
 			if (rim >= 0.98) {
 			//	o.Emission = 5.5; // or any large value
@@ -42,5 +44,5 @@
 		}
 		ENDCG
 	} 
-	FallBack "Diffuse"
+	FallBack "Particle/Additive"
 }
