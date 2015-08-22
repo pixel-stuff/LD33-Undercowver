@@ -2,6 +2,10 @@
 using System.Collections;
 
 public class Beam : MonoBehaviour {
+	public float x_base = 1.0f;
+	public float x_top = 0.8f;
+	public float y_base = 0.0f;
+	public float y_top = 10.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -12,6 +16,12 @@ public class Beam : MonoBehaviour {
 		BoxCollider2D mesh_boxCollider2D = beam.GetComponent<BoxCollider2D> ();
 		mesh_rigidBody2D.isKinematic = true;
 		mesh_boxCollider2D.isTrigger = true;
+		Vector2 boxColl2D_center = mesh_boxCollider2D.offset;
+		boxColl2D_center = new Vector2 ((x_base - x_top) / 2.0f, (y_top-y_base)/2.0f);
+		mesh_boxCollider2D.offset = boxColl2D_center;
+		Vector2 boxColl2D_size = mesh_boxCollider2D.size;
+		boxColl2D_size = new Vector2 ((x_base>x_top?x_base:x_top)*2.0f, (y_top>y_base?y_top:y_base));
+		mesh_boxCollider2D.size = boxColl2D_size;
 		//mesh_boxCollider2D.
 		BuildBeamMesh (mesh_filter.mesh);
 		//mesh_collider.sharedMesh = new Mesh ();
@@ -25,10 +35,10 @@ public class Beam : MonoBehaviour {
 	Mesh BuildBeamMesh(Mesh mesh) {
 		Vector3[] vertices = new Vector3[]
 		{
-			new Vector3( 1, 0, 0),
-			new Vector3(0.8f, 5, 0),
-			new Vector3(-0.8f, 5, 0),
-			new Vector3(-1, 0, 0),
+			new Vector3( x_base, y_base, 0),
+			new Vector3(x_top, y_top, 0),
+			new Vector3(-x_top, y_top, 0),
+			new Vector3(-x_base, y_base, 0),
 		};
 		Vector2[] uv = new Vector2[]
 		{
