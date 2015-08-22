@@ -11,15 +11,21 @@ public class Beam : MonoBehaviour {
 	[SerializeField]
 	public float m_y_top = 10.0f;
 
+	private bool m_active = true;
+
 	private Cow m_catched;
+	private float m_beamed_last_directions = 0.01f;
 
 	private GameObject m_border_left;
 	private GameObject m_border_right;
 	private GameObject m_border_top;
 
+	private ArrayList m_catched_array;
+
 	// Use this for initialization
 	void Start () {
 		m_catched = null;
+		m_catched_array = new ArrayList ();
 
 		GameObject beam = transform.gameObject;
 		MeshFilter mesh_filter = beam.GetComponent<MeshFilter>();
@@ -108,6 +114,14 @@ public class Beam : MonoBehaviour {
 	public Cow getCatched() {
 		return m_catched;
 	}
+
+	public void startBeam() {
+		m_active = true;
+	}
+	
+	public void stopBeam() {
+		m_active = false;
+	}
 	
 	public void docked() {
 		m_catched = null;
@@ -120,14 +134,63 @@ public class Beam : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (m_catched!=null && other.GetComponent<Cow> ()!=null) {
-			m_catched = other.GetComponent<Cow>();
-			m_catched.setCowState(CowState.BeingLiftToShip);
+		if (m_active) {
+			if (other.GetComponent<Cow> () != null && other.GetComponent<Cow> ().getCowState () != CowState.BeingLiftToShip) {
+				//m_catched = other.GetComponent<Cow> ();
+				//m_catched.setCowState (CowState.BeingLiftToShip);
+				m_catched_array.Add (other.GetComponent<Cow>());
+				other.GetComponent<Cow>().setCowState(CowState.BeingLiftToShip);
+			}
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (m_active) {
+			Cow cow = null;
+			for (int i = 0; i <m_catched_array.Count; i++) {
+				Cow lCow = (Cow)m_catched_array [i];
+				if (cow == null || cow.transform.localPosition.y > lCow.transform.localPosition.y) {
+					cow = lCow;
+				}
+			}
+			
+			if (cow.getCowState () == CowState.BeingLiftToShip) {
+				Rigidbody2D rb2D = cow.GetComponent<Rigidbody2D> ();
+				if (rb2D) {
+					cow.GetComponent<Rigidbody2D> ().AddForce (Vector2.up);
+				}
+				Vector3 upv = cow.transform.localPosition;
+				upv.y += 0.01f;
+				float r = Random.Range (0.0f, 1000.0f);
+				if (r > 900) {
+					m_beamed_last_directions = -m_beamed_last_directions;
+				}
+				upv.x += m_beamed_last_directions;
+				/*float r=Random.Range(-1.0,1.0);
+			if(r<-0.8) {
+				m_beamed_last_directions=0.1;
+			}else if(r>0.8) {
+				m_beamed_last_directions=-0.1;
+			}else{
+				if(m_beamed_last_directions<0) {
+					if(r<m_beamed_last_directions
+				}
+			}
+			m_beamed_last_directions-=0.1;*/
+				
+				
+				cow.transform.localPosition = upv;
+			}
+		} else if(m_catched_array.Count>0) {
+			Cow cow = null;
+			for (int i = 0; i <m_catched_array.Count; i++) {
+				Cow lCow = (Cow)m_catched_array [i];
+				if (cow == null || cow.transform.localPosition.y > lCow.transform.localPosition.y) {
+					cow = lCow;
+				}
+			}
+			cow.setCowState(CowState.Flying);
+		}
 	}
 }
