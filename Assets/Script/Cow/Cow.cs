@@ -74,7 +74,7 @@ public class Cow : MonoBehaviour {
 		
 	}
 	
-	void UpdateBeingLifted ()
+	void UpdateLifted ()
 	{
 		
 	}
