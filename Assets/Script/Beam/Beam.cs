@@ -15,6 +15,7 @@ public class Beam : MonoBehaviour {
 
 	private GameObject m_border_left;
 	private GameObject m_border_right;
+	private GameObject m_border_top;
 
 	// Use this for initialization
 	void Start () {
@@ -42,16 +43,37 @@ public class Beam : MonoBehaviour {
 		m_border_left.transform.Rotate (new Vector3 (0.0f, 0.0f, -10.0f));
 		m_border_left.transform.localScale = new Vector3 (0.1f, m_y_top-m_y_base, 0.0f);
 		m_border_left.transform.localPosition = new Vector3 (-m_x_top, (m_y_top-m_y_base)/2.0f, 0.0f);
+		m_border_left.GetComponent<MeshRenderer> ().enabled = false;
+		MeshCollider meshcol_tmp = m_border_left.GetComponent<MeshCollider> ();
+		Component.DestroyImmediate (meshcol_tmp);
+		m_border_left.AddComponent<BoxCollider2D> ().isTrigger = true;
+		Beam_borders_collider border = m_border_left.AddComponent<Beam_borders_collider> ();
+		border.parent = this;
+
 		m_border_right = GameObject.CreatePrimitive (PrimitiveType.Quad);
 		m_border_right.transform.parent = transform;
 		m_border_right.transform.localPosition = new Vector3 (0, 0, 0);
 		m_border_right.transform.Rotate (new Vector3 (0.0f, 0.0f, 10.0f));
 		m_border_right.transform.localScale = new Vector3 (0.1f, m_y_top-m_y_base, 0.0f);
 		m_border_right.transform.localPosition = new Vector3 (m_x_top, (m_y_top-m_y_base)/2.0f, 0.0f);
-		m_border_right = GameObject.CreatePrimitive (PrimitiveType.Quad);
-		m_border_right.transform.parent = transform;
-		m_border_right.transform.localScale = new Vector3 (1.0f, 1.0f, 0.0f);
-		m_border_right.transform.localPosition = new Vector3 (0.0f, m_y_top-0.5f, 0.0f);
+		m_border_right.GetComponent<MeshRenderer> ().enabled = false;
+		meshcol_tmp = m_border_right.GetComponent<MeshCollider> ();
+		Component.DestroyImmediate (meshcol_tmp);
+		m_border_right.AddComponent<BoxCollider2D> ().isTrigger = true;
+		border = m_border_right.AddComponent<Beam_borders_collider> ();
+		border.parent = this;
+
+		m_border_top = GameObject.CreatePrimitive (PrimitiveType.Quad);
+		m_border_top.transform.parent = transform;
+		m_border_top.transform.localScale = new Vector3 (2.0f, 2.0f, 0.0f);
+		m_border_top.transform.localPosition = new Vector3 (0.0f, m_y_top-0.5f, 0.0f);
+		m_border_top.GetComponent<MeshRenderer> ().enabled = false;
+		meshcol_tmp = m_border_top.GetComponent<MeshCollider> ();
+		Component.DestroyImmediate (meshcol_tmp);
+		m_border_top.AddComponent<BoxCollider2D> ().isTrigger = true;
+		border = m_border_top.AddComponent<Beam_borders_collider> ();
+		border.isBorderTop = true;
+		border.parent = this;
 
 	}
 	
@@ -81,6 +103,20 @@ public class Beam : MonoBehaviour {
 		mesh.uv = uv;
 		mesh.triangles = triangles;
 		return mesh;
+	}
+
+	public Cow getCatched() {
+		return m_catched;
+	}
+	
+	public void docked() {
+		m_catched = null;
+		Debug.Log ("Docked");
+	}
+
+	public void releaseCatched() {
+		m_catched = null;
+		Debug.Log ("Released");
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
