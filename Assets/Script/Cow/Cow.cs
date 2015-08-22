@@ -3,7 +3,8 @@ using System.Collections;
 
 public enum CowState{
 	Idle,
-	BeingLift,
+	BeingLiftToShip,
+	BeingLiftToGround,
 	Lifted,
 	Crashed,
 	Affraid
@@ -29,9 +30,74 @@ public class Cow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//switch(
+		switch (m_cowState) {
+			case CowState.Idle:
+				UpdateIdle();
+				break;
+			case CowState.BeingLiftToShip:
+				UpdateBeingLiftToShip();
+				break;
+			case CowState.BeingLiftToGround:
+				UpdateBeingLiftToGround();
+				break;
+			case CowState.Lifted:
+				UpdateLifted();
+				break;
+
+			case CowState.Crashed:
+				UpdateCrashed ();
+				break;
+
+			case CowState.Affraid:
+				UpdateAffraid ();
+				break;
+		}
 	}
 
+	//La vache ne peut se déplacer qu'entre [-9;3.6]
+	void UpdateIdle (){
+		
+	}
+
+	void UpdateBeingLift ()
+	{
+		
+	}
+
+	void UpdateBeingLiftToShip ()
+	{
+		
+	}
+	
+	void UpdateBeingLiftToGround ()
+	{
+		
+	}
+	
+	void UpdateBeingLifted ()
+	{
+		
+	}
+
+	void UpdateCrashed ()
+	{
+		
+	}
+
+	void UpdateAffraid ()
+	{
+		
+	}
+
+
+
+
+
+
+
+
+
+	//Getter Setter
 	public void setCowState(CowState newState){
 		m_cowState = newState;
 	}

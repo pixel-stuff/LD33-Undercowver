@@ -15,8 +15,10 @@ public class CowManager : MonoBehaviour {
 
 		GameObject obj;
 		Cow cow;
+		//positionner cow entre [-4.75;-4.60] en Y
+		//positionner cow entre [-9;3.6] en X
 		for (int i=0; i < 4; i++) {
-			obj = (GameObject)Instantiate(m_cowPrefab,Vector3.zero,Quaternion.identity);
+			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(Random.Range(-9f,3.6f), Random.Range(-4.75f,-4.60f),0f ),Quaternion.identity);
 			obj.transform.parent = this.transform;
 
 			cow = obj.GetComponent<Cow>();
