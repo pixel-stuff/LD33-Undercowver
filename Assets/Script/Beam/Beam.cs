@@ -39,7 +39,7 @@ public class Beam : MonoBehaviour {
 		boxColl2D_center = new Vector2 (0, (m_y_top-m_y_base)/2.0f);
 		mesh_boxCollider2D.offset = boxColl2D_center;
 		Vector2 boxColl2D_size = mesh_boxCollider2D.size;
-		boxColl2D_size = new Vector2 ((m_x_base>m_x_top?m_x_base:m_x_top)*2.0f, (m_y_top>m_y_base?m_y_top:m_y_base));
+		boxColl2D_size = new Vector2 ((m_x_base>m_x_top?m_x_base:m_x_top), (m_y_top>m_y_base?m_y_top:m_y_base));
 		mesh_boxCollider2D.size = boxColl2D_size;
 		BuildBeamMesh (mesh_filter.mesh);
 		ParticleSystem beam_particles = beam.GetComponentInChildren<ParticleSystem> ();
