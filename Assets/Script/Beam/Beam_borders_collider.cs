@@ -22,19 +22,6 @@ public class Beam_borders_collider : MonoBehaviour {
 				cow.setCowState(CowState.Lifted);
 				Debug.Log ("Lifted");
 			}
-		}/* else {
-			if (cow!=null && parent.isCowInBeam(cow)) {
-				cow.setCowState(CowState.Flying);
-				parent.deactivateBorders();
-			}
-		}*/
-	}
-	
-	/*void OnTriggerExit2D(Collider2D other) {
-		Cow cow = other.GetComponent<Cow> ();
-		if (parent.isCowInBeam (cow)) {
-			cow.setCowState (CowState.Flying);
-			parent.deactivateBorders ();
 		}
-	}*/
+	}
 }

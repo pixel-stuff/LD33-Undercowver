@@ -12,14 +12,14 @@ public class Beam : MonoBehaviour {
 	public float m_y_top = 10.0f;
 	[SerializeField]
 	public Vector2 m_cow_dir = new Vector2(0.05f, 0.001f);
+	[SerializeField]
+	public float m_cow_dir_no_switch_percentage = 90.0f;
 
 	private bool m_active = true;
 
 	private Cow m_catched;
 	private float m_beamed_last_directions = 0.01f;
 
-	private GameObject m_border_left;
-	private GameObject m_border_right;
 	private GameObject m_border_top;
 
 	private ArrayList m_catched_array;
@@ -39,66 +39,15 @@ public class Beam : MonoBehaviour {
 		boxColl2D_center = new Vector2 (0, (m_y_top-m_y_base)/2.0f);
 		mesh_boxCollider2D.offset = boxColl2D_center;
 		Vector2 boxColl2D_size = mesh_boxCollider2D.size;
-		boxColl2D_size = new Vector2 ((m_x_base>m_x_top?m_x_base:m_x_top)*2.0f, (m_y_top>m_y_base?m_y_top:m_y_base));
+		boxColl2D_size = new Vector2 ((m_x_base>m_x_top?m_x_base:m_x_top), (m_y_top>m_y_base?m_y_top:m_y_base));
 		mesh_boxCollider2D.size = boxColl2D_size;
 		BuildBeamMesh (mesh_filter.mesh);
 		ParticleSystem beam_particles = beam.GetComponentInChildren<ParticleSystem> ();
 		beam_particles.transform.localPosition = new Vector3 (transform.localPosition.x, m_y_base, 0.0f);
 
-		// background object
-		/* does not work to have a front invisible quad that will receive shadows, in fact, he did not receive anything
-		 * GameObject childer = GameObject.CreatePrimitive (PrimitiveType.Quad);
-		mesh_filter = childer.GetComponent<MeshFilter>();
-		MeshCollider mesh_collider = childer.GetComponent<MeshCollider> ();
-		Component.DestroyImmediate (mesh_collider);
-		mesh_rigidBody2D = childer.AddComponent<Rigidbody2D> ();
-		mesh_boxCollider2D = childer.AddComponent<BoxCollider2D> ();
-		mesh_rigidBody2D.isKinematic = true;
-		mesh_boxCollider2D.isTrigger = true;
-		boxColl2D_center = mesh_boxCollider2D.offset;
-		boxColl2D_center = new Vector2 ((m_x_base - m_x_top) / 2.0f, (m_y_top-m_y_base)/2.0f);
-		mesh_boxCollider2D.offset = boxColl2D_center;
-		boxColl2D_size = mesh_boxCollider2D.size;
-		boxColl2D_size = new Vector2 ((m_x_base>m_x_top?m_x_base:m_x_top)*2.0f, (m_y_top>m_y_base?m_y_top:m_y_base));
-		mesh_boxCollider2D.size = boxColl2D_size;
-		BuildBeamMesh (mesh_filter.mesh);
-		childer.transform.parent = transform;
-		Vector3 v3tmp = childer.transform.localPosition;
-		v3tmp.x = 0;
-		v3tmp.y = 0;
-		v3tmp.z = 0;
-		childer.transform.localPosition = v3tmp;*/
-		
 		float angle = Mathf.Atan ((m_x_base-m_x_top) / m_y_top) * 180/Mathf.PI; // 10.0f
 		MeshCollider meshcol_tmp;
 		Beam_borders_collider border;
-		/*
-		m_border_left = GameObject.CreatePrimitive (PrimitiveType.Quad);
-		m_border_left.transform.parent = transform;
-		m_border_left.transform.localPosition = new Vector3 (0, 0, 0);
-		m_border_left.transform.Rotate (new Vector3 (0.0f, 0.0f, -angle));
-		m_border_left.transform.localScale = new Vector3 (0.1f, m_y_top-m_y_base, 0.0f);
-		m_border_left.transform.localPosition = new Vector3 (-m_x_top, (m_y_top-m_y_base)/2.0f, 0.0f);
-		m_border_left.GetComponent<MeshRenderer> ().enabled = false;
-		meshcol_tmp = m_border_left.GetComponent<MeshCollider> ();
-		Component.DestroyImmediate (meshcol_tmp);
-		m_border_left.AddComponent<BoxCollider2D> ().isTrigger = true;
-		Beam_borders_collider border = m_border_left.AddComponent<Beam_borders_collider> ();
-		border.parent = this;
-
-		m_border_right = GameObject.CreatePrimitive (PrimitiveType.Quad);
-		m_border_right.transform.parent = transform;
-		m_border_right.transform.localPosition = new Vector3 (0, 0, 0);
-		m_border_right.transform.Rotate (new Vector3 (0.0f, 0.0f, angle));
-		m_border_right.transform.localScale = new Vector3 (0.1f, m_y_top-m_y_base, 0.0f);
-		m_border_right.transform.localPosition = new Vector3 (m_x_top, (m_y_top-m_y_base)/2.0f, 0.0f);
-		m_border_right.GetComponent<MeshRenderer> ().enabled = false;
-		meshcol_tmp = m_border_right.GetComponent<MeshCollider> ();
-		Component.DestroyImmediate (meshcol_tmp);
-		m_border_right.AddComponent<BoxCollider2D> ().isTrigger = true;
-		border = m_border_right.AddComponent<Beam_borders_collider> ();
-		border.parent = this;
-*/
 		m_border_top = GameObject.CreatePrimitive (PrimitiveType.Quad);
 		m_border_top.transform.parent = transform;
 		m_border_top.transform.localScale = new Vector3 (2.0f, 2.0f, 0.0f);
@@ -147,37 +96,19 @@ public class Beam : MonoBehaviour {
 
 	public void startBeam() {
 		m_active = true;
-		m_border_left.SetActive (true);
-		m_border_right.SetActive (true);
 		m_border_top.SetActive (true);
 	}
 	
 	public void stopBeam() {
 		m_active = false;
-		m_border_left.SetActive (false);
-		m_border_right.SetActive (false);
 		m_border_top.SetActive (false);
 	}
 	
-	public void docked() {
-		m_catched = null;
-		Debug.Log ("Docked");
-	}
-
-	public void releaseCatched() {
-		m_catched = null;
-		Debug.Log ("Released");
-	}
-	
 	public void activateBorders() {
-		//m_border_left.SetActive (true);
-		//m_border_right.SetActive (true);
 		m_border_top.SetActive (true);
 	}
 
 	public void deactivateBorders() {
-		//m_border_left.SetActive (false);
-		//m_border_right.SetActive (false);
 		m_border_top.SetActive (false);
 	}
 
@@ -204,6 +135,12 @@ public class Beam : MonoBehaviour {
 		for (int i = 0; i <m_catched_array.Count; i++) {
 			Cow lCow = (Cow)m_catched_array [i];
 			lCow.setCowState(cstate);
+		}
+	}
+
+	public void clearCows() {
+		if(m_catched_array)!=null) {
+			m_catched_array.Clear ();
 		}
 	}
 
@@ -235,15 +172,25 @@ public class Beam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (m_active && m_catched_array!=null) {
-			Cow cow = null;
-			for (int i = 0; i <m_catched_array.Count; i++) {
-				Cow lCow = (Cow)m_catched_array [i];
-				if (cow == null || cow.transform.localPosition.y>=lCow.transform.localPosition.y) {
-					cow = lCow;
-					Debug.Log(cow.transform.localPosition.y+">="+lCow.transform.localPosition.y);
-				}
+		ParticleSystem[] ps = GetComponentsInChildren<ParticleSystem> ();
+		for (int i=0; i<ps.Length; i++) {
+			if(ps[i].name=="ground-light") {
+				Ray r = new Ray();
+				BoxCollider2D bc2d = GetComponent<BoxCollider2D>();
+				r.origin = bc2d.bounds.center;
+				Vector3 dir = transform.localEulerAngles;
+				dir.z = 0;
+				dir.y = 0;
+				r.direction = dir;
+				RaycastHit2D hit = Physics2D.Raycast(new Vector2(r.origin.x,r.origin.y),
+				                                     new Vector2(dir.x+180.0f, dir.y));
+				ps[i].transform.localPosition = hit.point;
+
 			}
+		}
+		if (m_active && m_catched_array!=null && m_catched_array.Count>0) {
+			Cow cow = null;
+			cow = (Cow)m_catched_array[0];
 			if(cow!=null) {
 				Bounds cowBounds = cow.GetComponent<BoxCollider2D>().bounds;
 				Vector3 v3t = cowBounds.center;
@@ -264,14 +211,11 @@ public class Beam : MonoBehaviour {
 
 				if (cow.getCowState () == CowState.BeingLiftToShip) {
 					float r = Random.Range (0.0f, 1000.0f);
-					if (r > 900) {
+					if (r > m_cow_dir_no_switch_percentage*10) {
 						m_beamed_last_directions = -m_beamed_last_directions;
 					}
 					if (rb2D) {
 						rb2D.AddForce (new Vector2(m_cow_dir.x*m_beamed_last_directions, m_cow_dir.y));
-						/*Vector2 speed = rb2D.velocity;
-						Vector2.ClampMagnitude(speed, 0.05f);
-						rb2D.velocity = speed;*/
 					}
 				}
 			}

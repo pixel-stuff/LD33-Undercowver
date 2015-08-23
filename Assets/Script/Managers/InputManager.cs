@@ -30,10 +30,13 @@ public class InputManager : MonoBehaviour {
 			GameStateManager.setGameState(GameState.Pause);
 		}
 		
-		/*if(Input.GetKeyDown("z") || Input.GetKeyDown("w")){
-			PlayerManager.UP();
-		}*/
-		
+		if(Input.GetKeyDown(KeyCode.Space)){
+			PlayerManager.m_instance.BeanUp();
+		}
+		if(Input.GetKeyUp(KeyCode.Space)){
+			PlayerManager.m_instance.BeanDown();
+		}
+
 		if(Input.GetKey("q") || Input.GetKey("a")){
 			PlayerManager.m_instance.LEFT();
 		}
@@ -64,6 +67,12 @@ public class InputManager : MonoBehaviour {
 			PlayerManager.UP();
 		}
 		*/
+		if(Input.GetKeyDown(KeyCode.Space)){
+			PlayerManager.m_instance.BeanUp();
+		}
+		if(Input.GetKeyUp(KeyCode.Space)){
+			PlayerManager.m_instance.BeanDown();
+		}
 		if(Input.GetKey("q") || Input.GetKey("a")){
 			PlayerManager.m_instance.LEFT();
 		}
