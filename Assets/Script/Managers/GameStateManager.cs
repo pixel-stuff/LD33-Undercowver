@@ -40,7 +40,7 @@ public class GameStateManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("GAME STATE : " + m_gameState);
+		//Debug.Log ("GAME STATE : " + m_gameState);
 	}
 
 	public static GameState getGameState(){

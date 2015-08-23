@@ -11,8 +11,15 @@ public class CowManager : MonoBehaviour {
 	private List<Cow> m_listCow;
 
 	#region VarToRead
+	[Header("Cows State")]
+	[Space(10)]
+	[SerializeField]
+	private int m_numberOfUFOCowToReach = 0;
+	[SerializeField]
 	private int m_numberOfCow = 0;
+	[SerializeField]
 	private int m_numberOfUFOCow = 0;
+	[SerializeField]
 	private int m_numberOfDeadCow = 0;
 	#endregion VarToRead
 
@@ -35,19 +42,20 @@ public class CowManager : MonoBehaviour {
 	}
 	#endregion Singleton
 
+
 	// Use this for initialization
 	void Start () {
 		m_listCow = new List<Cow> ();
 		//Physics.IgnoreCollisi
 
-		//PlayerManager.m_instance.levelCow;
+		m_numberOfUFOCowToReach = PlayerManager.m_instance.levelCow;
 
 		GameObject obj;
 		Cow cow;
 		//positionner cow entre [-4.75;-4.60] en Y
 		//positionner cow entre [-9;3.6] en X
-		for (int i=0; i < 1; i++) {
-			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.6f), UnityEngine.Random.Range(-4.75f,-4.60f),0f ),Quaternion.identity);
+		for (int i=0; i < m_numberOfUFOCowToReach; i++) {
+			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.6f),-3.5f,0f ),Quaternion.identity);
 			obj.transform.parent = this.transform;
 
 			cow = obj.GetComponent<Cow>();
@@ -59,6 +67,9 @@ public class CowManager : MonoBehaviour {
 			cow.onLiftedEnter += handleLifted;
 			m_listCow.Add(cow);
 		}
+		m_listCow [0].setCowState (CowState.Lifted);
+		m_listCow [0].setCowState (CowState.IdleStatic);
+
 	
 	}
 	
@@ -68,7 +79,7 @@ public class CowManager : MonoBehaviour {
 	}
 
 	public void createCow(){
-		GameObject obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.6f), UnityEngine.Random.Range(-4.75f,-4.60f),0f ),Quaternion.identity);
+		GameObject obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.6f),-3.5f,0f ),Quaternion.identity);
 		obj.transform.parent = this.transform;
 		
 		Cow cow = obj.GetComponent<Cow>();
@@ -92,6 +103,10 @@ public class CowManager : MonoBehaviour {
 
 	void handleLifted (int id){
 		m_numberOfUFOCow++;
+
+		if (onNewUFOCow != null) {
+			onNewUFOCow();
+		}
 	}
 
 	public void handleCowFlying(int id){
