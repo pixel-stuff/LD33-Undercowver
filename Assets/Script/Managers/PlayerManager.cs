@@ -56,6 +56,9 @@ public class PlayerManager : MonoBehaviour {
 	public int actualUEFOCow = 0;
 	public GameObject CowText;
 
+	[Header("Bean")]
+	[Space(10)]
+	public GameObject bean;
 
 	void Start () {
 		GameStateManager.onChangeStateEvent += handleChangeGameState;
@@ -119,6 +122,13 @@ public class PlayerManager : MonoBehaviour {
 			victory();
 
 		}
+	}
+	public void BeanUp(){
+		bean.SetActive (true);
+	}
+
+	public void BeanDown(){
+		bean.SetActive (false);
 	}
 
 	public void UP(){
