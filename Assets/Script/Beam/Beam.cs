@@ -239,8 +239,9 @@ public class Beam : MonoBehaviour {
 			Cow cow = null;
 			for (int i = 0; i <m_catched_array.Count; i++) {
 				Cow lCow = (Cow)m_catched_array [i];
-				if (cow == null || cow.transform.localPosition.y >= lCow.transform.localPosition.y) {
+				if (cow == null || cow.transform.localPosition.y>=lCow.transform.localPosition.y) {
 					cow = lCow;
+					Debug.Log(cow.transform.localPosition.y+">="+lCow.transform.localPosition.y);
 				}
 			}
 			if(cow!=null) {
@@ -267,7 +268,6 @@ public class Beam : MonoBehaviour {
 						m_beamed_last_directions = -m_beamed_last_directions;
 					}
 					if (rb2D) {
-						Debug.Log (cow);
 						rb2D.AddForce (new Vector2(m_cow_dir.x*m_beamed_last_directions, m_cow_dir.y));
 						/*Vector2 speed = rb2D.velocity;
 						Vector2.ClampMagnitude(speed, 0.05f);
