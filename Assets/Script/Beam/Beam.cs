@@ -176,26 +176,37 @@ public class Beam : MonoBehaviour {
 		ParticleSystem[] ps = GetComponentsInChildren<ParticleSystem> ();
 		for (int i=0; i<ps.Length; i++) {
 			if(ps[i].name=="ground-light") {
-				BoxCollider2D bc2d = GetComponent<BoxCollider2D>();
+				/*BoxCollider2D bc2d = GetComponent<BoxCollider2D>();
 				Vector3 origin = bc2d.bounds.center;
 				origin.z = 0;
-				Vector3 dir = transform.forward;
+				Vector3 dir = Vector3.zero;
+				dir.x = transform.parent.position.x;
+				dir.y = transform.parent.position.y;
+				Debug.Log (origin+" "+dir);
 				dir.z = 0;
-				dir.y = 0;
 				
 				int layerMask = 1 << 10;
 				RaycastHit hitInfo = new RaycastHit();
 				if(Physics.Raycast(origin,
-								dir,
+								-dir,
 								out hitInfo,
 								100.0f,
 								layerMask)) {
 				Vector3 v = hitInfo.point;
-				v.z = 0;
-				ps[i].transform.localRotation = Quaternion.identity;
-				ps[i].transform.localPosition = v;
-					Debug.Log ("PUTE");
-				}
+				v.z = 0;*/
+				int layerMask = 1 << 10;
+				GameObject ground = GameObject.Find("Ground");
+				Debug.Log (ground.name);
+				Quaternion quat = Quaternion.identity;
+				Vector3 quatv = quat.eulerAngles;
+				quatv.x = 5.0f;
+				quat.eulerAngles = quatv;
+				ps[i].transform.rotation = quat;
+				ps[i].transform.position = new Vector3(transform.position.x,
+				                                       -4.5f,
+				                                       -1.0f);
+				/*	Debug.Log ("PUTE");
+				}*/
 			}
 		}
 		if (m_active && m_catched_array!=null && m_catched_array.Count>0) {
