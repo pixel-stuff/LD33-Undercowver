@@ -104,37 +104,39 @@ public class CowManager : MonoBehaviour {
 	void handleLifted (int id){
 		m_numberOfUFOCow++;
 
-		if (onNewUFOCow != null) {
-			onNewUFOCow();
-		}
 	}
 
 	public void handleCowFlying(int id){
 		
 	}
 
-	public void handleCowCrashed(int id,float speedCrashed){
+	public void handleCowCrashed(int id,float speedCrashed,CowState state){
 		//Debug.Log ("COW CRASH ");
 
 
 		Cow cow = getCowByID (id);
-		int numbAffraid = 0;
-		//Debug.Log ("Cow Reference: " + cow.name);
-		for (int i = 0; i<m_listCow.Count; i++) {
-			//Debug.Log ("m_listCow[" + i + "]  : " + m_listCow[i]);
-			if(m_listCow[i].getId() != id ){
-				numbAffraid++;
-				if(Vector3.Distance(m_listCow[i].transform.localPosition,cow.transform.localPosition) <= m_areaWhereCowBeAffraid){
-					m_listCow[i].setCowState(CowState.Affraid);
+
+		if (cow.getIsUFOCatched () && state != CowState.Dead) {
+			if (onNewUFOCow != null) {
+				onNewUFOCow ();
+			}
+		} else {
+
+			int numbAffraid = 0;
+			//Debug.Log ("Cow Reference: " + cow.name);
+			for (int i = 0; i<m_listCow.Count; i++) {
+				//Debug.Log ("m_listCow[" + i + "]  : " + m_listCow[i]);
+				if (m_listCow [i].getId () != id) {
+					numbAffraid++;
+					if (Vector3.Distance (m_listCow [i].transform.localPosition, cow.transform.localPosition) <= m_areaWhereCowBeAffraid) {
+						m_listCow [i].setCowState (CowState.Affraid);
+					}
 				}
 			}
-		}
 
-		if (numbAffraid <= 2) {
-			AudioManager.Play("cow/Multiple_Cow Moo_Court");
-		} else {
-			AudioManager.Play("cow/Multiple_Cow Moo");
+			//AudioManager.Play ("cow/Multiple_Cow Moo_Court");
 		}
+		
 	}
 
 	public void handleDead(int id){
