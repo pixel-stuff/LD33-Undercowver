@@ -139,7 +139,7 @@ public class Beam : MonoBehaviour {
 	}
 
 	public void clearCows() {
-		if(m_catched_array)!=null) {
+		if(m_catched_array!=null) {
 			m_catched_array.Clear ();
 		}
 	}
@@ -175,17 +175,26 @@ public class Beam : MonoBehaviour {
 		ParticleSystem[] ps = GetComponentsInChildren<ParticleSystem> ();
 		for (int i=0; i<ps.Length; i++) {
 			if(ps[i].name=="ground-light") {
-				Ray r = new Ray();
 				BoxCollider2D bc2d = GetComponent<BoxCollider2D>();
-				r.origin = bc2d.bounds.center;
-				Vector3 dir = transform.localEulerAngles;
+				Vector3 origin = bc2d.bounds.center;
+				origin.z = 0;
+				Vector3 dir = transform.forward;
 				dir.z = 0;
 				dir.y = 0;
-				r.direction = dir;
-				RaycastHit2D hit = Physics2D.Raycast(new Vector2(r.origin.x,r.origin.y),
-				                                     new Vector2(dir.x+180.0f, dir.y));
-				ps[i].transform.localPosition = hit.point;
-
+				
+				int layerMask = 1 << 10;
+				RaycastHit hitInfo = new RaycastHit();
+				if(Physics.Raycast(origin,
+								dir,
+								out hitInfo,
+								100.0f,
+								layerMask)) {
+				Vector3 v = hitInfo.point;
+				v.z = 0;
+				ps[i].transform.localRotation = Quaternion.identity;
+				ps[i].transform.localPosition = v;
+					Debug.Log ("PUTE");
+				}
 			}
 		}
 		if (m_active && m_catched_array!=null && m_catched_array.Count>0) {
