@@ -54,10 +54,18 @@ public class PlayerManager : MonoBehaviour {
 	[Space(10)]
 	public int levelCow;
 	public int actualUEFOCow = 0;
+
+
 	void Start () {
 		GameStateManager.onChangeStateEvent += handleChangeGameState;
 		m_rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
 		thresholdBounce = this.transform.position.y - deltaBounce;
+
+		CowManager.m_instance.onNewUFOCow += AddUFOCow;
+	}
+
+	private void AddUFOCow(){
+		actualUEFOCow++;
 	}
 
 	void handleChangeGameState(GameState newState){
@@ -95,9 +103,12 @@ public class PlayerManager : MonoBehaviour {
 			} else {
 				actualNoise = 0;
 			}
-
 		}
 
+		if(actualUEFOCow >= levelCow){
+			victory();
+
+		}
 	}
 
 	public void UP(){
@@ -153,6 +164,11 @@ public class PlayerManager : MonoBehaviour {
 	public void setGameOver(){
 		GameStateManager.setGameState (GameState.GameOver);
 	}
+
+	public void victory(){
+		//Todo victory stuff
+	}
+	                    
 
 	#endregion Intéraction
 
