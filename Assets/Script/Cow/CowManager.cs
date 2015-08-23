@@ -61,13 +61,13 @@ public class CowManager : MonoBehaviour {
 		m_listCow = new List<Cow> ();
 
 
-		//m_numberOfUFOCowToReach = PlayerManager.m_instance.levelCow;
+		m_numberOfUFOCowToReach = PlayerManager.m_instance.levelCow;
 
 		GameObject obj;
 		Cow cow;
 		//positionner cow entre [-4.75;-4.60] en Y
 		//positionner cow entre [-9;3.6] en X
-		for (int i=0; i < 15/*m_numberOfUFOCowToReach*/; i++) {
+		for (int i=0; i < m_numberOfUFOCowToReach; i++) {
 			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,4f),-3.55f,0f ),Quaternion.identity);
 			obj.transform.parent = this.transform;
 

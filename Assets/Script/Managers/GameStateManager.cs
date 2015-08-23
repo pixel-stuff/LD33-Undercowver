@@ -32,6 +32,15 @@ public class GameStateManager : MonoBehaviour {
 	
 	public static Action<GameState> onChangeStateEvent;
 
+
+	/*
+	 * Nbre cow killed
+	 * temps de jeu
+	 * Nbre d'alerte déclanché
+	 * 
+	 * 
+	 */
+
 	// Use this for initialization
 	void Start () {
 	}
