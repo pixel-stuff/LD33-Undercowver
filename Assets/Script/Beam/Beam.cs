@@ -70,7 +70,9 @@ public class Beam : MonoBehaviour {
 		childer.transform.localPosition = v3tmp;*/
 		
 		float angle = Mathf.Atan ((m_x_base-m_x_top) / m_y_top) * 180/Mathf.PI; // 10.0f
-
+		MeshCollider meshcol_tmp;
+		Beam_borders_collider border;
+		/*
 		m_border_left = GameObject.CreatePrimitive (PrimitiveType.Quad);
 		m_border_left.transform.parent = transform;
 		m_border_left.transform.localPosition = new Vector3 (0, 0, 0);
@@ -78,7 +80,7 @@ public class Beam : MonoBehaviour {
 		m_border_left.transform.localScale = new Vector3 (0.1f, m_y_top-m_y_base, 0.0f);
 		m_border_left.transform.localPosition = new Vector3 (-m_x_top, (m_y_top-m_y_base)/2.0f, 0.0f);
 		m_border_left.GetComponent<MeshRenderer> ().enabled = false;
-		MeshCollider meshcol_tmp = m_border_left.GetComponent<MeshCollider> ();
+		meshcol_tmp = m_border_left.GetComponent<MeshCollider> ();
 		Component.DestroyImmediate (meshcol_tmp);
 		m_border_left.AddComponent<BoxCollider2D> ().isTrigger = true;
 		Beam_borders_collider border = m_border_left.AddComponent<Beam_borders_collider> ();
@@ -96,7 +98,7 @@ public class Beam : MonoBehaviour {
 		m_border_right.AddComponent<BoxCollider2D> ().isTrigger = true;
 		border = m_border_right.AddComponent<Beam_borders_collider> ();
 		border.parent = this;
-
+*/
 		m_border_top = GameObject.CreatePrimitive (PrimitiveType.Quad);
 		m_border_top.transform.parent = transform;
 		m_border_top.transform.localScale = new Vector3 (2.0f, 2.0f, 0.0f);
@@ -168,18 +170,18 @@ public class Beam : MonoBehaviour {
 	}
 	
 	public void activateBorders() {
-		m_border_left.SetActive (true);
-		m_border_right.SetActive (true);
+		//m_border_left.SetActive (true);
+		//m_border_right.SetActive (true);
 		m_border_top.SetActive (true);
 	}
 
 	public void deactivateBorders() {
-		m_border_left.SetActive (false);
-		m_border_right.SetActive (false);
+		//m_border_left.SetActive (false);
+		//m_border_right.SetActive (false);
 		m_border_top.SetActive (false);
 	}
 
-	bool isCowInBeam(Cow c) {
+	public bool isCowInBeam(Cow c) {
 		for (int i = 0; i <m_catched_array.Count; i++) {
 			Cow lCow = (Cow)m_catched_array [i];
 			if(lCow.getId()==c.getId()) {
@@ -188,15 +190,31 @@ public class Beam : MonoBehaviour {
 		}
 		return false;
 	}
+	
+	public void removeCow(Cow c) {
+		for (int i = 0; i <m_catched_array.Count; i++) {
+			Cow lCow = (Cow)m_catched_array [i];
+			if(lCow.getId()==c.getId()) {
+				m_catched_array.RemoveAt (i);
+			}
+		}
+	}
+	
+	void resetCowStates(CowState cstate) {
+		for (int i = 0; i <m_catched_array.Count; i++) {
+			Cow lCow = (Cow)m_catched_array [i];
+			lCow.setCowState(cstate);
+		}
+	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (m_active) {
-			if (other.GetComponent<Cow> () != null && other.GetComponent<Cow> ().getCowState () != CowState.BeingLiftToShip) {
+			if (other.GetComponent<Cow> () != null) {
 				if(!isCowInBeam(other.GetComponent<Cow>())) {
 					m_catched_array.Add (other.GetComponent<Cow>());
-					other.GetComponent<Cow>().setCowState(CowState.BeingLiftToShip);
-					activateBorders();
 				}
+				other.GetComponent<Cow>().setCowState(CowState.BeingLiftToShip);
+				activateBorders();
 			}
 		}
 	}
@@ -221,7 +239,7 @@ public class Beam : MonoBehaviour {
 			Cow cow = null;
 			for (int i = 0; i <m_catched_array.Count; i++) {
 				Cow lCow = (Cow)m_catched_array [i];
-				if (cow == null || cow.transform.localPosition.y > lCow.transform.localPosition.y) {
+				if (cow == null || cow.transform.localPosition.y >= lCow.transform.localPosition.y) {
 					cow = lCow;
 				}
 			}
