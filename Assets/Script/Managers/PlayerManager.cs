@@ -28,8 +28,32 @@ public class PlayerManager : MonoBehaviour {
 	public float forceOnMove;
 	public float deltaRotate;
 	public float rotateMultiplicator;
+	public float xLimite;
 
+	[Header("Noise")]
+	[Space(10)]
+	public float checkNoise;
+
+	public float actualNoise;
+	public float loseNoisePer250ms;
+
+	private float nextActionTime = 0.0f; 
+	private float period = 0.250f;
+
+	[Header("SpaceShipNoise")]
+	[Space(10)]
+	public float velocityFactor;
+
+
+	[Header("SoundFeedback")]
+	[Space(10)]
+	public GameObject soundFeedBack;
 	// Use this for initialization
+
+	[Header("Cow")]
+	[Space(10)]
+	public int levelCow;
+	public int actualUEFOCow = 0;
 	void Start () {
 		GameStateManager.onChangeStateEvent += handleChangeGameState;
 		m_rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
@@ -50,6 +74,30 @@ public class PlayerManager : MonoBehaviour {
 			}
 		}
 		rotateForVelocity ();
+
+		if (transform.position.x <= -xLimite) {
+			transform.position = new Vector2(-xLimite,transform.position.y);
+		} else if (transform.position.x >= xLimite) {
+			transform.position = new Vector2(xLimite,transform.position.y);
+		}
+
+
+
+
+		noiseForVelocity ();
+		checkNoiseLevel ();
+
+		if (Time.time > nextActionTime) { 
+			nextActionTime += period;
+			float minusNoise = actualNoise - loseNoisePer250ms;
+			if(minusNoise > 0){
+				actualNoise = minusNoise;
+			} else {
+				actualNoise = 0;
+			}
+
+		}
+
 	}
 
 	public void UP(){
@@ -80,8 +128,30 @@ public class PlayerManager : MonoBehaviour {
 		m_rigidbody.AddForce (new Vector2 (forceOnMove, 0), ForceMode2D.Impulse);
 	}
 	
+	private void noiseForVelocity(){
+		addNoise (Mathf.Abs (m_rigidbody.velocity.x)* velocityFactor);
+	}
+	
 	private void rotateForVelocity(){
 		this.transform.eulerAngles = new Vector3 (0, 0,-m_rigidbody.velocity.x * rotateMultiplicator);
+	}
+
+	public void addNoise(float noise){
+		actualNoise += noise;
+		checkNoiseLevel ();
+	}
+
+	public void checkNoiseLevel() {
+
+		if (actualNoise > checkNoise) {
+
+			//todo check noise paysan
+		}
+		soundFeedBack.GetComponent<soundFeedBack> ().setSoundPercent ((actualNoise / checkNoise)*100);
+	}
+
+	public void setGameOver(){
+		GameStateManager.setGameState (GameState.GameOver);
 	}
 
 	#endregion Intéraction
