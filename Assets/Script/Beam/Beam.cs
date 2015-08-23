@@ -139,7 +139,9 @@ public class Beam : MonoBehaviour {
 	}
 
 	public void clearCows() {
-		m_catched_array.Clear ();
+		if(m_catched_array)!=null) {
+			m_catched_array.Clear ();
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -181,7 +183,7 @@ public class Beam : MonoBehaviour {
 				dir.y = 0;
 				r.direction = dir;
 				RaycastHit2D hit = Physics2D.Raycast(new Vector2(r.origin.x,r.origin.y),
-				                  new Vector2(dir.x, dir.y));
+				                                     new Vector2(dir.x+180.0f, dir.y));
 				ps[i].transform.localPosition = hit.point;
 
 			}
