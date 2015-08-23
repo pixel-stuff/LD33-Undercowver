@@ -6,7 +6,7 @@ public enum GameState{
 	Menu,
 	Playing,
 	Pause,
-	GameOver
+	EndScene
 }
 
 public class GameStateManager : MonoBehaviour {
@@ -50,6 +50,13 @@ public class GameStateManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Debug.Log ("GAME STATE : " + m_gameState);
+		if (m_asynLoading != null) {
+			//Debug.Log ("LOADING : " + m_asynLoading.progress);
+			//Debug.Log ("is done : " + m_asynLoading.isDone + "(" + m_asynLoading.progress*100f +"%)" );
+		}
+		/*if (Time.time - timeStartLoading >= 10f) {
+			m_asynLoading.allowSceneActivation = true;
+		}*/
 	}
 
 	public static GameState getGameState(){
@@ -57,10 +64,41 @@ public class GameStateManager : MonoBehaviour {
 	}
 
 	public static void setGameState(GameState state){
-
 		m_gameState = state;
 		if(onChangeStateEvent != null){
 			onChangeStateEvent(state);
 		}
+	}
+
+	public void GoToSceneMenu(){
+		this.setGameState (GameState.Menu);
+		Application.LoadLevelAsync ("MenuScene");
+	}
+
+	AsyncOperation m_asynLoading;
+	float timeStartLoading;
+
+	public void GoToEndSceneWithLoose(){
+		this.setGameState (GameState.EndScene);
+		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
+
+		//m_asynLoading.allowSceneActivation = false;
+		timeStartLoading = Time.time;
+	}
+
+	public void GoToEndSceneWithSuccess(){
+		this.setGameState (GameState.EndScene);
+		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
+		
+		//m_asynLoading.allowSceneActivation = false;
+		timeStartLoading = Time.time;
+	}
+
+	public void GoToLevelScene (){
+		this.setGameState (GameState.EndScene);
+		m_asynLoading =  Application.LoadLevelAsync ("LevelScene");
+		
+		//m_asynLoading.allowSceneActivation = false;
+		timeStartLoading = Time.time;
 	}
 }

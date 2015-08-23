@@ -828,9 +828,17 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 854749038}
-    - target: {fileID: 11411876, guid: 48ff1a8e8922e554589e4e768b1c8dab, type: 2}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 11479214, guid: 48ff1a8e8922e554589e4e768b1c8dab, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToEndSceneWithLoose
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479214, guid: 48ff1a8e8922e554589e4e768b1c8dab, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2049324181}
+    - target: {fileID: 11412176, guid: 48ff1a8e8922e554589e4e768b1c8dab, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToEndSceneWithSuccess
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48ff1a8e8922e554589e4e768b1c8dab, type: 2}
@@ -951,6 +959,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &2049324181 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11484324, guid: 48ff1a8e8922e554589e4e768b1c8dab,
+    type: 2}
+  m_PrefabInternal: {fileID: 1840979943}
+  m_Script: {fileID: 11500000, guid: b8ea02e2e7273424db96f371710ea304, type: 3}
 --- !u!1 &2103574190
 GameObject:
   m_ObjectHideFlags: 0

@@ -189,7 +189,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void setGameOver(){
-		GameStateManager.setGameState (GameState.GameOver);
+		GameStateManager.setGameState (GameState.EndScene);
 	}
 
 	public void setVictory(){
