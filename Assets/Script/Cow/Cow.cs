@@ -156,6 +156,7 @@ public class Cow : MonoBehaviour {
 				UpdateDead ();
 				break;
 		}
+		m_flyingSpeed = this.GetComponent<Rigidbody2D>().velocity.magnitude;
 	}
 
 
@@ -203,7 +204,6 @@ public class Cow : MonoBehaviour {
 	}
 	
 	void UpdateFlying (){
-		m_flyingSpeed = this.GetComponent<Rigidbody2D>().velocity.magnitude;
 	}
 	
 	void UpdateLifted (){
@@ -233,10 +233,7 @@ public class Cow : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D   coll){
 		//Debug.Log ("COLLISION DETECTED WITH :" + coll.gameObject.name);
-		if (coll.gameObject.tag == "Ground" 
-		    	&& m_cowState != CowState.IdleEating
-		    		&& m_cowState != CowState.IdleWalking
-		    			&& m_cowState != CowState.IdleStatic) {
+		if (coll.gameObject.tag == "Ground") {
 			setCowState(CowState.Crashed);
 		}
 	}
