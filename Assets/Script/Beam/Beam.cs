@@ -189,7 +189,7 @@ public class Beam : MonoBehaviour {
 
 				if (cow.getCowState () == CowState.BeingLiftToShip) {
 					float r = Random.Range (0.0f, 1000.0f);
-					if (r > (100.0f-m_cow_dir_switch_percentage)*10) {
+					if (r > m_cow_dir_switch_percentage*10) {
 						m_beamed_last_directions = -m_beamed_last_directions;
 					}
 					if (rb2D) {
