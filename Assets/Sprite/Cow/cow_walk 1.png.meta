@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 18800d9326ad72543963840f51b64dcd
-timeCreated: 1440344540
+guid: e105c424f63b2f9478fcdd34afc9fff3
+timeCreated: 1440345849
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: cow_walk_0
-    21300002: cow_walk_1
-    21300004: cow_walk_2
-    21300006: cow_walk_3
-    21300008: cow_walk_4
-    21300010: cow_walk_5
-    21300012: cow_walk_6
-    21300014: cow_walk_7
-    21300016: cow_walk_8
-    21300018: cow_walk_9
+    21300000: cow_walk 1_0
+    21300002: cow_walk 1_1
+    21300004: cow_walk 1_2
+    21300006: cow_walk 1_3
+    21300008: cow_walk 1_4
+    21300010: cow_walk 1_5
+    21300012: cow_walk 1_6
+    21300014: cow_walk 1_7
+    21300016: cow_walk 1_8
+    21300018: cow_walk 1_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,7 +59,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: cow_walk_0
+    - name: cow_walk 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -69,7 +69,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cow_walk_1
+    - name: cow_walk 1_1
       rect:
         serializedVersion: 2
         x: 87
@@ -79,7 +79,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cow_walk_2
+    - name: cow_walk 1_2
       rect:
         serializedVersion: 2
         x: 174
@@ -89,7 +89,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cow_walk_3
+    - name: cow_walk 1_3
       rect:
         serializedVersion: 2
         x: 261
@@ -99,7 +99,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cow_walk_4
+    - name: cow_walk 1_4
       rect:
         serializedVersion: 2
         x: 348
@@ -109,7 +109,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cow_walk_5
+    - name: cow_walk 1_5
       rect:
         serializedVersion: 2
         x: 435
@@ -119,7 +119,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cow_walk_6
+    - name: cow_walk 1_6
       rect:
         serializedVersion: 2
         x: 522
@@ -129,7 +129,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cow_walk_7
+    - name: cow_walk 1_7
       rect:
         serializedVersion: 2
         x: 609
@@ -139,7 +139,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cow_walk_8
+    - name: cow_walk 1_8
       rect:
         serializedVersion: 2
         x: 696
@@ -149,7 +149,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cow_walk_9
+    - name: cow_walk 1_9
       rect:
         serializedVersion: 2
         x: 783
