@@ -10,6 +10,8 @@ public class Beam : MonoBehaviour {
 	public float m_y_base = 0.0f;
 	[SerializeField]
 	public float m_y_top = 10.0f;
+	[SerializeField]
+	public Vector2 m_cow_dir = new Vector2(0.05f, 0.001f);
 
 	private bool m_active = true;
 
@@ -66,11 +68,13 @@ public class Beam : MonoBehaviour {
 		v3tmp.y = 0;
 		v3tmp.z = 0;
 		childer.transform.localPosition = v3tmp;*/
+		
+		float angle = Mathf.Atan ((m_x_base-m_x_top) / m_y_top) * 180/Mathf.PI; // 10.0f
 
 		m_border_left = GameObject.CreatePrimitive (PrimitiveType.Quad);
 		m_border_left.transform.parent = transform;
 		m_border_left.transform.localPosition = new Vector3 (0, 0, 0);
-		m_border_left.transform.Rotate (new Vector3 (0.0f, 0.0f, -10.0f));
+		m_border_left.transform.Rotate (new Vector3 (0.0f, 0.0f, -angle));
 		m_border_left.transform.localScale = new Vector3 (0.1f, m_y_top-m_y_base, 0.0f);
 		m_border_left.transform.localPosition = new Vector3 (-m_x_top, (m_y_top-m_y_base)/2.0f, 0.0f);
 		m_border_left.GetComponent<MeshRenderer> ().enabled = false;
@@ -83,7 +87,7 @@ public class Beam : MonoBehaviour {
 		m_border_right = GameObject.CreatePrimitive (PrimitiveType.Quad);
 		m_border_right.transform.parent = transform;
 		m_border_right.transform.localPosition = new Vector3 (0, 0, 0);
-		m_border_right.transform.Rotate (new Vector3 (0.0f, 0.0f, 10.0f));
+		m_border_right.transform.Rotate (new Vector3 (0.0f, 0.0f, angle));
 		m_border_right.transform.localScale = new Vector3 (0.1f, m_y_top-m_y_base, 0.0f);
 		m_border_right.transform.localPosition = new Vector3 (m_x_top, (m_y_top-m_y_base)/2.0f, 0.0f);
 		m_border_right.GetComponent<MeshRenderer> ().enabled = false;
@@ -162,21 +166,46 @@ public class Beam : MonoBehaviour {
 		m_catched = null;
 		Debug.Log ("Released");
 	}
+	
+	public void activateBorders() {
+		m_border_left.SetActive (true);
+		m_border_right.SetActive (true);
+		m_border_top.SetActive (true);
+	}
+
+	public void deactivateBorders() {
+		m_border_left.SetActive (false);
+		m_border_right.SetActive (false);
+		m_border_top.SetActive (false);
+	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (m_active) {
 			if (other.GetComponent<Cow> () != null && other.GetComponent<Cow> ().getCowState () != CowState.BeingLiftToShip) {
-				//m_catched = other.GetComponent<Cow> ();
-				//m_catched.setCowState (CowState.BeingLiftToShip);
 				m_catched_array.Add (other.GetComponent<Cow>());
 				other.GetComponent<Cow>().setCowState(CowState.BeingLiftToShip);
+				activateBorders();
+			}
+		}
+	}
+	
+	void OnTriggerExit2D(Collider2D other) {
+		if (m_active) {
+			if (other.GetComponent<Cow> ()) {
+				for (int i = 0; i <m_catched_array.Count; i++) {
+					Cow lCow = (Cow)m_catched_array [i];
+					if(lCow.getId()==other.GetComponent<Cow>().getId()) {
+						lCow.setCowState(CowState.Flying);
+						m_catched_array.RemoveAt(i);
+					}
+				}
 			}
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (m_active) {
+		if (m_active && m_catched_array!=null) {
 			Cow cow = null;
 			for (int i = 0; i <m_catched_array.Count; i++) {
 				Cow lCow = (Cow)m_catched_array [i];
@@ -184,35 +213,38 @@ public class Beam : MonoBehaviour {
 					cow = lCow;
 				}
 			}
-			
-			if (cow.getCowState () == CowState.BeingLiftToShip) {
+			if(cow!=null) {
+				Bounds cowBounds = cow.GetComponent<BoxCollider2D>().bounds;
+				Vector3 v3t = cowBounds.center;
+				v3t.z = 0.0f;
+				cowBounds.center = v3t;
+				Bounds bounds = GetComponent<BoxCollider2D>().bounds;
+				v3t = bounds.center;
+				v3t.z = 0.0f;
+				bounds.center = v3t;
+				if (cow.getCowState()==CowState.Flying && cowBounds.Intersects(bounds)) {
+					cow.setCowState(CowState.BeingLiftToShip);
+					activateBorders();
+					return;
+				}
+
 				Rigidbody2D rb2D = cow.GetComponent<Rigidbody2D> ();
-				if (rb2D) {
-					cow.GetComponent<Rigidbody2D> ().AddForce (Vector2.up);
-				}
-				Vector3 upv = cow.transform.localPosition;
-				upv.y += 0.01f;
-				float r = Random.Range (0.0f, 1000.0f);
-				if (r > 900) {
-					m_beamed_last_directions = -m_beamed_last_directions;
-				}
-				upv.x += m_beamed_last_directions;
-				/*float r=Random.Range(-1.0,1.0);
-			if(r<-0.8) {
-				m_beamed_last_directions=0.1;
-			}else if(r>0.8) {
-				m_beamed_last_directions=-0.1;
-			}else{
-				if(m_beamed_last_directions<0) {
-					if(r<m_beamed_last_directions
+
+				if (cow.getCowState () == CowState.BeingLiftToShip) {
+					Vector3 upv = cow.transform.localPosition;
+					float r = Random.Range (0.0f, 1000.0f);
+					if (r > 900) {
+						m_beamed_last_directions = -m_beamed_last_directions;
+					}
+					if (rb2D) {
+						rb2D.AddForce (new Vector2(m_cow_dir.x*m_beamed_last_directions, m_cow_dir.y));
+						Vector2 speed = rb2D.velocity;
+						Vector2.ClampMagnitude(speed, 0.05f);
+						rb2D.velocity = speed;
+					}
 				}
 			}
-			m_beamed_last_directions-=0.1;*/
-				
-				
-				cow.transform.localPosition = upv;
-			}
-		} else if(m_catched_array.Count>0) {
+		} else if(m_catched_array!=null && m_catched_array.Count>0) {
 			Cow cow = null;
 			for (int i = 0; i <m_catched_array.Count; i++) {
 				Cow lCow = (Cow)m_catched_array [i];

@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &183296
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,7 +29,7 @@ GameObject:
   - 4: {fileID: 434002}
   - 198: {fileID: 19873528}
   - 199: {fileID: 19932168}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   - 61: {fileID: 6194202}
   - 50: {fileID: 5050614}
   - 114: {fileID: 11458698}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: -1}
+  m_LocalPosition: {x: -.349999994, y: -3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 434002}
@@ -122,8 +122,8 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_HDR: 1
-  m_OcclusionCulling: 1
+  m_HDR: 0
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
   m_StereoMirrorMode: 0
@@ -215,7 +215,8 @@ MonoBehaviour:
   m_x_base: 1.5
   m_x_top: 1
   m_y_base: 0
-  m_y_top: 5
+  m_y_top: 15
+  m_cow_dir: {x: .00499999989, y: .00100000005}
 --- !u!124 &12455564
 Behaviour:
   m_ObjectHideFlags: 1
