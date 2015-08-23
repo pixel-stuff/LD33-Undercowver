@@ -13,7 +13,7 @@ public class Beam : MonoBehaviour {
 	[SerializeField]
 	public Vector2 m_cow_dir = new Vector2(0.05f, 0.001f);
 	[SerializeField]
-	public float m_cow_dir_switch_percentage = 90.0f;
+	public float m_cow_dir_no_switch_percentage = 90.0f;
 
 	private bool m_active = true;
 
@@ -189,7 +189,7 @@ public class Beam : MonoBehaviour {
 
 				if (cow.getCowState () == CowState.BeingLiftToShip) {
 					float r = Random.Range (0.0f, 1000.0f);
-					if (r > m_cow_dir_switch_percentage*10) {
+					if (r > m_cow_dir_no_switch_percentage*10) {
 						m_beamed_last_directions = -m_beamed_last_directions;
 					}
 					if (rb2D) {
