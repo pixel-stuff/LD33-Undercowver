@@ -17,7 +17,7 @@ public class CowManager : MonoBehaviour {
 	#endregion VarToRead
 
 
-	public Action onNumberUFOCowReach;
+	public Action onNewUFOCow;
 
 
 	#region Singleton
