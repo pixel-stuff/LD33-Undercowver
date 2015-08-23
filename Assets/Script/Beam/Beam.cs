@@ -43,6 +43,30 @@ public class Beam : MonoBehaviour {
 		ParticleSystem beam_particles = beam.GetComponentInChildren<ParticleSystem> ();
 		beam_particles.transform.localPosition = new Vector3 (transform.localPosition.x, m_y_base, 0.0f);
 
+		// background object
+		/* does not work to have a front invisible quad that will receive shadows, in fact, he did not receive anything
+		 * GameObject childer = GameObject.CreatePrimitive (PrimitiveType.Quad);
+		mesh_filter = childer.GetComponent<MeshFilter>();
+		MeshCollider mesh_collider = childer.GetComponent<MeshCollider> ();
+		Component.DestroyImmediate (mesh_collider);
+		mesh_rigidBody2D = childer.AddComponent<Rigidbody2D> ();
+		mesh_boxCollider2D = childer.AddComponent<BoxCollider2D> ();
+		mesh_rigidBody2D.isKinematic = true;
+		mesh_boxCollider2D.isTrigger = true;
+		boxColl2D_center = mesh_boxCollider2D.offset;
+		boxColl2D_center = new Vector2 ((m_x_base - m_x_top) / 2.0f, (m_y_top-m_y_base)/2.0f);
+		mesh_boxCollider2D.offset = boxColl2D_center;
+		boxColl2D_size = mesh_boxCollider2D.size;
+		boxColl2D_size = new Vector2 ((m_x_base>m_x_top?m_x_base:m_x_top)*2.0f, (m_y_top>m_y_base?m_y_top:m_y_base));
+		mesh_boxCollider2D.size = boxColl2D_size;
+		BuildBeamMesh (mesh_filter.mesh);
+		childer.transform.parent = transform;
+		Vector3 v3tmp = childer.transform.localPosition;
+		v3tmp.x = 0;
+		v3tmp.y = 0;
+		v3tmp.z = 0;
+		childer.transform.localPosition = v3tmp;*/
+
 		m_border_left = GameObject.CreatePrimitive (PrimitiveType.Quad);
 		m_border_left.transform.parent = transform;
 		m_border_left.transform.localPosition = new Vector3 (0, 0, 0);
@@ -117,10 +141,16 @@ public class Beam : MonoBehaviour {
 
 	public void startBeam() {
 		m_active = true;
+		m_border_left.SetActive (true);
+		m_border_right.SetActive (true);
+		m_border_top.SetActive (true);
 	}
 	
 	public void stopBeam() {
 		m_active = false;
+		m_border_left.SetActive (false);
+		m_border_right.SetActive (false);
+		m_border_top.SetActive (false);
 	}
 	
 	public void docked() {
