@@ -235,15 +235,16 @@ public class Beam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (m_active && m_catched_array!=null) {
+		if (m_active && m_catched_array!=null && m_catched_array.Count>0) {
 			Cow cow = null;
-			for (int i = 0; i <m_catched_array.Count; i++) {
+			cow = (Cow)m_catched_array[0];
+			/*for (int i = 0; i <m_catched_array.Count; i++) {
 				Cow lCow = (Cow)m_catched_array [i];
 				if (cow == null || cow.transform.localPosition.y>=lCow.transform.localPosition.y) {
 					cow = lCow;
 					Debug.Log(cow.transform.localPosition.y+">="+lCow.transform.localPosition.y);
 				}
-			}
+			}*/
 			if(cow!=null) {
 				Bounds cowBounds = cow.GetComponent<BoxCollider2D>().bounds;
 				Vector3 v3t = cowBounds.center;
