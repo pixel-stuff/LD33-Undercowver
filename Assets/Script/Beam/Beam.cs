@@ -179,12 +179,24 @@ public class Beam : MonoBehaviour {
 		m_border_top.SetActive (false);
 	}
 
+	bool isCowInBeam(Cow c) {
+		for (int i = 0; i <m_catched_array.Count; i++) {
+			Cow lCow = (Cow)m_catched_array [i];
+			if(lCow.getId()==c.getId()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	void OnTriggerEnter2D(Collider2D other) {
 		if (m_active) {
 			if (other.GetComponent<Cow> () != null && other.GetComponent<Cow> ().getCowState () != CowState.BeingLiftToShip) {
-				m_catched_array.Add (other.GetComponent<Cow>());
-				other.GetComponent<Cow>().setCowState(CowState.BeingLiftToShip);
-				activateBorders();
+				if(!isCowInBeam(other.GetComponent<Cow>())) {
+					m_catched_array.Add (other.GetComponent<Cow>());
+					other.GetComponent<Cow>().setCowState(CowState.BeingLiftToShip);
+					activateBorders();
+				}
 			}
 		}
 	}
