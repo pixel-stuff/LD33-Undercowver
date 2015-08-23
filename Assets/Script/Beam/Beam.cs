@@ -138,6 +138,10 @@ public class Beam : MonoBehaviour {
 		}
 	}
 
+	public void clearCows() {
+		m_catched_array.Clear ();
+	}
+
 	void OnTriggerEnter2D(Collider2D other) {
 		if (m_active) {
 			if (other.GetComponent<Cow> () != null) {
@@ -166,6 +170,22 @@ public class Beam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		ParticleSystem[] ps = GetComponentsInChildren<ParticleSystem> ();
+		for (int i=0; i<ps.Length; i++) {
+			if(ps[i].name=="ground-light") {
+				Ray r;
+				BoxCollider2D bc2d = GetComponent<BoxCollider2D>();
+				r.origin = bc2d.bounds.center;
+				Vector3 dir = transform.localEulerAngles;
+				dir.z = 0;
+				dir.y = 0;
+				r.direction = dir;
+				RaycastHit2D hit = Physics2D.Raycast(new Vector2(r.origin.x,r.origin.y),
+				                  new Vector2(dir.x, dir.y));
+				ps[i].transform.localPosition = hit.point;
+
+			}
+		}
 		if (m_active && m_catched_array!=null && m_catched_array.Count>0) {
 			Cow cow = null;
 			cow = (Cow)m_catched_array[0];
