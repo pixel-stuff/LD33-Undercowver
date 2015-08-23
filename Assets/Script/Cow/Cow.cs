@@ -86,7 +86,7 @@ public class Cow : MonoBehaviour {
 	[SerializeField]
 	private float m_cowDieIfSpeedOver = 7.5f;
 	[SerializeField]
-	private float m_cowAffraidIfSpeedOver = 3.0f;
+	private float m_cowAffraidIfSpeedOver = 2.5f;
 	#endregion Flying State
 
 	#region Crashed State

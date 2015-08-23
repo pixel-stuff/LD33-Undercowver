@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 	#endregion Singleton
 	private Rigidbody2D m_rigidbody;
+	private bool victory = false;
 	[Header("BounceSpaceShip")]
 	public Vector2 bounceForce;
 	public float deltaBounce;
@@ -119,8 +120,11 @@ public class PlayerManager : MonoBehaviour {
 		}
 
 		if(actualUEFOCow >= levelCow){
-			victory();
+			setVictory();
 
+		}
+		if (victory) {
+			m_rigidbody.AddForce (new Vector2(0,150), ForceMode2D.Impulse);
 		}
 	}
 	public void BeanUp(){
@@ -186,8 +190,9 @@ public class PlayerManager : MonoBehaviour {
 		GameStateManager.setGameState (GameState.GameOver);
 	}
 
-	public void victory(){
+	public void setVictory(){
 		Debug.Log ("Victory");
+		victory = true;
 	}
 	                    
 
