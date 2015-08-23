@@ -6,7 +6,8 @@ public enum GameState{
 	Menu,
 	Playing,
 	Pause,
-	EndScene
+	EndSceneGameOver,
+	EndSceneSuccess
 }
 
 public class GameStateManager : MonoBehaviour {
@@ -53,10 +54,16 @@ public class GameStateManager : MonoBehaviour {
 		if (m_asynLoading != null) {
 			//Debug.Log ("LOADING : " + m_asynLoading.progress);
 			//Debug.Log ("is done : " + m_asynLoading.isDone + "(" + m_asynLoading.progress*100f +"%)" );
+			if (m_asynLoading.progress >= 0.90f) {
+				try{
+					m_asynLoading.allowSceneActivation = true;
+					m_asynLoading = null;
+				}catch(Exception exp){
+					Debug.Log ("ERROR : " + exp.ToString());
+				}
+			}
 		}
-		/*if (Time.time - timeStartLoading >= 10f) {
-			m_asynLoading.allowSceneActivation = true;
-		}*/
+
 	}
 
 	public static GameState getGameState(){
@@ -79,7 +86,7 @@ public class GameStateManager : MonoBehaviour {
 	float timeStartLoading;
 
 	public void GoToEndSceneWithLoose(){
-		this.setGameState (GameState.EndScene);
+		this.setGameState (GameState.EndSceneGameOver);
 		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
 
 		//m_asynLoading.allowSceneActivation = false;
@@ -87,7 +94,7 @@ public class GameStateManager : MonoBehaviour {
 	}
 
 	public void GoToEndSceneWithSuccess(){
-		this.setGameState (GameState.EndScene);
+		this.setGameState (GameState.EndSceneSuccess);
 		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
 		
 		//m_asynLoading.allowSceneActivation = false;
@@ -95,8 +102,8 @@ public class GameStateManager : MonoBehaviour {
 	}
 
 	public void GoToLevelScene (){
-		this.setGameState (GameState.EndScene);
-		m_asynLoading =  Application.LoadLevelAsync ("LevelScene");
+		this.setGameState (GameState.Playing);
+		/*m_asynLoading = */ Application.LoadLevelAsync ("LevelScene");
 		
 		//m_asynLoading.allowSceneActivation = false;
 		timeStartLoading = Time.time;
