@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour {
 
 	#region Singleton
@@ -54,6 +54,7 @@ public class PlayerManager : MonoBehaviour {
 	[Space(10)]
 	public int levelCow;
 	public int actualUEFOCow = 0;
+	public GameObject CowText;
 
 
 	void Start () {
@@ -62,10 +63,19 @@ public class PlayerManager : MonoBehaviour {
 		thresholdBounce = this.transform.position.y - deltaBounce;
 
 		CowManager.m_instance.onNewUFOCow += AddUFOCow;
+
+		setCowText (actualUEFOCow+" / "+ levelCow);
 	}
 
+	private void setCowText(string s){
+		CowText.GetComponent<Text> ().text = s;
+	}
+
+
 	private void AddUFOCow(){
+		Debug.Log("zze");
 		actualUEFOCow++;
+		setCowText (actualUEFOCow+" / "+ levelCow);
 	}
 
 	void handleChangeGameState(GameState newState){
@@ -166,7 +176,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void victory(){
-		//Todo victory stuff
+		Debug.Log ("Victory");
 	}
 	                    
 
