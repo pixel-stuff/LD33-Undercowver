@@ -114,17 +114,27 @@ public class CowManager : MonoBehaviour {
 	}
 
 	public void handleCowCrashed(int id,float speedCrashed){
-		//TODO: mettre les cow proche à affraid
-		/*Cow cow = getCowByID (id);
+		//Debug.Log ("COW CRASH ");
+
+
+		Cow cow = getCowByID (id);
+		int numbAffraid = 0;
+		//Debug.Log ("Cow Reference: " + cow.name);
 		for (int i = 0; i<m_listCow.Count; i++) {
-			Debug.Log ("m_listCow[" + i + "]  : " + m_listCow[i]);
+			//Debug.Log ("m_listCow[" + i + "]  : " + m_listCow[i]);
 			if(m_listCow[i].getId() != id ){
+				numbAffraid++;
 				if(Vector3.Distance(m_listCow[i].transform.localPosition,cow.transform.localPosition) <= m_areaWhereCowBeAffraid){
 					m_listCow[i].setCowState(CowState.Affraid);
 				}
 			}
-		}*/
-		//Debug.Log ("COW CRASH ");
+		}
+
+		if (numbAffraid <= 2) {
+			AudioManager.Play("cow/Multiple_Cow Moo_Court");
+		} else {
+			AudioManager.Play("cow/Multiple_Cow Moo");
+		}
 	}
 
 	public void handleDead(int id){
@@ -147,8 +157,10 @@ public class CowManager : MonoBehaviour {
 	}
 
 	public Cow getCowByID(int id){
-		for (int i=0; i < m_numberOfUFOCowToReach; i++) {
+		for (int i=0; i < m_listCow.Count; i++) {
+			//Debug.Log("Check the if : " +  m_listCow[i].getId());
 			if(m_listCow[i].getId() == id){
+				//Debug.Log("Return found");
 				return m_listCow[i];
 			}
 		}

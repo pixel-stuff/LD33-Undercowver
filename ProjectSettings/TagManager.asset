@@ -20,6 +20,8 @@ TagManager:
   - Beaver
   - AudioManager
   - Ground
+  - BeamCamera
+  - Wall
   layers:
   - Default
   - TransparentFX
