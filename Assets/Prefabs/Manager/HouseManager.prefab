@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &114552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 422800}
+  m_Layer: 0
+  m_Name: HouseLightAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &164900
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,6 +74,7 @@ GameObject:
   - 61: {fileID: 6153168}
   - 23: {fileID: 2318466}
   - 33: {fileID: 3334340}
+  - 114: {fileID: 11472254}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -78,6 +94,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 446696}
   m_RootOrder: 0
+--- !u!4 &422800
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.920000017, y: .550000012, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 446696}
+  m_RootOrder: 2
 --- !u!4 &429000
 Transform:
   m_ObjectHideFlags: 1
@@ -98,11 +126,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.28000021, y: -2.38000011, z: -1}
+  m_LocalPosition: {x: 6.28000021, y: -2.38000011, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418516}
   - {fileID: 429000}
+  - {fileID: 422800}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &496562
@@ -172,11 +201,22 @@ BoxCollider2D:
   m_GameObject: {fileID: 195790}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!114 &11472254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd9d9189caa13b4f857d9ca14928b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11487406
 MonoBehaviour:
   m_ObjectHideFlags: 1
