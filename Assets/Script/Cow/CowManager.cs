@@ -26,6 +26,16 @@ public class CowManager : MonoBehaviour {
 	private float m_areaWhereCowBeAffraid = 1.5f;
 	#endregion VarToRead
 
+	
+	[Header("Sound Noise")]
+	[Space(10)]
+	[SerializeField]
+	private float m_deadCowNoise = 15.0f;
+	[SerializeField]
+	private float m_affraidCowNoise = 8.0f;
+	[SerializeField]
+	private float m_multipleAffraidCowNoise = 13.0f;
+
 
 	public Action onNewUFOCow;
 
@@ -133,7 +143,11 @@ public class CowManager : MonoBehaviour {
 					}
 				}
 			}
-
+			if(numbAffraid >=3){
+				PlayerManager.m_instance.addNoise (m_multipleAffraidCowNoise);
+			}else{
+				PlayerManager.m_instance.addNoise (m_affraidCowNoise);
+			}
 			//AudioManager.Play ("cow/Multiple_Cow Moo_Court");
 		}
 		
