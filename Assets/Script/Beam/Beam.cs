@@ -260,17 +260,18 @@ public class Beam : MonoBehaviour {
 
 				Rigidbody2D rb2D = cow.GetComponent<Rigidbody2D> ();
 
+
 				if (cow.getCowState () == CowState.BeingLiftToShip) {
-					Vector3 upv = cow.transform.localPosition;
 					float r = Random.Range (0.0f, 1000.0f);
 					if (r > 900) {
 						m_beamed_last_directions = -m_beamed_last_directions;
 					}
 					if (rb2D) {
+						Debug.Log (cow);
 						rb2D.AddForce (new Vector2(m_cow_dir.x*m_beamed_last_directions, m_cow_dir.y));
-						Vector2 speed = rb2D.velocity;
+						/*Vector2 speed = rb2D.velocity;
 						Vector2.ClampMagnitude(speed, 0.05f);
-						rb2D.velocity = speed;
+						rb2D.velocity = speed;*/
 					}
 				}
 			}
