@@ -17,15 +17,23 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 	#endregion Singleton
+	private Rigidbody2D m_rigidbody;
+	[Header("BounceSpaceShip")]
+	public Vector2 bounceForce;
+	public float deltaBounce;
+	private float thresholdBounce;
+	public float velocityMinForBounce;
+	[Header("MoveSpaceShip")]
+	[Space(10)]
+	public float forceOnMove;
+	public float deltaRotate;
+	public float rotateMultiplicator;
 
 	// Use this for initialization
 	void Start () {
 		GameStateManager.onChangeStateEvent += handleChangeGameState;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		m_rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
+		thresholdBounce = this.transform.position.y - deltaBounce;
 	}
 
 	void handleChangeGameState(GameState newState){
@@ -33,21 +41,49 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	#region Intéraction
-	public static void UP(){
+	// Update is called once per frame
+	void Update () {
+		if (Mathf.Abs (m_rigidbody.velocity.x) < velocityMinForBounce) {
+			m_rigidbody.constraints = RigidbodyConstraints2D.None;
+			if (this.transform.position.y < thresholdBounce) {
+				m_rigidbody.AddForce (bounceForce, ForceMode2D.Impulse); //bounce
+			}
+		}
+		rotateForVelocity ();
+	}
+
+	public void UP(){
 		Debug.Log("UP ! ");
 	}
 
-	public static void DOWN(){
+	public void DOWN(){
 		Debug.Log("DOWN ! ");
 	}
 
-	public static void LEFT(){
+	public void LEFT(){
 		Debug.Log("LEFT ! ");
+		moveLeft();
 	}
 
-	public static void RIGHT(){
+	public void RIGHT(){
 		Debug.Log("RIGHT ! ");
+		moveRight();
 	}
+
+	private void moveLeft(){
+		m_rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
+		m_rigidbody.AddForce(new Vector2(-forceOnMove,0), ForceMode2D.Impulse);
+	}
+	
+	private void moveRight(){
+		m_rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
+		m_rigidbody.AddForce (new Vector2 (forceOnMove, 0), ForceMode2D.Impulse);
+	}
+	
+	private void rotateForVelocity(){
+		this.transform.eulerAngles = new Vector3 (0, 0,-m_rigidbody.velocity.x * rotateMultiplicator);
+	}
+
 	#endregion Intéraction
 
 	void OnDestroy(){

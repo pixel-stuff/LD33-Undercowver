@@ -96,6 +96,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 71480892}
   - 114: {fileID: 71480891}
+  - 50: {fileID: 71480893}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: PlayerManager
@@ -114,6 +115,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b25600dda6ca455783190f3030c336d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bounceForce: {x: 0, y: 100}
+  deltaBounce: .100000001
+  velocityMinForBounce: 0
+  forceOnMove: 150
+  deltaRotate: 1
+  rotateMultiplicator: 2
 --- !u!4 &71480892
 Transform:
   m_ObjectHideFlags: 0
@@ -121,11 +128,28 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 71480890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 387.017609, y: 114.932541, z: 0}
+  m_LocalPosition: {x: 0, y: 1.17999995, z: -.419999987}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1670026326}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!50 &71480893
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71480890}
+  m_Mass: 200
+  m_LinearDrag: 3.5
+  m_AngularDrag: .0500000007
+  m_GravityScale: .100000001
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 2
 --- !u!1 &275417910
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +276,70 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 366225465}
+--- !u!1 &641271732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 106102, guid: 5cf2bc845e430b0409bafaf7599bbddb, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 641271735}
+  - 50: {fileID: 641271734}
+  - 114: {fileID: 641271733}
+  m_Layer: 0
+  m_Name: spaceShip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &641271733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11433386, guid: 5cf2bc845e430b0409bafaf7599bbddb,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 641271732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeccc0c5083df4f428d440944264880f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceForce: {x: 0, y: 100}
+  deltaBounce: .100000001
+  velocityMinForBounce: 0
+  forceOnMove: 150
+  deltaRotate: 1
+  rotateMultiplicator: 2
+--- !u!50 &641271734
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5097968, guid: 5cf2bc845e430b0409bafaf7599bbddb,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 641271732}
+  m_Mass: 200
+  m_LinearDrag: 3.5
+  m_AngularDrag: .0500000007
+  m_GravityScale: .100000001
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!4 &641271735
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 426420, guid: 5cf2bc845e430b0409bafaf7599bbddb, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 641271732}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.129999995, y: .00999999978, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &804740491
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +470,7 @@ Camera:
   near clip plane: .00999999978
   far clip plane: 100
   field of view: 77
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -819,6 +907,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ea02e2e7273424db96f371710ea304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1670026324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 138194, guid: 5cf2bc845e430b0409bafaf7599bbddb, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1670026326}
+  - 212: {fileID: 1670026325}
+  m_Layer: 0
+  m_Name: spaceShipSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1670026325
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21230188, guid: 5cf2bc845e430b0409bafaf7599bbddb,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1670026324}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 3d3fc8e0eed86264ba7a7ec98a5af8ef, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!4 &1670026326
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 492520, guid: 5cf2bc845e430b0409bafaf7599bbddb, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1670026324}
+  m_LocalRotation: {x: 0, y: 0, z: -.70784694, w: .706365883}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: .330000013, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 71480892}
+  m_RootOrder: 0
 --- !u!1 &2000846966
 GameObject:
   m_ObjectHideFlags: 0

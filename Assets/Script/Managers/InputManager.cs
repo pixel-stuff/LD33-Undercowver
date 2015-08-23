@@ -34,16 +34,16 @@ public class InputManager : MonoBehaviour {
 			PlayerManager.UP();
 		}*/
 		
-		if(Input.GetKeyDown("q") || Input.GetKeyDown("a")){
-			PlayerManager.LEFT();
+		if(Input.GetKey("q") || Input.GetKey("a")){
+			PlayerManager.m_instance.LEFT();
 		}
 		
 		/*if(Input.GetKeyDown("s")){
 			PlayerManager.DOWN ();
 		}*/
 		
-		if(Input.GetKeyDown("d")){
-			PlayerManager.RIGHT();
+		if(Input.GetKey("d")){
+			PlayerManager.m_instance.RIGHT();
 		}
 	}
 
@@ -60,20 +60,20 @@ public class InputManager : MonoBehaviour {
 			GameStateManager.setGameState(GameState.Pause);
 		}
 
-		if(Input.GetKeyDown("z") || Input.GetKeyDown("w")){
+		/*if(Input.GetKeyDown("z") || Input.GetKeyDown("w")){
 			PlayerManager.UP();
 		}
-		
-		if(Input.GetKeyDown("q") || Input.GetKeyDown("a")){
-			PlayerManager.LEFT();
+		*/
+		if(Input.GetKey("q") || Input.GetKey("a")){
+			PlayerManager.m_instance.LEFT();
 		}
-		
+		/*
 		if(Input.GetKeyDown("s")){
 			PlayerManager.DOWN ();
 		}
-		
-		if(Input.GetKeyDown("d")){
-			PlayerManager.RIGHT();
+		*/
+		if(Input.GetKey("d")){
+			PlayerManager.m_instance.RIGHT();
 		}
 	}
 
