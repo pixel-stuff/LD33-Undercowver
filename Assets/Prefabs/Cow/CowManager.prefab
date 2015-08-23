@@ -40,6 +40,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cowPrefab: {fileID: 100824, guid: 0b72ff40dd1074889889eda853ceb4b6, type: 2}
+  m_numberOfUFOCowToReach: 0
+  m_numberOfCow: 0
+  m_numberOfUFOCow: 0
+  m_numberOfDeadCow: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

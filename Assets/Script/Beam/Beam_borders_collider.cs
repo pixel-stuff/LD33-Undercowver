@@ -16,13 +16,16 @@ public class Beam_borders_collider : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
+		Cow cow = other.GetComponent<Cow> ();
 		if (isBorderTop) {
-			if (other.GetComponent<Cow> ()!=null && !other.GetComponent<Cow> ().getIsUFOCatched()) {
-				other.GetComponent<Cow>().setCowState(CowState.Lifted);
+			if (cow!=null && !cow.getIsUFOCatched()) {
+				cow.setCowState(CowState.Lifted);
+				Debug.Log ("Lifted");
 			}
 		} else {
-			if (other.GetComponent<Cow> ()!=null) {
-				other.GetComponent<Cow>().setCowState(CowState.Crashed);
+			if (cow!=null) {
+				cow.setCowState(CowState.Flying);
+				parent.deactivateBorders();
 			}
 		}
 	}
