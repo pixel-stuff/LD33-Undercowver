@@ -19,6 +19,7 @@ TagManager:
   - TreeManager
   - Beaver
   - AudioManager
+  - Ground
   layers:
   - Default
   - TransparentFX
