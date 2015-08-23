@@ -95,6 +95,7 @@ public class CowManager : MonoBehaviour {
 
 	public void handleCowBeingLiftToShip(int id){
 		//TODO: mettre les cow proche à affraid
+		Cow cow = getCowByID (id);
 		for (int i = 0; i<m_listCow.Count; i++) {
 
 		}
@@ -127,12 +128,21 @@ public class CowManager : MonoBehaviour {
 	public int getNumberOfCow(){
 		return m_numberOfCow;
 	}
-	
+
 	public int getNumberOfUFOCow(){
 		return m_numberOfUFOCow;
 	}
 	
 	public int getNumberOfDeadCow(){
 		return m_numberOfDeadCow;
+	}
+
+	public Cow getCowByID(int id){
+		for (int i=0; i < m_numberOfUFOCowToReach; i++) {
+			if(m_listCow[i].getId() == id){
+				return m_listCow[i];
+			}
+		}
+		return null;
 	}
 }
