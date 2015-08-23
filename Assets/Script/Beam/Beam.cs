@@ -36,7 +36,7 @@ public class Beam : MonoBehaviour {
 		mesh_rigidBody2D.isKinematic = true;
 		mesh_boxCollider2D.isTrigger = true;
 		Vector2 boxColl2D_center = mesh_boxCollider2D.offset;
-		boxColl2D_center = new Vector2 ((m_x_base - m_x_top) / 2.0f, (m_y_top-m_y_base)/2.0f);
+		boxColl2D_center = new Vector2 (0, (m_y_top-m_y_base)/2.0f);
 		mesh_boxCollider2D.offset = boxColl2D_center;
 		Vector2 boxColl2D_size = mesh_boxCollider2D.size;
 		boxColl2D_size = new Vector2 ((m_x_base>m_x_top?m_x_base:m_x_top)*2.0f, (m_y_top>m_y_base?m_y_top:m_y_base));
@@ -253,8 +253,8 @@ public class Beam : MonoBehaviour {
 				v3t.z = 0.0f;
 				bounds.center = v3t;
 				if (cow.getCowState()==CowState.Flying && cowBounds.Intersects(bounds)) {
-					cow.setCowState(CowState.BeingLiftToShip);
-					activateBorders();
+						cow.setCowState(CowState.BeingLiftToShip);
+						activateBorders();
 					return;
 				}
 
