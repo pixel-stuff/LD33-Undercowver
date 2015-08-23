@@ -25,19 +25,25 @@ public class InputManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		switch (GameStateManager.getGameState ()) {
-		case GameState.Menu:
-			UpdateMenuState();
-			break;
-		case GameState.Playing:
-			UpdatePlayingState();
-			break;
-		case GameState.Pause:
-			UpdatePauseState();
-			break;
-		case GameState.GameOver:
-			UpdateGameOverState();
-			break;
+		if(Input.GetKeyDown("p")){
+			Debug.Log("PAUSE ! ");
+			GameStateManager.setGameState(GameState.Pause);
+		}
+		
+		/*if(Input.GetKeyDown("z") || Input.GetKeyDown("w")){
+			PlayerManager.UP();
+		}*/
+		
+		if(Input.GetKeyDown("q") || Input.GetKeyDown("a")){
+			PlayerManager.LEFT();
+		}
+		
+		/*if(Input.GetKeyDown("s")){
+			PlayerManager.DOWN ();
+		}*/
+		
+		if(Input.GetKeyDown("d")){
+			PlayerManager.RIGHT();
 		}
 	}
 
