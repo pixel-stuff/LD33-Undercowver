@@ -128,6 +128,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void BeanDown(){
+		bean.GetComponent<Beam>().clearCows();
 		bean.SetActive (false);
 	}
 

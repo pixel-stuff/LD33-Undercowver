@@ -85,10 +85,12 @@ public class Cow : MonoBehaviour {
 	[Header("Flying State")]
 	[SerializeField]
 	private float m_cowDieIfSpeedOver = 7.5f;
+	[SerializeField]
+	private float m_cowAffraidIfSpeedOver = 3.0f;
 	#endregion Flying State
 
 	#region Crashed State
-	public Action<int,float> onCrashedEnter;
+	public Action<int,float,CowState> onCrashedEnter;
 	#endregion Crashed State
 
 	#region Dead State
@@ -229,7 +231,10 @@ public class Cow : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D   coll){
 		//Debug.Log ("COLLISION DETECTED WITH :" + coll.gameObject.name);
-		if (coll.gameObject.tag == "Ground" && m_cowState == CowState.Flying) {
+		if (coll.gameObject.tag == "Ground" 
+		    	&& m_cowState != CowState.IdleEating
+		    		&& m_cowState != CowState.IdleWalking
+		    			&& m_cowState != CowState.IdleStatic) {
 			setCowState(CowState.Crashed);
 		}
 	}
@@ -295,9 +300,18 @@ public class Cow : MonoBehaviour {
 				//-1.75		-> 5.7
 				//-0.3125	-> 9
 				//1			-> 10
-				if(m_flyingSpeed <= m_cowDieIfSpeedOver){
+				if(m_flyingSpeed <= m_cowAffraidIfSpeedOver){
+					setCowState(CowState.IdleStatic);
+					if(m_isUFOCatched){
+						this.GetComponent<Rigidbody2D>().isKinematic = true;
+						this.GetComponent<BoxCollider2D>().enabled = false;
+					}
+
+				}else if(m_flyingSpeed <= m_cowDieIfSpeedOver){
 					if(m_isUFOCatched){
 						setCowState(CowState.IdleStatic);
+						this.GetComponent<Rigidbody2D>().isKinematic = true;
+						this.GetComponent<BoxCollider2D>().enabled = false;
 					}else{
 						setCowState(CowState.Affraid);
 					}
@@ -305,7 +319,7 @@ public class Cow : MonoBehaviour {
 					setCowState(CowState.Dead);
 				}
 				if(onCrashedEnter != null){
-					onCrashedEnter(m_id,m_flyingSpeed);
+					onCrashedEnter(m_id,m_flyingSpeed,m_cowState);
 				}
 			
 			break;
@@ -318,6 +332,9 @@ public class Cow : MonoBehaviour {
 				
 			case CowState.Dead:
 				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.black);
+			
+				this.GetComponent<Rigidbody2D>().isKinematic = true;
+				this.GetComponent<BoxCollider2D>().enabled = false;
 				if(onDeadEnter != null){
 					onDeadEnter(m_id);
 				}
