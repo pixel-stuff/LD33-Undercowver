@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class CowManager : MonoBehaviour {
 
@@ -15,17 +16,38 @@ public class CowManager : MonoBehaviour {
 	private int m_numberOfDeadCow = 0;
 	#endregion VarToRead
 
+
+	public Action onNumberUFOCowReach;
+
+
+	#region Singleton
+	public static CowManager m_instance;
+	void Awake(){
+		if(m_instance == null){
+			//If I am the first instance, make me the Singleton
+			m_instance = this;
+		}else{
+			//If a Singleton already exists and you find
+			//another reference in scene, destroy it!
+			if(this != m_instance)
+				Destroy(this.gameObject);
+		}
+	}
+	#endregion Singleton
+
 	// Use this for initialization
 	void Start () {
 		m_listCow = new List<Cow> ();
 		//Physics.IgnoreCollisi
+
+		//PlayerManager.m_instance.levelCow;
 
 		GameObject obj;
 		Cow cow;
 		//positionner cow entre [-4.75;-4.60] en Y
 		//positionner cow entre [-9;3.6] en X
 		for (int i=0; i < 1; i++) {
-			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(Random.Range(-9f,3.6f), Random.Range(-4.75f,-4.60f),0f ),Quaternion.identity);
+			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.6f), UnityEngine.Random.Range(-4.75f,-4.60f),0f ),Quaternion.identity);
 			obj.transform.parent = this.transform;
 
 			cow = obj.GetComponent<Cow>();
@@ -46,7 +68,7 @@ public class CowManager : MonoBehaviour {
 	}
 
 	public void createCow(){
-		GameObject obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(Random.Range(-9f,3.6f), Random.Range(-4.75f,-4.60f),0f ),Quaternion.identity);
+		GameObject obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.6f), UnityEngine.Random.Range(-4.75f,-4.60f),0f ),Quaternion.identity);
 		obj.transform.parent = this.transform;
 		
 		Cow cow = obj.GetComponent<Cow>();
@@ -76,13 +98,13 @@ public class CowManager : MonoBehaviour {
 		
 	}
 
-	public void handleCowCrashed(int id){
-		
+	public void handleCowCrashed(int id,float speedCrashed){
+		//Debug.Log ("COW CRASH ");
 	}
 
 	public void handleDead(int id){
 		m_numberOfDeadCow++;
-
+		//Debug.Log ("COW DEAD ++");
 	}
 
 

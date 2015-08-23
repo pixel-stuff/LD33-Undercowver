@@ -32,12 +32,17 @@ public class Cow : MonoBehaviour {
 	private Vector2 m_targetDestination = Vector2.zero;
 	private float m_cowSpeed = 0.5f;
 	#endregion IdleWalking State
-
 	
 	#region IdleStatic State
 	private float m_timeStateStaticStart;
 	private float m_timeInStaticAnim = 2.0f;
 	#endregion IdleStatic State
+	
+	#region Affraid State
+	private float m_timeStateAffraidStart;
+	private float m_timeInAffraidAnim = 5.0f;
+	private Vector3 m_localPosAffraidStart;
+	#endregion Affraid State
 
 	#region IdleEating State
 	private float m_timeStateEatingStart;
@@ -60,7 +65,7 @@ public class Cow : MonoBehaviour {
 	#endregion Flying State
 
 	#region Crashed State
-	public Action<int> onCrashedEnter;
+	public Action<int,float> onCrashedEnter;
 	#endregion Crashed State
 
 	#region Dead State
@@ -69,11 +74,13 @@ public class Cow : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		m_cowState = CowState.IdleStatic;
+
+		setCowState(CowState.IdleStatic);
 
 		m_timeInStaticAnim += UnityEngine.Random.Range(-0.5f,0.5f);
 		m_timeInWalkingAnim += UnityEngine.Random.Range(-0.5f,0.5f);
 		m_timeInEatingAnim += UnityEngine.Random.Range(-0.5f,0.5f);
+		m_timeInAffraidAnim += UnityEngine.Random.Range(-0.5f,0.5f);
 	}
 
 	public void Init(int id, string name){
@@ -164,9 +171,8 @@ public class Cow : MonoBehaviour {
 		}
 	}
 
-	void UpdateBeingLiftToShip ()
-	{
-		
+	void UpdateBeingLiftToShip (){
+		//LEt PM do the stuff <3
 	}
 	
 	void UpdateFlying (){
@@ -174,20 +180,22 @@ public class Cow : MonoBehaviour {
 	}
 	
 	void UpdateLifted (){
-		//TODO: vérifier ce comportement avec PM
-		if (Time.time - m_timeStateLiftedStart >= m_timeInLiftedAnim) {
-			setCowState(CowState.Flying);
+		//Let PM do the stuff <3
+	}
+
+	void UpdateCrashed (){
+		
+	}
+
+	void UpdateAffraid (){
+		Vector3 newLocalPos = m_localPosAffraidStart;
+		newLocalPos.x += UnityEngine.Random.Range (-0.03f, 0.03f);
+		this.transform.localPosition = newLocalPos;
+
+		if (Time.time - m_timeStateAffraidStart >= m_timeInAffraidAnim) {
+			this.transform.localPosition = m_localPosAffraidStart;
+			setCowState(CowState.IdleStatic);
 		}
-	}
-
-	void UpdateCrashed ()
-	{
-		
-	}
-
-	void UpdateAffraid ()
-	{
-		
 	}
 
 	void UpdateDead(){
@@ -197,8 +205,8 @@ public class Cow : MonoBehaviour {
 
 
 	void OnCollisionEnter2D(Collision2D   coll){
-		Debug.Log ("COLLISION DETECTED WITH :" + coll.gameObject.name);
-		if (coll.gameObject.tag == "Ground") {
+		//Debug.Log ("COLLISION DETECTED WITH :" + coll.gameObject.name);
+		if (coll.gameObject.tag == "Ground" && m_cowState == CowState.Flying) {
 			setCowState(CowState.Crashed);
 		}
 	}
@@ -237,12 +245,13 @@ public class Cow : MonoBehaviour {
 				}
 			break;
 			case CowState.Flying:
+				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white);
 				if(onFlyingEnter != null){
 					onFlyingEnter(m_id);
 				}
-				//Get current vitesse pour le passage à crashed
 				break;
 			case CowState.Lifted:
+				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.black);
 				m_isUFOCatched = true;
 				m_timeStateLiftedStart = Time.time;
 				if(onLiftedEnter != null){
@@ -252,17 +261,40 @@ public class Cow : MonoBehaviour {
 				break;
 				
 			case CowState.Crashed:
-				if(onCrashedEnter != null){
-					onCrashedEnter(m_id);
+				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.red);
+				//Debug.Log ("SPEED AU CALCUL : " + m_flyingSpeed);
+				//Avec les distances liées à la maquette, position possible de la cow en [-4.5;1]
+				//La vitesse à l'arrivée est comprise entre [0;10]
+				//Si la cow est lachée à Pos, elle aura à l'arrivée la vitesse Vit :
+				//Pos -> Vit
+				//-4.5		-> 0
+				//-3.75		-> 5
+				//-1.75		-> 5.7
+				//-0.3125	-> 9
+				//1			-> 10
+				if(m_flyingSpeed <= 7.5f){
+					if(m_isUFOCatched){
+						setCowState(CowState.IdleStatic);
+					}else{
+						setCowState(CowState.Affraid);
+					}
+				}else{
+					setCowState(CowState.Dead);
 				}
-			Debug.Log ("CRASHED VELOCITY MAG : " + m_flyingSpeed);
+				if(onCrashedEnter != null){
+					onCrashedEnter(m_id,m_flyingSpeed);
+				}
 			
 			break;
 				
 			case CowState.Affraid:
+				m_timeStateAffraidStart = Time.time;
+				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.yellow);
+				m_localPosAffraidStart = this.transform.localPosition;
 				break;
 				
 			case CowState.Dead:
+				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.black);
 				if(onDeadEnter != null){
 					onDeadEnter(m_id);
 				}
