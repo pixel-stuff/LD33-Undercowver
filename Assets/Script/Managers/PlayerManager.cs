@@ -173,7 +173,9 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void addNoise(float noise){
-		actualNoise += noise;
+		if (actualNoise < checkNoise * 1.1) {
+			actualNoise += noise;
+		}
 		checkNoiseLevel ();
 	}
 
@@ -187,7 +189,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void setGameOver(){
-		GameStateManager.setGameState (GameState.GameOver);
+		GameStateManager.setGameState (GameState.EndScene);
 	}
 
 	public void setVictory(){

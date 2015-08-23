@@ -32,6 +32,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &132228
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 404290}
+  - 108: {fileID: 10848930}
+  m_Layer: 0
+  m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &132266
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +84,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &160350
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +186,18 @@ Transform:
   - {fileID: 434584}
   m_Father: {fileID: 461410}
   m_RootOrder: 1
+--- !u!4 &404290
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 441650}
+  m_RootOrder: 0
 --- !u!4 &411252
 Transform:
   m_ObjectHideFlags: 1
@@ -218,7 +246,8 @@ Transform:
   m_LocalRotation: {x: -.996758163, y: 0, z: 0, w: -.0804563835}
   m_LocalPosition: {x: -2.98058701, y: -3.19000006, z: -.409999996}
   m_LocalScale: {x: .00999999978, y: .00999999885, z: .00999999885}
-  m_Children: []
+  m_Children:
+  - {fileID: 404290}
   m_Father: {fileID: 413402}
   m_RootOrder: 0
 --- !u!4 &446150
@@ -394,6 +423,38 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193768}
   m_Enabled: 0
+--- !u!108 &10848930
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132228}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: .742647052, g: .742647052, b: .742647052, a: 1}
+  m_Intensity: 3.67000008
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11419274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3540,7 +3601,7 @@ ParticleSystem:
   speed: 1
   randomSeed: 0
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   moveWithTransform: 1
   InitialModule:
