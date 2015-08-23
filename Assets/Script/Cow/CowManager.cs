@@ -21,6 +21,9 @@ public class CowManager : MonoBehaviour {
 	private int m_numberOfUFOCow = 0;
 	[SerializeField]
 	private int m_numberOfDeadCow = 0;
+
+	[SerializeField]
+	private float m_areaWhereCowBeAffraid = 1.5f;
 	#endregion VarToRead
 
 
@@ -46,16 +49,16 @@ public class CowManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_listCow = new List<Cow> ();
-		//Physics.IgnoreCollisi
 
-		m_numberOfUFOCowToReach = PlayerManager.m_instance.levelCow;
+
+		//m_numberOfUFOCowToReach = PlayerManager.m_instance.levelCow;
 
 		GameObject obj;
 		Cow cow;
 		//positionner cow entre [-4.75;-4.60] en Y
 		//positionner cow entre [-9;3.6] en X
-		for (int i=0; i < m_numberOfUFOCowToReach; i++) {
-			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.6f),-3.5f,0f ),Quaternion.identity);
+		for (int i=0; i < 15/*m_numberOfUFOCowToReach*/; i++) {
+			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,4f),-3.5f,0f ),Quaternion.identity);
 			obj.transform.parent = this.transform;
 
 			cow = obj.GetComponent<Cow>();
@@ -67,8 +70,8 @@ public class CowManager : MonoBehaviour {
 			cow.onLiftedEnter += handleLifted;
 			m_listCow.Add(cow);
 		}
-		m_listCow [0].setCowState (CowState.Lifted);
-		m_listCow [0].setCowState (CowState.IdleStatic);
+		//m_listCow [0].setCowState (CowState.Lifted);
+		//m_listCow [0].setCowState (CowState.IdleStatic);
 
 	
 	}
@@ -94,10 +97,7 @@ public class CowManager : MonoBehaviour {
 	}
 
 	public void handleCowBeingLiftToShip(int id){
-		//TODO: mettre les cow proche à affraid
-		for (int i = 0; i<m_listCow.Count; i++) {
 
-		}
 
 	}
 
@@ -114,6 +114,16 @@ public class CowManager : MonoBehaviour {
 	}
 
 	public void handleCowCrashed(int id,float speedCrashed){
+		//TODO: mettre les cow proche à affraid
+		/*Cow cow = getCowByID (id);
+		for (int i = 0; i<m_listCow.Count; i++) {
+			Debug.Log ("m_listCow[" + i + "]  : " + m_listCow[i]);
+			if(m_listCow[i].getId() != id ){
+				if(Vector3.Distance(m_listCow[i].transform.localPosition,cow.transform.localPosition) <= m_areaWhereCowBeAffraid){
+					m_listCow[i].setCowState(CowState.Affraid);
+				}
+			}
+		}*/
 		//Debug.Log ("COW CRASH ");
 	}
 
@@ -127,12 +137,21 @@ public class CowManager : MonoBehaviour {
 	public int getNumberOfCow(){
 		return m_numberOfCow;
 	}
-	
+
 	public int getNumberOfUFOCow(){
 		return m_numberOfUFOCow;
 	}
 	
 	public int getNumberOfDeadCow(){
 		return m_numberOfDeadCow;
+	}
+
+	public Cow getCowByID(int id){
+		for (int i=0; i < m_numberOfUFOCowToReach; i++) {
+			if(m_listCow[i].getId() == id){
+				return m_listCow[i];
+			}
+		}
+		return null;
 	}
 }

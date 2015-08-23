@@ -31,21 +31,39 @@ public class Cow : MonoBehaviour {
 	private float m_timeInWalkingAnim = 5.0f;
 	private Vector2 m_targetDestination = Vector2.zero;
 	private float m_cowSpeed = 0.5f;
+
+	
+	[Header("WalkArea")]
+	[Space(10)]
+	[SerializeField]
+	private float m_minWalkArea = -9.0f;
+	[SerializeField]
+	private float m_maxWalkArea = 4.0f;
+
 	#endregion IdleWalking State
 	
 	#region IdleStatic State
-	private float m_timeStateStaticStart;
+	[Space(10)]
+	[Header("Static State")]
+	[SerializeField]
 	private float m_timeInStaticAnim = 2.0f;
+	private float m_timeStateStaticStart;
 	#endregion IdleStatic State
 	
 	#region Affraid State
 	private float m_timeStateAffraidStart;
+	[Header("Affraid State")]
+	[Space(10)]
+	[SerializeField]
 	private float m_timeInAffraidAnim = 5.0f;
 	private Vector3 m_localPosAffraidStart;
 	#endregion Affraid State
 
 	#region IdleEating State
 	private float m_timeStateEatingStart;
+	[Header("Eating State")]
+	[Space(10)]
+	[SerializeField]
 	private float m_timeInEatingAnim = 3.0f;
 	#endregion IdleEating State
 
@@ -62,6 +80,11 @@ public class Cow : MonoBehaviour {
 	#region Flying State
 	public Action<int> onFlyingEnter;
 	private float m_flyingSpeed = 0.0f;
+	
+	[Space(10)]
+	[Header("Flying State")]
+	[SerializeField]
+	private float m_cowDieIfSpeedOver = 7.5f;
 	#endregion Flying State
 
 	#region Crashed State
@@ -141,7 +164,7 @@ public class Cow : MonoBehaviour {
 		}
 	}
 
-	//La vache ne peut se déplacer qu'entre [-9;3.6] en X
+	//La vache ne peut se déplacer qu'entre [-9;4] en X
 	void UpdateIdleWalking (){
 		//Debug.Log ("DISTANCE : " + Vector2.Distance(this.transform.localPosition,m_targetDestination));
 
@@ -224,7 +247,7 @@ public class Cow : MonoBehaviour {
 			break;
 			case CowState.IdleWalking:
 				m_timeStateWalkingStart = Time.time;
-				float dest = UnityEngine.Random.Range (-9f,3.6f);
+			float dest = UnityEngine.Random.Range (m_minWalkArea,m_maxWalkArea);
 
 				m_targetDestination = new Vector2(dest,this.transform.localPosition.y);
 
@@ -267,12 +290,12 @@ public class Cow : MonoBehaviour {
 				//La vitesse à l'arrivée est comprise entre [0;10]
 				//Si la cow est lachée à Pos, elle aura à l'arrivée la vitesse Vit :
 				//Pos -> Vit
-				//-4.5		-> 0
+				//-		-> 0
 				//-3.75		-> 5
 				//-1.75		-> 5.7
 				//-0.3125	-> 9
 				//1			-> 10
-				if(m_flyingSpeed <= 7.5f){
+				if(m_flyingSpeed <= m_cowDieIfSpeedOver){
 					if(m_isUFOCatched){
 						setCowState(CowState.IdleStatic);
 					}else{
