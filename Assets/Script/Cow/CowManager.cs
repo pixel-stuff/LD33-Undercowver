@@ -21,6 +21,9 @@ public class CowManager : MonoBehaviour {
 	private int m_numberOfUFOCow = 0;
 	[SerializeField]
 	private int m_numberOfDeadCow = 0;
+
+	[SerializeField]
+	private float m_areaWhereCowBeAffraid = 1.5f;
 	#endregion VarToRead
 
 
@@ -46,7 +49,7 @@ public class CowManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_listCow = new List<Cow> ();
-		//Physics.IgnoreCollisi
+
 
 		m_numberOfUFOCowToReach = PlayerManager.m_instance.levelCow;
 
@@ -55,7 +58,7 @@ public class CowManager : MonoBehaviour {
 		//positionner cow entre [-4.75;-4.60] en Y
 		//positionner cow entre [-9;3.6] en X
 		for (int i=0; i < m_numberOfUFOCowToReach; i++) {
-			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.6f),-3.5f,0f ),Quaternion.identity);
+			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,4f),-3.5f,0f ),Quaternion.identity);
 			obj.transform.parent = this.transform;
 
 			cow = obj.GetComponent<Cow>();
@@ -67,8 +70,8 @@ public class CowManager : MonoBehaviour {
 			cow.onLiftedEnter += handleLifted;
 			m_listCow.Add(cow);
 		}
-		m_listCow [0].setCowState (CowState.Lifted);
-		m_listCow [0].setCowState (CowState.IdleStatic);
+		//m_listCow [0].setCowState (CowState.Lifted);
+		//m_listCow [0].setCowState (CowState.IdleStatic);
 
 	
 	}
@@ -97,7 +100,10 @@ public class CowManager : MonoBehaviour {
 		//TODO: mettre les cow proche à affraid
 		Cow cow = getCowByID (id);
 		for (int i = 0; i<m_listCow.Count; i++) {
-
+			if(m_listCow[i].getId() != id 
+			   	&& Vector3.Distance(m_listCow[i].transform.localPosition,cow.transform.localPosition) <= m_areaWhereCowBeAffraid){
+				m_listCow[i].setCowState(CowState.Affraid);
+			}
 		}
 
 	}
