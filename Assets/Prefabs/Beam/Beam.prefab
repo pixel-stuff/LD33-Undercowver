@@ -102,8 +102,8 @@ Camera:
   m_GameObject: {fileID: 101142}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_ClearFlags: 4
+  m_BackGroundColor: {r: .192156851, g: .301960826, b: .474509805, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -115,12 +115,12 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: -2
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 256
-  m_RenderingPath: 1
-  m_TargetTexture: {fileID: 8400000, guid: 50b04a1c134802e429beec27fd195b0f, type: 2}
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_HDR: 1
   m_OcclusionCulling: 1
@@ -193,14 +193,14 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101142}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &9210594
 Behaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101142}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &11458698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -222,7 +222,7 @@ Behaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101142}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!198 &19873528
 ParticleSystem:
   m_ObjectHideFlags: 1

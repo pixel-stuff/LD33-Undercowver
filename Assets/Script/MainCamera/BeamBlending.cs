@@ -38,9 +38,9 @@ public class BeamBlending : MonoBehaviour
 		destination.backgroundColor = background;
 		
 		RenderTexture.active = active;
-		
+
 		Color[] sourcePixels = sourceRender.GetPixels (), destinationPixels = destinationRender.GetPixels ();
-		
+
 		for (int i = 0; i < sourcePixels.Length; i++)
 		{
 			destinationPixels[i] = new Color (
@@ -51,9 +51,9 @@ public class BeamBlending : MonoBehaviour
 				);
 		}
 		
-		destinationRender.SetPixels (destinationPixels);
-		destinationRender.Apply();
-
+		destinationRender.SetPixels (sourcePixels);
+		destinationRender.Apply(true);
+	
 		RenderTexture.active = null;
 		destination.targetTexture = null;
 	}
