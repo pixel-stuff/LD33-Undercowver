@@ -258,6 +258,12 @@ public class Cow : MonoBehaviour {
 
 				m_targetDestination = new Vector2(dest,this.transform.localPosition.y);
 
+				if(this.transform.localPosition.x < m_targetDestination.x){
+					this.transform.eulerAngles = new Vector3(0f,180f,0f);	
+				}else{
+				this.transform.eulerAngles = new Vector3(0f,0f,0f);	
+			}
+			   
 				//[-9;3.6]
 				//TODO: Lancer animation de walking
 				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.red);
