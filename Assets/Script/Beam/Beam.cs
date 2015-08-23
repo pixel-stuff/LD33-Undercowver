@@ -173,7 +173,7 @@ public class Beam : MonoBehaviour {
 		ParticleSystem[] ps = GetComponentsInChildren<ParticleSystem> ();
 		for (int i=0; i<ps.Length; i++) {
 			if(ps[i].name=="ground-light") {
-				Ray r;
+				Ray r = new Ray();
 				BoxCollider2D bc2d = GetComponent<BoxCollider2D>();
 				r.origin = bc2d.bounds.center;
 				Vector3 dir = transform.localEulerAngles;
