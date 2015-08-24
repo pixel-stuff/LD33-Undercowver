@@ -9,7 +9,9 @@ public class HouseLight : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log (other.name);
+		Debug.Log ("WAHOUU");
+		GameObject end = GameObject.Find ("UILevelManager");
+		end.GetComponent<UILevelManager>().GoToEndSceneWithLoose ();
 	}
 	
 	// Update is called once per frame
