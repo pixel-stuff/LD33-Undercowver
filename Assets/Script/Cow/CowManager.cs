@@ -61,7 +61,7 @@ public class CowManager : MonoBehaviour {
 		m_listCow = new List<Cow> ();
 
 
-		m_numberOfUFOCowToReach = PlayerManager.m_instance.levelCow;
+		m_numberOfUFOCowToReach = GameStateManager.m_instance.getNumberOfCowToLoad();
 
 		GameObject obj;
 		Cow cow;

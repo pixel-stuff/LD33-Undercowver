@@ -78,6 +78,8 @@ public class PlayerManager : MonoBehaviour {
 
 		CowManager.m_instance.onNewUFOCow += AddUFOCow;
 
+		levelCow =  GameStateManager.m_instance.getNumberOfCowToLoad();
+
 		setCowText (actualUEFOCow+" / "+ levelCow);
 
 		LaunchTuto = !GameStateManager.m_instance.alreadyHaveTuto;
