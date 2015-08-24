@@ -156,6 +156,7 @@ public class CowManager : MonoBehaviour {
 	public void handleDead(int id){
 		m_numberOfDeadCow++;
 		//Debug.Log ("COW DEAD ++");
+		createCow ();
 	}
 
 
