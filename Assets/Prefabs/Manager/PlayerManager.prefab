@@ -499,6 +499,11 @@ MonoBehaviour:
   CowText: {fileID: 0}
   bean: {fileID: 140198}
   LaunchTuto: 0
+  timeBetweenChangeTuto: 3
+  tutoGameObject:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &11466344
 MonoBehaviour:
   m_ObjectHideFlags: 1
