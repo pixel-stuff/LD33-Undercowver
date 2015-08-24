@@ -282,7 +282,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.34000015, z: -.419999987}
+  m_LocalPosition: {x: 0, y: 5.53999996, z: -.419999987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 446890}
@@ -483,6 +483,8 @@ MonoBehaviour:
   bounceForce: {x: 0, y: 100}
   Ybounce: 1.15999997
   velocityMinForBounce: .300000012
+  shipIsArrive: 0
+  arriveForce: 800
   forceOnMove: 150
   deltaRotate: 1
   rotateMultiplicator: 2
@@ -496,6 +498,7 @@ MonoBehaviour:
   actualUEFOCow: 0
   CowText: {fileID: 0}
   bean: {fileID: 140198}
+  LaunchTuto: 0
 --- !u!114 &11466344
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -66,6 +66,10 @@ public class PlayerManager : MonoBehaviour {
 	[Header("Bean")]
 	[Space(10)]
 	public bool LaunchTuto = false;
+	public float timeBetweenChangeTuto;
+	public GameObject[] tutoGameObject;
+	private float nextTimeChangeTuto;
+	private int currentTuto=-1;
 
 	void Start () {
 		GameStateManager.onChangeStateEvent += handleChangeGameState;
@@ -98,6 +102,10 @@ public class PlayerManager : MonoBehaviour {
 	#region Intéraction
 	// Update is called once per frame
 	void Update () {
+		if (LaunchTuto) {
+			UpdateTuto();
+			return;
+		}
 		if (!shipIsArrive) {
 			m_rigidbody.AddForce (new Vector3(0,-arriveForce,0), ForceMode2D.Force);
 		}
@@ -146,6 +154,26 @@ public class PlayerManager : MonoBehaviour {
 			m_rigidbody.AddForce (new Vector2(0,150), ForceMode2D.Impulse);
 		}
 	}
+
+
+	public void UpdateTuto(){
+		if (Time.time > nextTimeChangeTuto) {
+			nextTimeChangeTuto += timeBetweenChangeTuto;
+			currentTuto ++;
+			if (currentTuto == tutoGameObject.Length ) {
+				tutoGameObject[currentTuto-1].SetActive(false);
+				LaunchTuto = false;
+				return;
+			}
+			tutoGameObject[currentTuto].SetActive(true);
+			if(currentTuto !=0){
+				tutoGameObject[currentTuto-1].SetActive(false);
+			}
+		}
+
+	}
+
+
 	public void BeanUp(){
 		bean.SetActive (true);
 	}
