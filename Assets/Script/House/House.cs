@@ -66,6 +66,7 @@ public class House : MonoBehaviour {
 	}
 	public void rude_awake() {
 		if (!isAwake ()) {
+			PlayerManager.m_instance.AddAlerte();
 			m_timer_awake = 0.0f;
 			m_house_is_lighted = true;
 			switch_house_light();

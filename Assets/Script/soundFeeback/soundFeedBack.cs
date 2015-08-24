@@ -24,7 +24,7 @@ public class soundFeedBack : MonoBehaviour {
 			percentText.text = Mathf.Round(percent)+"%";
 			AlertSection.SetActive(true); 
 
-			PlayerManager.m_instance.AddAlerte();
+
 		}
 		if (percent < stopalertNoisePercent) {
 			AlertSection.SetActive(false);

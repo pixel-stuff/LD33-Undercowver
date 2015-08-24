@@ -94,6 +94,8 @@ public class GameStateManager : MonoBehaviour {
 	float m_timeStartLevel;
 
 	public void GoToEndSceneWithLoose(){
+		m_CowKilled = CowManager.m_instance.getNumberOfDeadCow();
+		m_alerteStarted = PlayerManager.m_instance.m_numberOfAlerte;
 		m_isEndSceneSuccess = false;
 		m_playTime = Time.time - m_timeStartLevel;
 		this.setGameState (GameState.EndSceneGameOver);
@@ -104,6 +106,8 @@ public class GameStateManager : MonoBehaviour {
 	}
 
 	public void GoToEndSceneWithSuccess(){
+		m_CowKilled = CowManager.m_instance.getNumberOfDeadCow();
+		m_alerteStarted = PlayerManager.m_instance.m_numberOfAlerte;
 		m_isEndSceneSuccess = true;
 		m_playTime = Time.time - m_timeStartLevel;
 		this.setGameState (GameState.EndSceneSuccess);
