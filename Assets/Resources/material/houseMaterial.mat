@@ -138,6 +138,10 @@ Material:
         first:
           name: _Mode
         second: 0
+      data:
+        first:
+          name: _BlurAmount
+        second: .100000001
     m_Colors:
       data:
         first:
@@ -146,4 +150,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .242647052, g: .242647052, b: .242647052, a: 1}
+        second: {r: .382352948, g: .382352948, b: .382352948, a: 1}
