@@ -87,6 +87,10 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &102156932 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 151360, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+  m_PrefabInternal: {fileID: 1143826851}
 --- !u!1001 &133057002
 Prefab:
   m_ObjectHideFlags: 0
@@ -550,6 +554,14 @@ Prefab:
     - target: {fileID: 11419274, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
       propertyPath: CowText
       value: 
+      objectReference: {fileID: 102156932}
+    - target: {fileID: 11466344, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
+      propertyPath: noiseByUpdate
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419274, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
+      propertyPath: velocityFactor
+      value: .0199999996
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}

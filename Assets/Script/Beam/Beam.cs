@@ -14,7 +14,9 @@ public class Beam : MonoBehaviour {
 	public Vector2 m_cow_dir = new Vector2(0.05f, 0.001f);
 	[SerializeField]
 	public float m_cow_dir_no_switch_percentage = 90.0f;
+	[Header("Noise")]
 
+	public float noiseByUpdate;
 	private bool m_active = true;
 
 	private Cow m_catched;
@@ -173,6 +175,8 @@ public class Beam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		PlayerManager.m_instance.addNoise (noiseByUpdate);
 		ParticleSystem[] ps = GetComponentsInChildren<ParticleSystem> ();
 		for (int i=0; i<ps.Length; i++) {
 			if(ps[i].name=="ground-light") {
