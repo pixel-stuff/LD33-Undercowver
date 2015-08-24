@@ -1167,6 +1167,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 11448764, guid: 8116a6e5c83734d7e85998948687d5b3, type: 2}
+      propertyPath: m_affraidCowNoise
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448764, guid: 8116a6e5c83734d7e85998948687d5b3, type: 2}
+      propertyPath: m_multipleAffraidCowNoise
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8116a6e5c83734d7e85998948687d5b3, type: 2}
   m_IsPrefabParent: 0

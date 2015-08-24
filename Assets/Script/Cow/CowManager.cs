@@ -137,20 +137,21 @@ public class CowManager : MonoBehaviour {
 			for (int i = 0; i<m_listCow.Count; i++) {
 				//Debug.Log ("m_listCow[" + i + "]  : " + m_listCow[i]);
 				if (m_listCow [i].getId () != id && m_listCow[i].getCowState() != CowState.Dead) {
-					numbAffraid++;
 					if (Vector3.Distance (m_listCow [i].transform.localPosition, cow.transform.localPosition) <= m_areaWhereCowBeAffraid) {
+						numbAffraid++;
 						m_listCow [i].setCowState (CowState.Affraid);
 					}
 				}
 			}
+			//Debug.Log("TOTO  " + numbAffraid);
 			if(numbAffraid >=3){
 				PlayerManager.m_instance.addNoise (m_multipleAffraidCowNoise);
+				AudioManager.Play ("cow/Multiple_CowMoo_Court");
 			}else{
 				PlayerManager.m_instance.addNoise (m_affraidCowNoise);
+				AudioManager.Play ("cow/Cow_Moo"); 
 			}
-			//AudioManager.Play ("cow/Multiple_Cow Moo_Court");
 		}
-		
 	}
 
 	public void handleDead(int id){

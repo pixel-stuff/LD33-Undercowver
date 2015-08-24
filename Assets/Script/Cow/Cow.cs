@@ -312,6 +312,7 @@ public class Cow : MonoBehaviour {
 				//-1.75		-> 5.7
 				//-0.3125	-> 9
 				//1			-> 10
+				Debug.Log("TOTO "+m_flyingSpeed);
 				if(m_flyingSpeed <= m_cowAffraidIfSpeedOver){
 					setCowState(CowState.IdleStatic);
 					if(m_isUFOCatched){
@@ -330,7 +331,7 @@ public class Cow : MonoBehaviour {
 				}else{
 					setCowState(CowState.Dead);
 				}
-				if(onCrashedEnter != null){
+				if(onCrashedEnter != null && m_flyingSpeed > m_cowAffraidIfSpeedOver){
 					onCrashedEnter(m_id,m_flyingSpeed,m_cowState);
 				}
 			
