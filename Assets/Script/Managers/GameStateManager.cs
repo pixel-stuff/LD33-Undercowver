@@ -35,6 +35,8 @@ public class GameStateManager : MonoBehaviour {
 
 	public bool alreadyHaveTuto = false;
 
+	public bool m_isEndSceneSuccess = false;
+
 	public int m_level;
 	public int m_CowKilled = 0;
 	public float m_playTime = 0;
@@ -92,6 +94,7 @@ public class GameStateManager : MonoBehaviour {
 	float m_timeStartLevel;
 
 	public void GoToEndSceneWithLoose(){
+		m_isEndSceneSuccess = false;
 		m_playTime = Time.time - m_timeStartLevel;
 		this.setGameState (GameState.EndSceneGameOver);
 		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
@@ -101,6 +104,7 @@ public class GameStateManager : MonoBehaviour {
 	}
 
 	public void GoToEndSceneWithSuccess(){
+		m_isEndSceneSuccess = true;
 		m_playTime = Time.time - m_timeStartLevel;
 		this.setGameState (GameState.EndSceneSuccess);
 		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
