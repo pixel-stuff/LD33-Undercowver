@@ -286,7 +286,7 @@ MonoBehaviour:
   m_timeInEatingAnim: 3
   m_cowDieIfSpeedOver: 7.5
   m_cowAffraidIfSpeedOver: 3
-  isDebug: 1
+  isDebug: 0
 --- !u!212 &21262094
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -373,6 +373,10 @@ Prefab:
       propertyPath: m_UFOLight
       value: 
       objectReference: {fileID: 158338}
+    - target: {fileID: 0}
+      propertyPath: isDebug
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100824}

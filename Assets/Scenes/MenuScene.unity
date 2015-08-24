@@ -503,7 +503,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf673750c43484ab6a0075a519352822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_backgroundAudioSource: BackgroundTest
 --- !u!4 &683952205
 Transform:
   m_ObjectHideFlags: 0

@@ -976,14 +976,6 @@ Prefab:
       propertyPath: tutoGameObject.Array.data[2]
       value: 
       objectReference: {fileID: 1443401076}
-    - target: {fileID: 11419274, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
-      propertyPath: timeBetweenChangeTuto
-      value: .5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6112856, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
   m_IsPrefabParent: 0
@@ -1079,6 +1071,18 @@ Prefab:
       value: UILevelManager
       objectReference: {fileID: 0}
     - target: {fileID: 158626, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 164512, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 139412, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 167136, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

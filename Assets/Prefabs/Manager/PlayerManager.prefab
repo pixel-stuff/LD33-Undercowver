@@ -101,7 +101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &160350
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_x_top: 1
   m_y_base: 0
   m_y_top: 5
-  m_cow_dir: {x: .0500000007, y: .000899999985}
+  m_cow_dir: {x: .0399999991, y: .00109999999}
   m_cow_dir_no_switch_percentage: 90
   noiseByUpdate: .200000003
 --- !u!124 &12476554
