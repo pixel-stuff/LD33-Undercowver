@@ -685,6 +685,7 @@ GameObject:
   - 224: {fileID: 1415675835}
   - 222: {fileID: 1415675837}
   - 114: {fileID: 1415675836}
+  - 114: {fileID: 1415675838}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -706,8 +707,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
-  m_AnchoredPosition: {x: 376, y: 269.999695}
-  m_SizeDelta: {x: 507, y: 292}
+  m_AnchoredPosition: {x: 480, y: 269.999695}
+  m_SizeDelta: {x: 715, y: 292}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1415675836
 MonoBehaviour:
@@ -741,6 +742,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1415675834}
+--- !u!114 &1415675838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1415675834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6dc80379d60f4bca897a55b8fc929c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1526107861
 GameObject:
   m_ObjectHideFlags: 0
