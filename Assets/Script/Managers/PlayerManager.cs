@@ -69,6 +69,7 @@ public class PlayerManager : MonoBehaviour {
 
 	[Header("Tuto")]
 	[Space(10)]
+	public bool showTuto = false;
 	public bool LaunchTuto = false;
 	public float timeBetweenChangeTuto;
 	public GameObject[] tutoGameObject;
@@ -166,21 +167,24 @@ public class PlayerManager : MonoBehaviour {
 
 
 	public void UpdateTuto(){
-		if (Time.time > nextTimeChangeTuto) {
-			nextTimeChangeTuto += timeBetweenChangeTuto;
-			currentTuto ++;
-			if (currentTuto == tutoGameObject.Length ) {
-				tutoGameObject[currentTuto-1].SetActive(false);
-				LaunchTuto = false;
-				GameStateManager.m_instance.alreadyHaveTuto=true;
-				return;
+		if (showTuto) {
+			if (Time.time > nextTimeChangeTuto) {
+				nextTimeChangeTuto += timeBetweenChangeTuto;
+				currentTuto ++;
+				if (currentTuto == tutoGameObject.Length) {
+					tutoGameObject [currentTuto - 1].SetActive (false);
+					LaunchTuto = false;
+					GameStateManager.m_instance.alreadyHaveTuto = true;
+					return;
+				}
+				tutoGameObject [currentTuto].SetActive (true);
+				if (currentTuto != 0) {
+					tutoGameObject [currentTuto - 1].SetActive (false);
+				}
 			}
-			tutoGameObject[currentTuto].SetActive(true);
-			if(currentTuto !=0){
-				tutoGameObject[currentTuto-1].SetActive(false);
-			}
+		} else {
+			LaunchTuto = false;
 		}
-
 	}
 
 
