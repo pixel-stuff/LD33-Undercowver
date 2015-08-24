@@ -62,6 +62,21 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public void PlayStartBeam(){
 		if (beamSound) {
 			beamSound.Stop();
@@ -126,11 +141,11 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void clearBeam(){
-		isplayingBeam = false;
+		/*isplayingBeam = false;
 		if (beamSound) {
 			beamSound.Stop();
 			Destroy(beamGameObbjectSound);
-		}
+		}*/
 	}
 
 
