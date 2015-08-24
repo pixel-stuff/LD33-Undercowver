@@ -150,7 +150,7 @@ public class AudioManager : MonoBehaviour {
 		}*/
 	}
 
-	public static void PlayBacgoundMusic(){
+	public static void PlayBackgoundMusic(){
 		Play (m_backgroundAudioSource);
 	}
 

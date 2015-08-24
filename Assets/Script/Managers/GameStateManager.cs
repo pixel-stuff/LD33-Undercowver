@@ -51,7 +51,7 @@ public class GameStateManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		m_level = 0;
+		m_level = 1;
 	}
 
 
@@ -98,7 +98,7 @@ public class GameStateManager : MonoBehaviour {
 		m_playTime = Time.time - m_timeStartLevel;
 		this.setGameState (GameState.EndSceneGameOver);
 		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
-		m_level--;
+		//m_level--;
 		//m_asynLoading.allowSceneActivation = false;
 		//m_timeStartLevel = Time.time;
 	}
@@ -115,9 +115,9 @@ public class GameStateManager : MonoBehaviour {
 
 	public void GoToLevelScene (){
 		this.setGameState (GameState.Playing);
-		m_level++;
+		//m_level++;
 		/*m_asynLoading = */ Application.LoadLevelAsync ("LevelScene");
-		AudioManager.PlayBacgoundMusic ();
+		AudioManager.PlayBackgoundMusic ();
 		//m_asynLoading.allowSceneActivation = false;
 		m_timeStartLevel = Time.time;
 	}
