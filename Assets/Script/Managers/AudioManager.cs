@@ -24,11 +24,88 @@ public class AudioManager : MonoBehaviour {
 
 	private static Transform m_transform;
 
+	private AudioSource beamSound;
+	private AudioSource spaceMove;
 	// Use this for initialization
 	void Start () {
 		m_transform = this.transform;
 		//Play (m_backgroundAudioSource);
 	}
+	public void playSpaceMove(){
+		GameObject go = new GameObject ("Audio_" +  "beam/Beam");
+		go.transform.parent = m_transform;
+		//Load clip from ressources folder
+		AudioClip newClip =  Instantiate(Resources.Load ("beam/Beam", typeof(AudioClip))) as AudioClip;
+		
+		//Add and bind an audio source
+		spaceMove = go.AddComponent<AudioSource>();
+		spaceMove.clip = newClip;
+		//Play and destroy the component
+		spaceMove.loop =true;
+		spaceMove.Play();
+	}
+
+	public void stopSpaceMove(){
+		if (spaceMove) {
+			spaceMove.Stop();
+		}
+	}
+
+	public void PlayStartBeam(){
+		GameObject go = new GameObject ("Audio_" +  "beam/startBeam");
+		go.transform.parent = m_transform;
+		//Load clip from ressources folder
+		AudioClip newClip =  Instantiate(Resources.Load ("beam/startBeam", typeof(AudioClip))) as AudioClip;
+		
+		//Add and bind an audio source
+		beamSound = go.AddComponent<AudioSource>();
+		beamSound.clip = newClip;
+		//Play and destroy the component
+		beamSound.Play();
+		Destroy (go, newClip.length);
+
+		Invoke ("playLoopBeam", beamSound.clip.length);
+	}
+
+
+	public void playLoopBeam(){
+		if (beamSound) {
+			beamSound.Stop();
+		}
+		GameObject go = new GameObject ("Audio_" +  "beam/Beam");
+		go.transform.parent = m_transform;
+		//Load clip from ressources folder
+		AudioClip newClip =  Instantiate(Resources.Load ("beam/Beam", typeof(AudioClip))) as AudioClip;
+		
+		//Add and bind an audio source
+		beamSound = go.AddComponent<AudioSource>();
+		beamSound.clip = newClip;
+		//Play and destroy the component
+		beamSound.loop =true;
+		beamSound.Play();
+
+	}
+
+
+	public void StopBeam(){
+		if (beamSound) {
+			beamSound.Stop();
+		}
+		GameObject go = new GameObject ("Audio_" +  "beam/stopBeam");
+		go.transform.parent = m_transform;
+		//Load clip from ressources folder
+		AudioClip newClip =  Instantiate(Resources.Load ("beam/stopBeam", typeof(AudioClip))) as AudioClip;
+		
+		//Add and bind an audio source
+		beamSound = go.AddComponent<AudioSource>();
+		beamSound.clip = newClip;
+		//Play and destroy the component
+		beamSound.Play();
+		Destroy (go, newClip.length);
+	}
+
+
+
 
 	public static void Play(string clipname){
 		//Create an empty game object
