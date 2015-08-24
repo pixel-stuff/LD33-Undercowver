@@ -180,24 +180,6 @@ public class Beam : MonoBehaviour {
 		ParticleSystem[] ps = GetComponentsInChildren<ParticleSystem> ();
 		for (int i=0; i<ps.Length; i++) {
 			if(ps[i].name=="ground-light") {
-				/*BoxCollider2D bc2d = GetComponent<BoxCollider2D>();
-				Vector3 origin = bc2d.bounds.center;
-				origin.z = 0;
-				Vector3 dir = Vector3.zero;
-				dir.x = transform.parent.position.x;
-				dir.y = transform.parent.position.y;
-				Debug.Log (origin+" "+dir);
-				dir.z = 0;
-				
-				int layerMask = 1 << 10;
-				RaycastHit hitInfo = new RaycastHit();
-				if(Physics.Raycast(origin,
-								-dir,
-								out hitInfo,
-								100.0f,
-								layerMask)) {
-				Vector3 v = hitInfo.point;
-				v.z = 0;*/
 				int layerMask = 1 << 10;
 				GameObject ground = GameObject.Find("Ground");
 				Debug.Log (ground.name);
@@ -216,6 +198,10 @@ public class Beam : MonoBehaviour {
 		if (m_active && m_catched_array!=null && m_catched_array.Count>0) {
 			Cow cow = null;
 			cow = (Cow)m_catched_array[0];
+			for(int i=0;i<m_catched_array.Count;i++) {
+				if(cow.transform.position.y<=((Cow)m_catched_array[i]).transform.position.y)
+					cow = (Cow)m_catched_array[i];
+			}
 			if(cow!=null) {
 				Bounds cowBounds = cow.GetComponent<BoxCollider2D>().bounds;
 				Vector3 v3t = cowBounds.center;
@@ -228,7 +214,6 @@ public class Beam : MonoBehaviour {
 				if (cow.getCowState()==CowState.Flying && cowBounds.Intersects(bounds)) {
 						cow.setCowState(CowState.BeingLiftToShip);
 						activateBorders();
-					return;
 				}
 
 				Rigidbody2D rb2D = cow.GetComponent<Rigidbody2D> ();
