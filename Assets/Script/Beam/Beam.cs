@@ -140,6 +140,7 @@ public class Beam : MonoBehaviour {
 
 	public void clearCows() {
 		if(m_catched_array!=null) {
+			resetCowStates (CowState.Flying);
 			m_catched_array.Clear ();
 		}
 	}
