@@ -244,7 +244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &414076297
 Light:
   m_ObjectHideFlags: 0
@@ -306,7 +306,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 446696, guid: 96672d63f726b4842a6e460b87a3caba, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: .400000006
       objectReference: {fileID: 0}
     - target: {fileID: 446696, guid: 96672d63f726b4842a6e460b87a3caba, type: 2}
       propertyPath: m_LocalRotation.x
@@ -687,10 +687,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11419274, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
-      propertyPath: tutoGameObject.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 461410, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -732,10 +728,6 @@ Prefab:
       value: 
       objectReference: {fileID: 102156932}
     - target: {fileID: 11419274, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
-      propertyPath: arriveForce
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 11419274, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
       propertyPath: tutoGameObject.Array.data[0]
       value: 
       objectReference: {fileID: 617265612}
@@ -747,9 +739,13 @@ Prefab:
       propertyPath: tutoGameObject.Array.data[2]
       value: 
       objectReference: {fileID: 1443401076}
-    - target: {fileID: 11419274, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
-      propertyPath: timeBetweenChangeTuto
-      value: 3
+    - target: {fileID: 10874878, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
+      propertyPath: m_Range
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 10874878, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
+      propertyPath: m_Intensity
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
