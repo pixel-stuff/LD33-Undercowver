@@ -117,7 +117,7 @@ public class GameStateManager : MonoBehaviour {
 		this.setGameState (GameState.Playing);
 		m_level++;
 		/*m_asynLoading = */ Application.LoadLevelAsync ("LevelScene");
-		
+		AudioManager.PlayBacgoundMusic ();
 		//m_asynLoading.allowSceneActivation = false;
 		m_timeStartLevel = Time.time;
 	}

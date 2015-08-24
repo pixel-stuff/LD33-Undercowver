@@ -19,8 +19,7 @@ public class AudioManager : MonoBehaviour {
 	}
 	#endregion Singleton
 
-	[SerializeField]
-	private string m_backgroundAudioSource;
+	private static string m_backgroundAudioSource = "grillon_background";
 
 	private static Transform m_transform;
 
@@ -151,6 +150,9 @@ public class AudioManager : MonoBehaviour {
 		}*/
 	}
 
+	public static void PlayBacgoundMusic(){
+		Play (m_backgroundAudioSource);
+	}
 
 	public static void Play(string clipname){
 		//Create an empty game object
