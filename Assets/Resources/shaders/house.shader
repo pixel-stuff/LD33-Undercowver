@@ -27,7 +27,6 @@
 		};
 
 		void surf (Input IN, inout SurfaceOutput o) {
-			fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
 		//	if(c.r>0.65 && c.g>0.55 && c.g>0.55) {
 //			if(c.r>0.35 && (c.r-c.g)<0.1 && (c.g-c.b)<0.1) {
 		//		half4 sum = half4(0.0, 0.0, 0.0, 0.0);
@@ -101,10 +100,12 @@
 		//				}
 		//			}
 //					}
-			if(c.r>0.80 && (c.r-c.g)<0.1 && (c.g-c.b)<0.1) {
-			}else{
-				c.rgb *= _Color.rgb;
-			}
+			fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+//			if(c.r>0.35 && (c.r-c.g)<0.1 && (c.g-c.b)<0.1) {
+//				//c.a = 0.0;
+//			}else{
+//				c *= _Color;
+//			}
 			o.Albedo = c.rgb;
 			//o.Emission = _Emission;
 			o.Specular = _Specular;

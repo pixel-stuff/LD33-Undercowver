@@ -1,0 +1,189 @@
+fileFormatVersion: 2
+guid: 79f065148f1f6e14c94ff29e5bfe8ee0
+timeCreated: 1440449570
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: house_light_transparent_0
+    21300002: house_light_transparent_1
+    21300004: house_light_transparent_2
+    21300006: house_light_transparent_3
+    21300008: house_light_transparent_4
+    21300010: house_light_transparent_5
+    21300012: house_light_transparent_6
+    21300014: house_light_transparent_7
+    21300016: house_light_transparent_8
+    21300018: house_light_transparent_9
+    21300020: house_light_transparent_10
+    21300022: house_light_transparent_11
+    21300024: house_light_transparent_12
+    21300026: house_light_transparent_13
+    21300028: house_light_transparent_14
+    21300030: house_light_transparent_15
+    21300032: house_light_transparent_16
+    21300034: house_light_transparent_17
+    21300036: house_light_transparent_18
+    21300038: house_light_transparent_19
+    21300040: house_light_transparent_20
+    21300042: house_light_transparent_21
+    21300044: house_light_transparent_22
+    21300046: house_light_transparent_23
+    21300048: house_light_transparent_24
+    21300050: house_light_transparent_25
+    21300052: house_light_transparent_26
+    21300054: house_light_transparent_27
+    21300056: house_light_transparent_28
+    21300058: house_light_transparent_29
+    21300060: house_light_transparent_30
+    21300062: house_light_transparent_31
+    21300064: house_light_transparent_32
+    21300066: house_light_transparent_33
+    21300068: house_light_transparent_34
+    21300070: house_light_transparent_35
+    21300072: house_light_transparent_36
+    21300074: house_light_transparent_37
+    21300076: house_light_transparent_38
+    21300078: house_light_transparent_39
+    21300080: house_light_transparent_40
+    21300082: house_light_transparent_41
+    21300084: house_light_transparent_42
+    21300086: house_light_transparent_43
+    21300088: house_light_transparent_44
+    21300090: house_light_transparent_45
+    21300092: house_light_transparent_46
+    21300094: house_light_transparent_47
+    21300096: house_light_transparent_48
+    21300098: house_light_transparent_49
+    21300100: house_light_transparent_50
+    21300102: house_light_transparent_51
+    21300104: house_light_transparent_52
+    21300106: house_light_transparent_53
+    21300108: house_light_transparent_54
+    21300110: house_light_transparent_55
+    21300112: house_light_transparent_56
+    21300114: house_light_transparent_57
+    21300116: house_light_transparent_58
+    21300118: house_light_transparent_59
+    21300120: house_light_transparent_60
+    21300122: house_light_transparent_61
+    21300124: house_light_transparent_62
+    21300126: house_light_transparent_63
+    21300128: house_light_transparent_64
+    21300130: house_light_transparent_65
+    21300132: house_light_transparent_66
+    21300134: house_light_transparent_67
+    21300136: house_light_transparent_68
+    21300138: house_light_transparent_69
+    21300140: house_light_transparent_70
+    21300142: house_light_transparent_71
+    21300144: house_light_transparent_72
+    21300146: house_light_transparent_73
+    21300148: house_light_transparent_74
+    21300150: house_light_transparent_75
+    21300152: house_light_transparent_76
+    21300154: house_light_transparent_77
+    21300156: house_light_transparent_78
+    21300158: house_light_transparent_79
+    21300160: house_light_transparent_80
+    21300162: house_light_transparent_81
+    21300164: house_light_transparent_82
+    21300166: house_light_transparent_83
+    21300168: house_light_transparent_84
+    21300170: house_light_transparent_85
+    21300172: house_light_transparent_86
+    21300174: house_light_transparent_87
+    21300176: house_light_transparent_88
+    21300178: house_light_transparent_89
+    21300180: house_light_transparent_90
+    21300182: house_light_transparent_91
+    21300184: house_light_transparent_92
+    21300186: house_light_transparent_93
+    21300188: house_light_transparent_94
+    21300190: house_light_transparent_95
+    21300192: house_light_transparent_96
+    21300194: house_light_transparent_97
+    21300196: house_light_transparent_98
+    21300198: house_light_transparent_99
+    21300200: house_light_transparent_100
+    21300202: house_light_transparent_101
+    21300204: house_light_transparent_102
+    21300206: house_light_transparent_103
+    21300208: house_light_transparent_104
+    21300210: house_light_transparent_105
+    21300212: house_light_transparent_106
+    21300214: house_light_transparent_107
+    21300216: house_light_transparent_108
+    21300218: house_light_transparent_109
+    21300220: house_light_transparent_110
+    21300222: house_light_transparent_111
+    21300224: house_light_transparent_112
+    21300226: house_light_transparent_113
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 729, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: house_light_transparent_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 728
+        height: 452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: house_light_transparent_1
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 0
+        width: 728
+        height: 452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

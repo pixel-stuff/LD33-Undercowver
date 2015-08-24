@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: houseMaterial
-  m_Shader: {fileID: 30, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: house_windows
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 79f065148f1f6e14c94ff29e5bfe8ee0, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -78,13 +78,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _LightMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -97,23 +90,23 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: .476999998
-      data:
-        first:
-          name: PixelSnap
-        second: 0
+        second: .5
       data:
         first:
           name: _Parallax
-        second: .0487999991
+        second: .0199999996
+      data:
+        first:
+          name: _Glossiness
+        second: .280000001
+      data:
+        first:
+          name: _Metallic
+        second: 0
       data:
         first:
           name: _ZWrite
         second: 1
-      data:
-        first:
-          name: _Glossiness
-        second: 0
       data:
         first:
           name: _BumpScale
@@ -134,32 +127,12 @@ Material:
         first:
           name: _Mode
         second: 0
-      data:
-        first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
-          name: _BlurAmount
-        second: .702000022
-      data:
-        first:
-          name: _Specular
-        second: 1
-      data:
-        first:
-          name: _Gloss
-        second: 1
     m_Colors:
       data:
         first:
           name: _EmissionColor
-        second: {r: .0294117928, g: .0289792661, b: .0289792661, a: 1}
+        second: {r: .411764681, g: .411764681, b: .411764681, a: 1}
       data:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _Emission
-        second: {r: .867647052, g: .867647052, b: .867647052, a: 1}
