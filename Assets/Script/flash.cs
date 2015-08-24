@@ -18,15 +18,18 @@ public class flash : MonoBehaviour {
 	public void startFlash() {
 		m_timer = 0.0f;
 		m_flash_start = true;
+		//m_flash.SetActive (true);
+		//Debug.Log ("START");
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (m_flash_start) {
-			if(m_timer>1.0f) {
+			//Debug.Log (m_timer);
+			if(m_timer>0.9f) {
 				m_flash.SetActive (true);
 			}
-			if(m_timer>1.9f) {
+			if(m_timer>1.5f) {
 				m_flash.SetActive (false);
 			}
 			m_timer+=Time.deltaTime;

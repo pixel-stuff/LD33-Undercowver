@@ -10,6 +10,7 @@ public class HouseLight : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.name == "spaceShipSprite") {
+			GameObject.Find ("Flash").GetComponent<flash> ().startFlash ();
 			PlayerManager.m_instance.setGameOver();
 		}
 	}

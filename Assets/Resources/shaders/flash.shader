@@ -66,8 +66,9 @@
 			{
 				fixed4 c = tex2D(_MainTex, IN.texcoord) * IN.color;
 				c.rgb *= 3.5;
-					c.a = (c.a-c.a*clamp(_Time.w, 0.0, 7.0)/7);
-				c.rgb *= c.a;
+					c.a = (1.0-1.0*clamp(_Time.w, 0.0, 10.0)/10);
+				//c.rgb *= c.a;
+				c.rgb = fixed3(1,1,1);
 				return c;
 			}
 		ENDCG
