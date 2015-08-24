@@ -33,6 +33,8 @@ public class GameStateManager : MonoBehaviour {
 	
 	public static Action<GameState> onChangeStateEvent;
 
+	public bool alreadyHaveTuto = false;
+
 
 	/*
 	 * Nbre cow killed

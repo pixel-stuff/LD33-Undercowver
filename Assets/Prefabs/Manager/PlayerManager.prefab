@@ -282,7 +282,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.17999995, z: -.419999987}
+  m_LocalPosition: {x: 0, y: 5.34000015, z: -.419999987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 446890}
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceForce: {x: 0, y: 100}
-  deltaBounce: .100000001
+  Ybounce: 1.15999997
   velocityMinForBounce: .300000012
   forceOnMove: 150
   deltaRotate: 1
@@ -490,7 +490,7 @@ MonoBehaviour:
   checkNoise: 100
   actualNoise: 0
   loseNoisePer250ms: 2
-  velocityFactor: .0500000007
+  velocityFactor: .0199999996
   soundFeedBack: {fileID: 0}
   levelCow: 10
   actualUEFOCow: 0
@@ -513,6 +513,7 @@ MonoBehaviour:
   m_y_top: 5
   m_cow_dir: {x: .0500000007, y: .000899999985}
   m_cow_dir_no_switch_percentage: 90
+  noiseByUpdate: .200000003
 --- !u!124 &12476554
 Behaviour:
   m_ObjectHideFlags: 1

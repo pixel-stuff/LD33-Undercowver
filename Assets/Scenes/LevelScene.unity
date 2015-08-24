@@ -521,7 +521,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 461410, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.17999995
+      value: 5.53999996
       objectReference: {fileID: 0}
     - target: {fileID: 461410, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
       propertyPath: m_LocalPosition.z
@@ -545,7 +545,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 461410, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11419274, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
       propertyPath: soundFeedBack
@@ -555,13 +555,9 @@ Prefab:
       propertyPath: CowText
       value: 
       objectReference: {fileID: 102156932}
-    - target: {fileID: 11466344, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
-      propertyPath: noiseByUpdate
-      value: .200000003
-      objectReference: {fileID: 0}
     - target: {fileID: 11419274, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
-      propertyPath: velocityFactor
-      value: .0199999996
+      propertyPath: arriveForce
+      value: 800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
@@ -653,6 +649,39 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 854749038}
+    - target: {fileID: 11469382, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: bb9bcbe2b016eed428f3f8199ff4ab75,
+        type: 3}
+    - target: {fileID: 11469382, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_Color.r
+      value: .792156935
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469382, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_Color.g
+      value: .78039223
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469382, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_Color.b
+      value: .576470613
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469382, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22445882, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -684
+      objectReference: {fileID: 0}
+    - target: {fileID: 22445882, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 423.700012
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469382, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_Text
+      value: 10 / 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
   m_IsPrefabParent: 0

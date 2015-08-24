@@ -21,9 +21,11 @@ public class PlayerManager : MonoBehaviour {
 	private bool victory = false;
 	[Header("BounceSpaceShip")]
 	public Vector2 bounceForce;
-	public float deltaBounce;
+	public float Ybounce;
 	private float thresholdBounce;
 	public float velocityMinForBounce;
+	public bool shipIsArrive;
+	public float arriveForce;
 	[Header("MoveSpaceShip")]
 	[Space(10)]
 	public float forceOnMove;
@@ -61,14 +63,21 @@ public class PlayerManager : MonoBehaviour {
 	[Space(10)]
 	public GameObject bean;
 
+	[Header("Bean")]
+	[Space(10)]
+	public bool LaunchTuto = false;
+
 	void Start () {
 		GameStateManager.onChangeStateEvent += handleChangeGameState;
 		m_rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
-		thresholdBounce = this.transform.position.y - deltaBounce;
+		thresholdBounce = Ybounce;
 
 		CowManager.m_instance.onNewUFOCow += AddUFOCow;
 
 		setCowText (actualUEFOCow+" / "+ levelCow);
+
+		LaunchTuto = !GameStateManager.m_instance.alreadyHaveTuto;
+
 	}
 
 	private void setCowText(string s){
@@ -89,9 +98,19 @@ public class PlayerManager : MonoBehaviour {
 	#region Intéraction
 	// Update is called once per frame
 	void Update () {
+		if (!shipIsArrive) {
+			m_rigidbody.AddForce (new Vector3(0,-arriveForce,0), ForceMode2D.Force);
+		}
+
+
 		if (Mathf.Abs (m_rigidbody.velocity.x) < velocityMinForBounce) {
+
 			m_rigidbody.constraints = RigidbodyConstraints2D.None;
 			if (this.transform.position.y < thresholdBounce) {
+				if(!shipIsArrive){
+					m_rigidbody.AddForce (new Vector3(0,arriveForce,0), ForceMode2D.Impulse);
+					shipIsArrive =true;
+				}
 				m_rigidbody.AddForce (bounceForce, ForceMode2D.Impulse); //bounce
 			}
 		}
@@ -145,13 +164,17 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void LEFT(){
-		Debug.Log("LEFT ! ");
-		moveLeft();
+		if (shipIsArrive) {
+			Debug.Log ("LEFT ! ");
+			moveLeft ();
+		}
 	}
 
 	public void RIGHT(){
-		Debug.Log("RIGHT ! ");
-		moveRight();
+		if (shipIsArrive) {
+			Debug.Log ("RIGHT ! ");
+			moveRight ();
+		}
 	}
 
 	private void moveLeft(){
