@@ -133,12 +133,12 @@ public class PlayerManager : MonoBehaviour {
 			}
 		}
 		rotateForVelocity ();
-
+		/*
 		if (transform.position.x <= -xLimite) {
 			transform.position = new Vector2(-xLimite,transform.position.y);
 		} else if (transform.position.x >= xLimite) {
 			transform.position = new Vector2(xLimite,transform.position.y);
-		}
+		}*/
 
 
 
