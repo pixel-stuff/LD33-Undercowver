@@ -1,16 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class soundFeedBack : MonoBehaviour {
 	public float alertNoisePercent;
 	public float stopalertNoisePercent;
+	public GameObject AlertSection;
+	public GameObject textPercent;
 
-
+	private Text percentText;
 	private bool isOnAlertNoise;
+
+	void Start(){
+		percentText = textPercent.GetComponent<Text> ();
+	}
+
+
 	public void setSoundPercent(float percent){
 		if (percent > alertNoisePercent) {
 			isOnAlertNoise = true;
-			//todo warning machin 
+			percentText.text = Mathf.Round(percent)+"%";
+			AlertSection.SetActive(true); 
 		}
 		if (percent < stopalertNoisePercent) {
 			//todo if true hide warning
