@@ -107,6 +107,12 @@ public class Cow : MonoBehaviour {
 	[SerializeField]
 	private bool isDebug = true;
 
+	[Space(10)]
+
+	[SerializeField]
+	private GameObject m_DeadAnim;
+
+
 	private Animator m_animator;
 
 	// Use this for initialization
@@ -382,6 +388,7 @@ public class Cow : MonoBehaviour {
 				if(isDebug){
 					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.black);
 				}
+				m_DeadAnim.SetActive(true);
 				
 			
 				this.GetComponent<Rigidbody2D>().isKinematic = true;
