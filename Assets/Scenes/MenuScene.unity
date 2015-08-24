@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alreadyHaveTuto: 0
+  m_isEndSceneSuccess: 0
   m_level: 0
   m_CowKilled: 0
   m_playTime: 0
@@ -573,9 +574,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'BIG JIM HAD A FARM
-
-'
+  m_Text: UNDERCOWVER
 --- !u!222 &861348486
 CanvasRenderer:
   m_ObjectHideFlags: 0

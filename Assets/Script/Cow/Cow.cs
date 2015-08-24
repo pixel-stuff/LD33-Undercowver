@@ -34,6 +34,8 @@ public class Cow : MonoBehaviour {
 	private Vector2 m_targetDestination = Vector2.zero;
 	private float m_cowSpeed = 0.5f;
 
+	private Vector3 m_startLocalPosition;
+
 	
 	[Header("WalkArea")]
 	[Space(10)]
@@ -110,6 +112,8 @@ public class Cow : MonoBehaviour {
 	void Start () {
 		
 		m_animator = this.GetComponent<Animator> ();
+
+		m_startLocalPosition = this.transform.localPosition;
 
 		setCowState(CowState.IdleStatic);
 
@@ -364,9 +368,15 @@ public class Cow : MonoBehaviour {
 				break;
 				
 			case CowState.Dead:
+			
+				m_animator.SetBool ("isDead", true);
+				Vector3 vect = this.transform.localPosition;
+				vect.y = m_startLocalPosition.y-0.4f;
+				this.transform.localPosition = vect;
 				if(isDebug){
 					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.black);
 				}
+				
 			
 				this.GetComponent<Rigidbody2D>().isKinematic = true;
 				this.GetComponent<BoxCollider2D>().enabled = false;
@@ -380,8 +390,9 @@ public class Cow : MonoBehaviour {
 
 	private void StopAllAnim(){
 		if(m_animator){
-		m_animator.SetBool ("isWalking", false);
-		m_animator.SetBool ("isEating", false);
+			m_animator.SetBool ("isWalking", false);
+			m_animator.SetBool ("isEating", false);
+			m_animator.SetBool ("isDead", false);
 		}
 	}
 
