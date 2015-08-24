@@ -5,6 +5,7 @@ public class House : MonoBehaviour {
 
 	[SerializeField]
 	public float m_light_size = 10.0f;
+	private float m_light_prev_size = 10.0f;
 
 	private GameObject m_light;
 	private GameObject m_light_anchor;
@@ -20,10 +21,18 @@ public class House : MonoBehaviour {
 
 	private Vector3 m_light_pos;
 
+	Light m_spotlight = null;
+
+	private ArrayList m_angles;
+	private int m_angles_index;
+
 	// Use this for initialization
 	void Start () {
 		m_light = GameObject.Find ("Light");
 		m_light_anchor = GameObject.Find("HouseLightAnchor");
+		m_spotlight = GetComponentInChildren<Light> ();
+		m_angles = new ArrayList ();
+		m_angles_index = 0;
 		Vector3 vt = m_light.transform.localScale;
 		vt.y = m_light_size;
 		m_light.transform.localScale = vt;
@@ -34,8 +43,13 @@ public class House : MonoBehaviour {
 		// rotatio
 		//rotate (-90.0f);
 		m_angle_rot = m_angle_rot_min;
-		rude_awake();
-		m_light_pos = m_light_anchor.transform.position;
+		rude_awake ();
+		m_angles.Add (0.02f);
+		m_angles.Add (-5.00f);
+		m_angles.Add (-10.0f);
+		m_angles.Add (-15.0f);
+		m_angles.Add (-45.0f);
+		m_angles.Add (-90.0f);
 	}
 
 	void rotate(float angle) {
@@ -99,15 +113,18 @@ public class House : MonoBehaviour {
 	}
 
 	void resizeLight(float size) {
-		Vector3 vt = m_light.transform.localScale;
-		vt.y = size;
-		m_light.transform.localScale = vt;
-		vt = m_light.transform.localPosition;
-		vt.x -= size/2.0f;
-		m_light.transform.localPosition = vt;
+		m_light_size = size;
+		Vector3 vt = m_light_anchor.transform.localScale;
+		vt.x = size;
+		m_light_anchor.transform.localScale = vt;
+		//vt = m_light.transform.localPosition;
+		//vt.x = m_light.transform.position.x-size;
+		//m_light.transform.localPosition = vt;
+		m_spotlight.range = size;
 	}
 
 	void lightToLastPositionEared(Vector2 position) {
+		// lets go
 		Vector3 to = position;
 		Vector3 from = m_light_anchor.transform.position;
 		Vector3 dir = (to - from);
@@ -115,7 +132,31 @@ public class House : MonoBehaviour {
 		Vector3 diff = to-from;
 		diff.Normalize();
 		float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-		rotate (rot_z+180.0f);
+		m_light.transform.RotateAround (m_light_anchor.transform.position, Vector3.forward, rot_z+180.0f);
+	}
+	
+	void lightToAngleEared(float angle) {
+		float lookAt = Quaternion.Angle (
+			m_light.transform.rotation,
+			Quaternion.AngleAxis (angle, Vector3.forward)
+			);
+		/*Vector3 angles = m_light_anchor.transform.rotation.eulerAngles;
+		angles.z = angle;
+		m_light_anchor.transform.rotation.eulerAngles = angles;*/
+		m_light_anchor.transform.RotateAround (m_light_anchor.transform.position, Vector3.forward, lookAt);
+
+	}
+
+	void setPointToLook(Vector2 target) {
+		Vector3 to = target;
+		Vector3 from = m_light_anchor.transform.position;
+		Vector3 dir = (to - from);
+		Vector3 diff = to-from;
+		diff.Normalize();
+		m_light_prev_size = m_light_size;
+		m_light_size = dir.magnitude;
+		m_angle_rot = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+		resizeLight (m_light_size);
 	}
 	
 	// Update is called once per frame
@@ -164,6 +205,32 @@ public class House : MonoBehaviour {
 			timer_awake = 0.0f;
 			m_angle_rot = 0.0f;
 		}*/
+		if (timer_awake >4.0f && timer_awake<8.0f) {
+			//resizeLight (10.0f);
+			//float angle = 0.0f;
+			//lightToAngleEared (Mathf.LerpAngle(0.0f, 45.0f, Time.smoothDeltaTime));
+			//m_angles_index = (m_angles_index+1)%m_angles.Count;
+			//Debug.Log (m_angles_index+"/"+m_angles.Count+" "+(float)m_angles[m_angles_index]);
+			//lightToAngleEared ((float)m_angles[m_angles_index]);
+			//timer_awake = 0.0f;
+			Debug.Log ("LOOK!");
+			setPointToLook(new Vector2(0.0f,0.0f));
+		}
+		/*if (timer_awake >8.0f) {
+			//resizeLight (10.0f);
+			//float angle = 0.0f;
+			//lightToAngleEared (Mathf.LerpAngle(0.0f, 45.0f, Time.smoothDeltaTime));
+			//m_angles_index = (m_angles_index+1)%m_angles.Count;
+			//Debug.Log (m_angles_index+"/"+m_angles.Count+" "+(float)m_angles[m_angles_index]);
+			//lightToAngleEared ((float)m_angles[m_angles_index]);
+			//timer_awake = 0.0f;
+			Debug.Log ("LOOK!");
+			setPointToLook(new Vector2(02.0f,-0.0f));
+		}*/
+		//resizeLight (Mathf.Lerp (m_light_prev_size, m_light_size, Time.time * 1.0f));
+		m_light_anchor.transform.rotation = Quaternion.Lerp(m_light_anchor.transform.rotation, Quaternion.AngleAxis(m_angle_rot, Vector3.forward), Time.time * 1.0f);
+		//lightToAngleEared (Mathf.LerpAngle(0.0f, -90.0f, Time.smoothDeltaTime*10.0f));
+		//Debug.Log (Mathf.LerpAngle(0.0f, 45.0f, Time.smoothDeltaTime));
 		timer_awake += Time.deltaTime;
 	}
 }

@@ -11,8 +11,7 @@ public class HouseLight : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.name == "spaceShipSprite") {
 			Debug.Log ("WAHOUU");
-			GameObject end = GameObject.Find ("UILevelManager");
-			end.GetComponent<UILevelManager> ().GoToEndSceneWithLoose ();
+			PlayerManager.m_instance.setGameOver();
 		}
 	}
 	
