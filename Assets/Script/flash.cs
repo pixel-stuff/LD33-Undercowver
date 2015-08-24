@@ -28,6 +28,7 @@ public class flash : MonoBehaviour {
 			//Debug.Log (m_timer);
 			if(m_timer>0.9f) {
 				m_flash.SetActive (true);
+				AudioManager.Play("camera_shutter");
 			}
 			if(m_timer>1.5f) {
 				m_flash.SetActive (false);
