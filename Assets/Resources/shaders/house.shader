@@ -5,6 +5,7 @@
 		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
 		_Color ("Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
+		_BlurAmount ("Blur Amount", Range(0.1, 1.0)) = 0.1
 	}
 
 	SubShader
@@ -66,35 +67,63 @@
 			{
 				fixed4 c = tex2D(_MainTex, IN.texcoord);
 				//if(c.r>0.55 && c.g>0.55 && c.g>0.55) {
-				if(c.r>0.25 && (c.r-c.g)<0.01 && (c.g-c.b)<0.01) {
-					half4 sum = tex2D(_MainTex, float2(
-									IN.texcoord.x - 1.0,
-									IN.texcoord.y - 1.0));
-					sum += tex2D(_MainTex, float2(
-									IN.texcoord.x - 1.0,
-									IN.texcoord.y));
-					sum += tex2D(_MainTex, float2(
-									IN.texcoord.x - 1.0,
-									IN.texcoord.y + 1.0));
-					sum += tex2D(_MainTex, float2(
-									IN.texcoord.x,
-									IN.texcoord.y - 1.0));
-					sum += tex2D(_MainTex, float2(
-									IN.texcoord.x,
-									IN.texcoord.y));
-					sum += tex2D(_MainTex, float2(
-									IN.texcoord.x,
-									IN.texcoord.y + 1.0));
-					sum += tex2D(_MainTex, float2(
-									IN.texcoord.x + 1.0,
-									IN.texcoord.y - 1.0));
-					sum += tex2D(_MainTex, float2(
-									IN.texcoord.x + 1.0,
-									IN.texcoord.y));
-					sum += tex2D(_MainTex, float2(
-									IN.texcoord.x + 1.0,
-									IN.texcoord.y + 1.0));
-					c.rgb = sum.rgb/9;
+				if(c.r>0.65 && (c.r-c.g)<0.1 && (c.g-c.b)<0.1) {
+					half4 sum = half4(0.0, 0.0, 0.0, 0.0);
+
+					sum += tex2D(_MainTex, float2(IN.texcoord.x - 5.0 * _BlurAmount, IN.texcoord.y)) * 0.025;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x - 4.0 * _BlurAmount, IN.texcoord.y)) * 0.05;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x - 3.0 * _BlurAmount, IN.texcoord.y)) * 0.09;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x - 2.0 * _BlurAmount, IN.texcoord.y)) * 0.12;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x - _BlurAmount, IN.texcoord.y)) * 0.15;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IN.texcoord.y)) * 0.16;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x + _BlurAmount, IN.texcoord.y)) * 0.15;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x + 2.0 * _BlurAmount, IN.texcoord.y)) * 0.12;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x + 3.0 * _BlurAmount, IN.texcoord.y)) * 0.09;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x + 4.0 * _BlurAmount, IN.texcoord.y)) * 0.05;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x + 5.0 * _BlurAmount, IN.texcoord.y)) * 0.025;
+					
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IN.texcoord.y - 5.0 * _BlurAmount)) * 0.025;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IN.texcoord.y - 4.0 * _BlurAmount)) * 0.05;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IN.texcoord.y - 3.0 * _BlurAmount)) * 0.09;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IN.texcoord.y - 2.0 * _BlurAmount)) * 0.12;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IN.texcoord.y - 1.0 * _BlurAmount)) * 0.15;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IN.texcoord.y)) * 0.16;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IN.texcoord.y + 1.0 * _BlurAmount)) * 0.15;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IN.texcoord.y + 2.0 * _BlurAmount)) * 0.12;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IIN.texcoord.y + 3.0 * _BlurAmount)) * 0.09;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IN.texcoord.y + 4.0 * _BlurAmount)) * 0.05;
+					sum += tex2D(_MainTex, float2(IN.texcoord.x, IN.texcoord.y + 5.0 * _BlurAmount)) * 0.025;
+					
+					c.rgb = sum.rgb;
+//					fixed s = 0.0005;
+//					half4 sum = tex2D(_MainTex, float2(
+//									IN.texcoord.x - s,
+//									IN.texcoord.y - s));
+//					sum *= tex2D(_MainTex, float2(
+//									IN.texcoord.x - s,
+//									IN.texcoord.y));
+//					sum *= tex2D(_MainTex, float2(
+//									IN.texcoord.x - s,
+//									IN.texcoord.y + s));
+//					sum *= tex2D(_MainTex, float2(
+//									IN.texcoord.x,
+//									IN.texcoord.y - s));
+//					sum *= tex2D(_MainTex, float2(
+//									IN.texcoord.x,
+//									IN.texcoord.y));
+//					sum *= tex2D(_MainTex, float2(
+//									IN.texcoord.x,
+//									IN.texcoord.y + s));
+//					sum *= tex2D(_MainTex, float2(
+//									IN.texcoord.x + s,
+//									IN.texcoord.y - s));
+//					sum *= tex2D(_MainTex, float2(
+//									IN.texcoord.x + s,
+//									IN.texcoord.y));
+//					sum *= tex2D(_MainTex, float2(
+//									IN.texcoord.x + s,
+//									IN.texcoord.y + s));
+//					c.rgb = sum.rgb;
 //					int size = 4;
 //					fixed4 t = fixed4(1, 1, 1, 1);
 //					for(int i=0;i<size+1;i++) {
