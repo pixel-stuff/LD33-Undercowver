@@ -251,7 +251,8 @@ public class PlayerManager : MonoBehaviour {
 
 		if (actualNoise > checkNoise) {
 
-			//todo check noise paysan
+			GameObject house = GameObject.Find("HouseManager");
+			house.GetComponent<House>().rude_awake();
 		}
 		soundFeedBack.GetComponent<soundFeedBack> ().setSoundPercent ((actualNoise / checkNoise)*100);
 	}
