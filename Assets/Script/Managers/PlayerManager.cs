@@ -96,7 +96,6 @@ public class PlayerManager : MonoBehaviour {
 
 
 	private void AddUFOCow(){
-		Debug.Log("zze");
 		actualUEFOCow++;
 		setCowText (actualUEFOCow+" / "+ levelCow);
 	}
@@ -248,6 +247,10 @@ public class PlayerManager : MonoBehaviour {
 		if (actualNoise < checkNoise * 1.1) {
 			actualNoise += noise;
 		}
+		if (actualNoise > checkNoise * 1.1) {
+			actualNoise = checkNoise * 1.1f;
+		}
+
 		checkNoiseLevel ();
 	}
 
@@ -258,7 +261,11 @@ public class PlayerManager : MonoBehaviour {
 			GameObject house = GameObject.Find("HouseManager");
 			house.GetComponent<House>().rude_awake();
 		}
-		soundFeedBack.GetComponent<soundFeedBack> ().setSoundPercent ((actualNoise / checkNoise)*100);
+		int percent = (int)((actualNoise / checkNoise) * 100);
+		if (percent > 100){
+			percent = 100;
+		}
+		soundFeedBack.GetComponent<soundFeedBack> ().setSoundPercent (percent);
 	}
 
 	public void setGameOver(){
