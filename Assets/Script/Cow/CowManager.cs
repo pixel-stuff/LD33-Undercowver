@@ -68,7 +68,7 @@ public class CowManager : MonoBehaviour {
 		//positionner cow entre [-4.75;-4.60] en Y
 		//positionner cow entre [-9;3.6] en X
 		for (int i=0; i < 15/*m_numberOfUFOCowToReach*/; i++) {
-			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,4f),-3.5f,0f ),Quaternion.identity);
+			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,4f),-3.55f,0f ),Quaternion.identity);
 			obj.transform.parent = this.transform;
 
 			cow = obj.GetComponent<Cow>();
@@ -92,7 +92,7 @@ public class CowManager : MonoBehaviour {
 	}
 
 	public void createCow(){
-		GameObject obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.6f),-3.5f,0f ),Quaternion.identity);
+		GameObject obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.6f),-3.55f,0f ),Quaternion.identity);
 		obj.transform.parent = this.transform;
 		
 		Cow cow = obj.GetComponent<Cow>();

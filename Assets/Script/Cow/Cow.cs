@@ -97,8 +97,12 @@ public class Cow : MonoBehaviour {
 	public Action<int> onDeadEnter;
 	#endregion Dead State
 
+	private Animator m_animator;
+
 	// Use this for initialization
 	void Start () {
+		
+		m_animator = this.GetComponent<Animator> ();
 
 		setCowState(CowState.IdleStatic);
 
@@ -106,6 +110,7 @@ public class Cow : MonoBehaviour {
 		m_timeInWalkingAnim += UnityEngine.Random.Range(-0.5f,0.5f);
 		m_timeInEatingAnim += UnityEngine.Random.Range(-0.5f,0.5f);
 		m_timeInAffraidAnim += UnityEngine.Random.Range(-0.5f,0.5f);
+
 	}
 
 	public void Init(int id, string name){
@@ -151,12 +156,12 @@ public class Cow : MonoBehaviour {
 				UpdateDead ();
 				break;
 		}
+		m_flyingSpeed = this.GetComponent<Rigidbody2D>().velocity.magnitude;
 	}
 
 
 	void UpdateIdleStatic (){
 		if (Time.time - m_timeStateStaticStart >= m_timeInStaticAnim) {
-			//TODO: Stop animation static
 			CowState[] futurState = new CowState[2]{
 				CowState.IdleWalking,
 				CowState.IdleEating
@@ -174,7 +179,6 @@ public class Cow : MonoBehaviour {
 		this.transform.position = Vector2.Lerp(this.transform.position, m_targetDestination, Time.deltaTime* m_cowSpeed/Vector2.Distance(this.transform.localPosition,m_targetDestination));
 		
 		if (Time.time - m_timeStateWalkingStart >= m_timeInWalkingAnim || Vector2.Distance(this.transform.localPosition,m_targetDestination) <= float.Epsilon ) {
-			//TODO: Stop animation de walk
 			CowState[] futurState = new CowState[2]{
 				CowState.IdleStatic,
 				CowState.IdleEating
@@ -186,7 +190,6 @@ public class Cow : MonoBehaviour {
 
 	void UpdateIdleEating (){
 		if (Time.time - m_timeStateEatingStart >= m_timeInEatingAnim) {
-			//TODO: stop animation de eat
 			CowState[] futurState = new CowState[2]{
 				CowState.IdleStatic,
 				CowState.IdleWalking
@@ -201,7 +204,6 @@ public class Cow : MonoBehaviour {
 	}
 	
 	void UpdateFlying (){
-		m_flyingSpeed = this.GetComponent<Rigidbody2D>().velocity.magnitude;
 	}
 	
 	void UpdateLifted (){
@@ -231,10 +233,7 @@ public class Cow : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D   coll){
 		//Debug.Log ("COLLISION DETECTED WITH :" + coll.gameObject.name);
-		if (coll.gameObject.tag == "Ground" 
-		    	&& m_cowState != CowState.IdleEating
-		    		&& m_cowState != CowState.IdleWalking
-		    			&& m_cowState != CowState.IdleStatic) {
+		if (coll.gameObject.tag == "Ground") {
 			setCowState(CowState.Crashed);
 		}
 	}
@@ -244,23 +243,33 @@ public class Cow : MonoBehaviour {
 	//Getter Setter
 	public void setCowState(CowState newState){
 		m_cowState = newState;
+		StopAllAnim ();
 		switch (m_cowState) {
 			case CowState.IdleStatic:
 				m_timeStateStaticStart = Time.time;
 				//TODO: Lancer animation de static
+				
 				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white);
 			break;
 			case CowState.IdleWalking:
+				m_animator.SetBool ("isWalking", true);
 				m_timeStateWalkingStart = Time.time;
-			float dest = UnityEngine.Random.Range (m_minWalkArea,m_maxWalkArea);
+				float dest = UnityEngine.Random.Range (m_minWalkArea,m_maxWalkArea);
 
 				m_targetDestination = new Vector2(dest,this.transform.localPosition.y);
 
+				if(this.transform.localPosition.x < m_targetDestination.x){
+					this.transform.eulerAngles = new Vector3(0f,180f,0f);	
+				}else{
+				this.transform.eulerAngles = new Vector3(0f,0f,0f);	
+			}
+			   
 				//[-9;3.6]
 				//TODO: Lancer animation de walking
 				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.red);
 				break;
 			case CowState.IdleEating:
+				m_animator.SetBool ("isEating", true);
 				m_timeStateEatingStart = Time.time;
 				//TODO: Lancer animation de Eating
 				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.green);
@@ -339,6 +348,14 @@ public class Cow : MonoBehaviour {
 					onDeadEnter(m_id);
 				}
 				break;
+		}
+	}
+
+
+	private void StopAllAnim(){
+		if(m_animator){
+		m_animator.SetBool ("isWalking", false);
+		m_animator.SetBool ("isEating", false);
 		}
 	}
 
