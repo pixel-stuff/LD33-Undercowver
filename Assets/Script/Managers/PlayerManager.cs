@@ -163,6 +163,7 @@ public class PlayerManager : MonoBehaviour {
 			if (currentTuto == tutoGameObject.Length ) {
 				tutoGameObject[currentTuto-1].SetActive(false);
 				LaunchTuto = false;
+				GameStateManager.m_instance.alreadyHaveTuto=true;
 				return;
 			}
 			tutoGameObject[currentTuto].SetActive(true);
