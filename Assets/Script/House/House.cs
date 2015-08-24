@@ -35,9 +35,11 @@ public class House : MonoBehaviour {
 	private Vector3 m_light_pos;
 	
 	[Header("Window lights GameObject")]
-	[SerializeField]
-	private GameObject m_house_lighted = null;
 	Light m_spotlight = null;
+	public GameObject m_house_unlighted = null;
+	public GameObject m_house_lighted = null;
+
+	private bool m_house_is_lighted = false;
 
 	private ArrayList m_key_points;
 	private int m_key_points_index;
@@ -50,7 +52,11 @@ public class House : MonoBehaviour {
 		m_key_points = new ArrayList ();
 		m_key_points_index = 0;
 		m_light.SetActive (false);
-		m_house_lighted.SetActive (false);
+		m_house_is_lighted = false;
+		if(m_house_unlighted!=null)
+			m_house_unlighted.SetActive(true);
+		if(m_house_lighted!=null)
+			m_house_lighted.SetActive(false);
 
 		m_key_points.Add (new KeyPoint(40.0f,1.5f, 0.0f));
 		m_key_points.Add (new KeyPoint(20.0f,1.5f, 2.0f));
@@ -61,7 +67,8 @@ public class House : MonoBehaviour {
 	public void rude_awake() {
 		if (!isAwake ()) {
 			m_timer_awake = 0.0f;
-			m_house_lighted.SetActive (true);
+			m_house_is_lighted = true;
+			switch_house_light();
 		}
 	}
 
@@ -77,7 +84,7 @@ public class House : MonoBehaviour {
 	}
 
 	public bool isAwake() {
-		return m_house_lighted.activeSelf;
+		return m_house_is_lighted;
 	}
 	
 	public bool isLampOnHand() {
@@ -86,6 +93,24 @@ public class House : MonoBehaviour {
 	
 	public bool isAwakeAndLampOnHand() {
 		return isAwake() && isLampOnHand();
+	}
+
+	void switch_house_light() {
+		if (isAwake ()) {
+			if(m_house_unlighted!=null) {
+				m_house_unlighted.SetActive(false);
+			}
+			if(m_house_lighted!=null) {
+				m_house_lighted.SetActive(true);
+			}
+		} else {
+			if(m_house_unlighted!=null) {
+				m_house_unlighted.SetActive(true);
+			}
+			if(m_house_lighted!=null) {
+				m_house_lighted.SetActive(false);
+			}
+		}
 	}
 
 	void setPointToLook(Vector2 target) {
@@ -125,9 +150,10 @@ public class House : MonoBehaviour {
 			m_light_anchor.transform.eulerAngles = new Vector3 (0, 0, Mathf.LerpAngle (m_light_anchor.transform.eulerAngles.z, m_angle_rot, Time.smoothDeltaTime * 1.0f));
 			if(m_timer_awake > m_timer_awake_length) {
 				if (m_house_lighted != null)
-					m_house_lighted.SetActive (false);
+					m_house_is_lighted = false;
 				m_light.SetActive(false);
 				m_spotlight.enabled = false;
+				switch_house_light();
 			}
 		}
 		// unlighting house
