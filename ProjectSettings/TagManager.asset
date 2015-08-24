@@ -22,6 +22,7 @@ TagManager:
   - Ground
   - BeamCamera
   - Wall
+  - ParticuleCaptureFeedback
   layers:
   - Default
   - TransparentFX
