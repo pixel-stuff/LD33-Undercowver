@@ -24,9 +24,6 @@ public class House : MonoBehaviour {
 	void Start () {
 		m_light = GameObject.Find ("Light");
 		m_light_anchor = GameObject.Find("HouseLightAnchor");
-		//m_light_anchor = new GameObject("HouseLightAnchor");
-		//m_light_anchor.AddComponent<Transform> ();
-		//m_light_anchor.transform.position = transform.position;
 		Vector3 vt = m_light.transform.localScale;
 		vt.y = m_light_size;
 		m_light.transform.localScale = vt;
@@ -100,6 +97,26 @@ public class House : MonoBehaviour {
 		Quaternion myRot  = m_light.transform.rotation;
 		m_light.transform.rotation *= Quaternion.Inverse(myRot) * rot * myRot;
 	}
+
+	void resizeLight(float size) {
+		Vector3 vt = m_light.transform.localScale;
+		vt.y = size;
+		m_light.transform.localScale = vt;
+		vt = m_light.transform.localPosition;
+		vt.x -= size/2.0f;
+		m_light.transform.localPosition = vt;
+	}
+
+	void lightToLastPositionEared(Vector2 position) {
+		Vector3 to = position;
+		Vector3 from = m_light_anchor.transform.position;
+		Vector3 dir = (to - from);
+		resizeLight (dir.magnitude);
+		Vector3 diff = to-from;
+		diff.Normalize();
+		float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+		rotate (rot_z+180.0f);
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -116,7 +133,7 @@ public class House : MonoBehaviour {
 		} else {
 
 		}*/
-		Vector3 to = ufo.transform.position;
+		/*Vector3 to = ufo.transform.position;
 		Vector3 from = m_light_anchor.transform.position;
 		//Vector3 to = new Vector3 (ufo.transform.position.x, ufo.transform.position.y, 0);
 		//Vector3 from = new Vector3 (m_light_anchor.transform.position.x, m_light_anchor.transform.position.y, 0);
@@ -124,26 +141,29 @@ public class House : MonoBehaviour {
 		//Quaternion lookAt = Quaternion.LookRotation(to-from);
 		Vector3 diff = to-from;
 		diff.Normalize();
+		Vector3 actual = Vector3.left - from;
+		actual.Normalize();
 		
+		float rot_z_actual = Mathf.Atan2(actual.y, actual.x) * Mathf.Rad2Deg;
 		float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
 		//Quaternion lookAt = Quaternion.LookRotation(to - from, m_light_anchor.transform.TransformDirection(Vector3.up));
-		//Debug.Log (m_light.transform.eulerAngles.z+" "+rot_z);
+		Debug.Log (rot_z_actual-180.0f+" "+rot_z+180.0f);*/
 		//transform.rotation = Quaternion.Lerp(transform.rotation, lookAt, Time.smoothDeltaTime * 0.1f);
 		//m_light.transform.rotation = Quaternion.Slerp (m_light.transform.rotation, Quaternion.Euler (0, 0, rot_z+90.0f), 1.0f * Time.deltaTime);
 		//rotate (Mathf.LerpAngle(m_light.transform.eulerAngles.z, rot_z, Time.smoothDeltaTime * 0.1f));
-		m_light.transform.rotation = Quaternion.identity;
-		m_light.transform.position = Vector3.one;
+		//rotate (Mathf.LerpAngle(rot_z_actual-180.0f, rot_z+180.0f, Time.smoothDeltaTime * 0.1f));
 		//m_light.transform.position = Vector3.zero;
-		rotate (Mathf.LerpAngle(m_light.transform.eulerAngles.z, rot_z, Time.smoothDeltaTime * 0.1f));
-		//m_light.transform.position = Vector3.zero;
+		//m_light.transform.rotation = Quaternion.identity;
+		//m_light.transform.position = Vector3.one;
 		//LightRotateAround (from, Vector3.forward, rot_z + 90.0f);
 		//m_light.transform.position = lp + lra;
-		timer_awake += Time.deltaTime;
 		/*if(timer_awake<6.0f) {
 			rude_awake();
+			//rotate ((m_angle_rot+=0.1f)+180.0f);
 		}else if(timer_awake>6.0f) {
 			timer_awake = 0.0f;
-		}
-		timer_awake += Time.deltaTime;*/
+			m_angle_rot = 0.0f;
+		}*/
+		timer_awake += Time.deltaTime;
 	}
 }
