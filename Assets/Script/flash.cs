@@ -5,12 +5,14 @@ public class flash : MonoBehaviour {
 
 	private float m_timer = 0.0f;
 	private bool m_flash_start = false;
+	[Header("Flash Element")]
+	[SerializeField]
+	private GameObject m_flash = null;
 
 	// Use this for initialization
 	void Start () {
-		MeshRenderer mr = GetComponent<MeshRenderer>();
-		mr.enabled = false;
-		m_flash_start = true;
+		m_flash_start = false;
+		m_flash.SetActive (false);
 	}
 
 	public void startFlash() {
@@ -22,12 +24,10 @@ public class flash : MonoBehaviour {
 	void Update () {
 		if (m_flash_start) {
 			if(m_timer>1.0f) {
-				MeshRenderer mr = GetComponent<MeshRenderer>();
-				mr.enabled = true;
+				m_flash.SetActive (true);
 			}
 			if(m_timer>1.9f) {
-				MeshRenderer mr = GetComponent<MeshRenderer>();
-				mr.enabled = false;
+				m_flash.SetActive (false);
 			}
 			m_timer+=Time.deltaTime;
 		}

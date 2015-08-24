@@ -18,6 +18,12 @@ public class ChooseNewPaper : MonoBehaviour {
 	private SpriteRenderer m_cache;
 
 	private Color m_colorToAppli;
+	
+	[SerializeField]
+	private GameObject[] m_listeNewsPaperLoose;
+	
+	[SerializeField]
+	private GameObject[] m_listeNewsPaperSuccess;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +41,19 @@ public class ChooseNewPaper : MonoBehaviour {
 		m_colorToAppli.a = m_alphaApplier;
 		m_cache.color = m_colorToAppli;
 	}
+
+	private int m_newPaperActivate = 0;
+	public void ActivateNewsPaper(){
+		if (GameStateManager.getGameState () == GameState.EndSceneGameOver) {
+			m_listeNewsPaperLoose[m_newPaperActivate].SetActive(true);
+		} else {
+			m_listeNewsPaperSuccess[m_newPaperActivate].SetActive(true);
+		}
+		m_newPaperActivate++;
+	}
+
+
+
 
 	public void EndAnimation(){
 		m_UIEndScene.SetActive (true);
