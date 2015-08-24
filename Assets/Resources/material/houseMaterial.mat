@@ -97,7 +97,7 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: .449999988
+        second: .5
       data:
         first:
           name: PixelSnap
@@ -142,6 +142,14 @@ Material:
         first:
           name: _BlurAmount
         second: .100000001
+      data:
+        first:
+          name: _Specular
+        second: 1
+      data:
+        first:
+          name: _Gloss
+        second: 1
     m_Colors:
       data:
         first:
@@ -150,4 +158,8 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .382352948, g: .382352948, b: .382352948, a: 1}
+        second: {r: .485294104, g: .485294104, b: .485294104, a: 1}
+      data:
+        first:
+          name: _Emission
+        second: {r: 0, g: 0, b: 0, a: 1}
