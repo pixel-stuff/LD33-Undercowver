@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 	#endregion Singleton
 	private Rigidbody2D m_rigidbody;
-	private bool victory = false;
+	private bool animDeCasseToi = false;
 	[Header("BounceSpaceShip")]
 	public Vector2 bounceForce;
 	public float Ybounce;
@@ -152,7 +152,7 @@ public class PlayerManager : MonoBehaviour {
 			setVictory();
 
 		}
-		if (victory) {
+		if (animDeCasseToi) {
 			m_rigidbody.AddForce (new Vector2(0,150), ForceMode2D.Impulse);
 		}
 	}
@@ -243,12 +243,23 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void setGameOver(){
-		GameStateManager.setGameState (GameState.EndSceneGameOver);
+		Debug.Log ("GameOver");
+		animDeCasseToi = true;
+		Invoke ("setLooseLoadScene", 1.5f);
+	}
+
+	public void setLooseLoadScene(){
+		GameStateManager.m_instance.GoToEndSceneWithLoose ();
+	}
+
+	public void setSuccessLoadScene(){
+		GameStateManager.m_instance.GoToEndSceneWithSuccess ();
 	}
 
 	public void setVictory(){
 		Debug.Log ("Victory");
-		victory = true;
+		animDeCasseToi = true;
+		Invoke ("setSuccessLoadScene", 1.5f);
 	}
 	                    
 

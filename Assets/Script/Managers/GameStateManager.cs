@@ -36,6 +36,9 @@ public class GameStateManager : MonoBehaviour {
 	public bool alreadyHaveTuto = false;
 
 	public int m_level;
+	public int m_CowKilled = 0;
+	public float m_playTime = 0;
+	public float m_alerteStarted = 0;
 	/*
 	 * Nbre cow killed
 	 * temps de jeu
@@ -86,7 +89,7 @@ public class GameStateManager : MonoBehaviour {
 	}
 
 	AsyncOperation m_asynLoading;
-	float timeStartLoading;
+	float m_timeStartLevel;
 
 	public void GoToEndSceneWithLoose(){
 		this.setGameState (GameState.EndSceneGameOver);
@@ -94,7 +97,7 @@ public class GameStateManager : MonoBehaviour {
 		m_level--;
 
 		//m_asynLoading.allowSceneActivation = false;
-		timeStartLoading = Time.time;
+		//m_timeStartLevel = Time.time;
 	}
 
 	public void GoToEndSceneWithSuccess(){
@@ -102,7 +105,7 @@ public class GameStateManager : MonoBehaviour {
 		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
 		
 		//m_asynLoading.allowSceneActivation = false;
-		timeStartLoading = Time.time;
+		//m_timeStartLevel = Time.time;
 	}
 
 	public void GoToLevelScene (){
@@ -111,7 +114,7 @@ public class GameStateManager : MonoBehaviour {
 		/*m_asynLoading = */ Application.LoadLevelAsync ("LevelScene");
 		
 		//m_asynLoading.allowSceneActivation = false;
-		timeStartLoading = Time.time;
+		m_timeStartLevel = Time.time;
 	}
 
 	public int getNumberOfCowToLoad(){
