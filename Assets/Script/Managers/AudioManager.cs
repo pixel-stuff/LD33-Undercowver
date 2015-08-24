@@ -78,24 +78,22 @@ public class AudioManager : MonoBehaviour {
 
 
 	public void PlayStartBeam(){
-		if (beamSound) {
-			beamSound.Stop();
-			Destroy(beamGameObbjectSound);
-		}
-		isplayingBeam = true;
-		beamGameObbjectSound = new GameObject ("Audio_" +  "beam/startBeam");
-		beamGameObbjectSound.transform.parent = m_transform;
-		//Load clip from ressources folder
-		AudioClip newClip =  Instantiate(Resources.Load ("beam/startBeam", typeof(AudioClip))) as AudioClip;
-		
-		//Add and bind an audio source
-		beamSound = beamGameObbjectSound.AddComponent<AudioSource>();
-		beamSound.clip = newClip;
-		//Play and destroy the component
-		beamSound.Play();
-		Destroy (beamGameObbjectSound, newClip.length);
+		if(!isplayingBeam) {
+			isplayingBeam = true;
+			beamGameObbjectSound = new GameObject ("Audio_" +  "beam/startBeam");
+			beamGameObbjectSound.transform.parent = m_transform;
+			//Load clip from ressources folder
+			AudioClip newClip =  Instantiate(Resources.Load ("beam/startBeam", typeof(AudioClip))) as AudioClip;
+			
+			//Add and bind an audio source
+			beamSound = beamGameObbjectSound.AddComponent<AudioSource>();
+			beamSound.clip = newClip;
+			//Play and destroy the component
+			beamSound.Play();
+			Destroy (beamGameObbjectSound, newClip.length);
 
-		Invoke ("playLoopBeam", beamSound.clip.length);
+			Invoke ("playLoopBeam", beamSound.clip.length);
+		}
 	}
 
 
@@ -121,8 +119,7 @@ public class AudioManager : MonoBehaviour {
 
 
 	public void StopBeam(){
-		isplayingBeam = false;
-		if (beamSound) {
+		if (beamSound.isPlaying) {
 			beamSound.Stop();
 			Destroy(beamGameObbjectSound);
 		}
@@ -138,6 +135,7 @@ public class AudioManager : MonoBehaviour {
 		//Play and destroy the component
 		beamSound.Play();
 		Destroy (beamGameObbjectSound, newClip.length);
+		isplayingBeam = false;
 	}
 
 	public void clearBeam(){
