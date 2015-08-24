@@ -24,6 +24,8 @@ public class Cow : MonoBehaviour {
 	private bool m_isUFOCatched = false;
 
 	[SerializeField]
+	private GameObject m_UFOLight;
+	[SerializeField]
 	private CowState m_cowState;
 
 	#region IdleWalking State
@@ -289,7 +291,7 @@ public class Cow : MonoBehaviour {
 				break;
 			case CowState.Lifted:
 				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.black);
-				m_isUFOCatched = true;
+				setIsUFOCatched(true);
 				m_timeStateLiftedStart = Time.time;
 				if(onLiftedEnter != null){
 					onLiftedEnter(m_id);
@@ -364,6 +366,11 @@ public class Cow : MonoBehaviour {
 	}
 
 	private void setIsUFOCatched(bool isUFOCatched){
+		if (isUFOCatched) {
+			m_UFOLight.SetActive(true);
+		} else {
+			m_UFOLight.SetActive(false);
+		}
 		m_isUFOCatched = isUFOCatched;
 	}
 	

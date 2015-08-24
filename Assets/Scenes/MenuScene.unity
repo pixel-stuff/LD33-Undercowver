@@ -315,6 +315,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alreadyHaveTuto: 0
+  m_level: 0
+  m_CowKilled: 0
+  m_playTime: 0
+  m_alerteStarted: 0
 --- !u!1 &647266336
 GameObject:
   m_ObjectHideFlags: 0
