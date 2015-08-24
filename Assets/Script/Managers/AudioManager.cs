@@ -39,7 +39,6 @@ public class AudioManager : MonoBehaviour {
 	}
 	public void playSpaceMove(){
 		if (!isplayingMovingSound) {
-			Debug.Log("CREATION");
 			isplayingMovingSound = true;
 			shipGameObbjectSound = new GameObject ("Audio_" + "ship/shipMove");
 			shipGameObbjectSound.transform.parent = m_transform;
@@ -57,7 +56,6 @@ public class AudioManager : MonoBehaviour {
 
 	public void stopSpaceMove(){
 		if (spaceMove && spaceMove.isPlaying) {
-			Debug.Log("Destruction");
 			isplayingMovingSound = false;
 			spaceMove.Stop();
 			Destroy(shipGameObbjectSound);
