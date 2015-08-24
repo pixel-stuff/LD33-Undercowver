@@ -67,7 +67,7 @@ public class House : MonoBehaviour {
 		vt = m_light.transform.localPosition;
 		vt.x = -size/2.0f;
 		m_light.transform.localPosition = vt;
-		m_spotlight.range = size*10.0f;
+		m_spotlight.range = size*100.0f;
 	}
 
 	public bool isAwake() {
@@ -105,6 +105,7 @@ public class House : MonoBehaviour {
 	void Update () {
 		if (isAwake() && !isLampOnHand() && m_timer_awake > m_timer_awake_lamp_length) {
 			m_light.SetActive (true);
+			m_spotlight.enabled = true;
 			m_timer_awake = 0.0f;
 		}
 		if (isAwakeAndLampOnHand ()) {
@@ -120,6 +121,7 @@ public class House : MonoBehaviour {
 				if (m_house_lighted != null)
 					m_house_lighted.SetActive (false);
 				m_light.SetActive(false);
+				m_spotlight.enabled = false;
 			}
 		}
 		// unlighting house
