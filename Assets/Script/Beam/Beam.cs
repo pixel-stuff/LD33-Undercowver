@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Beam : MonoBehaviour {
+	
+	[Header("Beam shape configuration")]
 	[SerializeField]
 	public float m_x_base = 1.0f;
 	[SerializeField]
@@ -10,11 +12,11 @@ public class Beam : MonoBehaviour {
 	public float m_y_base = 0.0f;
 	[SerializeField]
 	public float m_y_top = 10.0f;
+	[Header("Cow direction under the beam")]
 	[SerializeField]
 	public Vector2 m_cow_dir = new Vector2(0.05f, 0.001f);
 	[SerializeField]
 	public float m_cow_dir_no_switch_percentage = 90.0f;
-	[Header("Noise")]
 
 	public float noiseByUpdate;
 	private bool m_active = true;

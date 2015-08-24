@@ -13,7 +13,8 @@ public struct KeyPoint {
 }
 
 public class House : MonoBehaviour {
-
+	
+	[Header("Light length")]
 	[SerializeField]
 	public float m_light_size = 10.0f;
 	private float m_light_prev_size = 10.0f;
@@ -22,8 +23,10 @@ public class House : MonoBehaviour {
 	private GameObject m_light_anchor;
 
 	private float m_timer_awake = 0.0f;
+	[Header("Time span while player can hide (s)")]
 	[SerializeField]
 	private float m_timer_awake_length = 2.0f;
+	[Header("Time span light is on (s)")]
 	[SerializeField]
 	private float m_timer_awake_lamp_length = 2.0f;
 
@@ -31,6 +34,7 @@ public class House : MonoBehaviour {
 
 	private Vector3 m_light_pos;
 	
+	[Header("Window lights GameObject")]
 	[SerializeField]
 	private GameObject m_house_lighted = null;
 	Light m_spotlight = null;
