@@ -46,7 +46,7 @@ public class House : MonoBehaviour {
 		m_key_points = new ArrayList ();
 		m_key_points_index = 0;
 		m_light.SetActive (false);
-		m_house_lighted.SetActive (false);
+		m_house_lighted.SetActive (true);
 
 		m_key_points.Add (new KeyPoint(40.0f,1.0f, 0.0f));
 		m_key_points.Add (new KeyPoint(20.0f,1.0f, 2.0f));
@@ -67,7 +67,7 @@ public class House : MonoBehaviour {
 		vt = m_light.transform.localPosition;
 		vt.x = -size/2.0f;
 		m_light.transform.localPosition = vt;
-		m_spotlight.range = size;
+		m_spotlight.range = size*10.0f;
 	}
 
 	public bool isAwake() {
