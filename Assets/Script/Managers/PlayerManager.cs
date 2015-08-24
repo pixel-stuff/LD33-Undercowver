@@ -108,9 +108,9 @@ public class PlayerManager : MonoBehaviour {
 	#region Intéraction
 	// Update is called once per frame
 	void Update () {
-		if (!beamActivate) {
+		/*if (!beamActivate) {
 			AudioManager.m_instance.clearBeam();
-		}
+		}*/
 
 		if (LaunchTuto) {
 			UpdateTuto();

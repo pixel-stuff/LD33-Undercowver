@@ -162,7 +162,6 @@ public class AudioManager : MonoBehaviour {
 		source.loop = true;
 		//Play and destroy the component
 		source.Play();
-		Destroy (go, newClip.length);
 	}
 
 	public static void Play(string clipname){
