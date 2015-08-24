@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: flash
-  m_Shader: {fileID: 4800000, guid: a61ea8e5c82a5174f962a510ecbedfe4, type: 3}
+  m_Shader: {fileID: 4800000, guid: 872e939aefce6fc498282c155fe08b2f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 20c9b60e0be5cfe4e9d4a4fde5c7f246, type: 3}
+          m_Texture: {fileID: 2800000, guid: f5a8d1ffff9b840439fbdcb9f3bc8fb9, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -108,12 +108,20 @@ Material:
         second: .0199999996
       data:
         first:
-          name: _ZWrite
+          name: _InvFade
         second: 1
       data:
         first:
           name: _Glossiness
         second: 0
+      data:
+        first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
+          name: _ZWrite
+        second: 1
       data:
         first:
           name: _BumpScale
@@ -134,14 +142,6 @@ Material:
         first:
           name: _Mode
         second: 0
-      data:
-        first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
-          name: _InvFade
-        second: 1
     m_Colors:
       data:
         first:
