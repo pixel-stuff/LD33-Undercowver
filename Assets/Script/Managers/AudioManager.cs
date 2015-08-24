@@ -53,6 +53,9 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void PlayStartBeam(){
+		if (beamSound) {
+			beamSound.Stop();
+		}
 		isplayingBeam = true;
 		GameObject go = new GameObject ("Audio_" +  "beam/startBeam");
 		go.transform.parent = m_transform;
