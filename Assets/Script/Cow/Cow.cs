@@ -383,4 +383,18 @@ public class Cow : MonoBehaviour {
 	public int getId(){
 		return m_id;
 	}
+
+	public void hideAndFreeze(){
+		this.GetComponent<Rigidbody2D>().isKinematic = true;
+		this.GetComponent<SpriteRenderer>().enabled = false;
+	}
+
+	public void showAndUnfreeze (){
+		this.GetComponent<Rigidbody2D>().isKinematic = false;
+		this.GetComponent<SpriteRenderer>().enabled = true;
+	}
+
+	public void setCowAtPosition(Vector3 position){
+		this.transform.position = position;
+	}
 }
