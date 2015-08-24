@@ -338,8 +338,8 @@ public class Cow : MonoBehaviour {
 				if(m_flyingSpeed <= m_cowAffraidIfSpeedOver){
 					setCowState(CowState.IdleStatic);
 					if(m_isUFOCatched){
-						this.GetComponent<Rigidbody2D>().isKinematic = true;
-						this.GetComponent<BoxCollider2D>().enabled = false;
+						//this.GetComponent<Rigidbody2D>().isKinematic = true;
+						//this.GetComponent<BoxCollider2D>().enabled = false;
 					}
 
 				}else if(m_flyingSpeed <= m_cowDieIfSpeedOver){
