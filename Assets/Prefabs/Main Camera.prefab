@@ -53,6 +53,7 @@ GameObject:
   - 114: {fileID: 11433834}
   - 114: {fileID: 11430398}
   - 114: {fileID: 11461990}
+  - 114: {fileID: 11455800}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -214,14 +215,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50e925fb93c78246bf995d9dc3a2330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 2
   adaptiveTextureSize: 256
   remapCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - time: -.0500000007
+      value: .068749994
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1.94166672
+      value: 1.20624995
+      inSlope: -.136363596
+      outSlope: -.136363596
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  exposureAdjustment: 1.5
+  exposureAdjustment: 4.07999992
   middleGrey: .400000006
   white: 2
   adaptionSpeed: 1.5
@@ -283,7 +294,7 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-  useDepthCorrection: 0
+  useDepthCorrection: 1
   zCurve:
     serializedVersion: 2
     m_Curve:
@@ -292,23 +303,23 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
+    - time: .999843776
+      value: 1.02453136
+      inSlope: .0495915413
+      outSlope: .0495915413
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
   depthRedChannel:
     serializedVersion: 2
     m_Curve:
-    - time: 0
-      value: 0
+    - time: .00420138938
+      value: .0294921938
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 1
-      value: 1
+    - time: 1.05034721
+      value: .94964844
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -322,8 +333,8 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 1
-      value: 1
+    - time: 1.00416672
+      value: .962499976
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -332,23 +343,23 @@ MonoBehaviour:
   depthBlueChannel:
     serializedVersion: 2
     m_Curve:
-    - time: 0
-      value: 0
+    - time: -.00812398829
+      value: .0283776876
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
+    - time: .970816553
+      value: .498636484
+      inSlope: .661695898
+      outSlope: .661695898
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
   saturation: 1
-  selectiveCc: 0
+  selectiveCc: 1
   selectiveFromColor: {r: 1, g: 1, b: 1, a: 1}
   selectiveToColor: {r: 1, g: 1, b: 1, a: 1}
-  mode: 0
+  mode: 1
   updateTextures: 1
   colorCorrectionCurvesShader: {fileID: 4800000, guid: 62bcade1028c24ca1a39760ed84b9487,
     type: 3}
@@ -390,6 +401,44 @@ MonoBehaviour:
   useDepthTexture: 0
   sunShaftsShader: {fileID: 4800000, guid: d3b1c8c1036784176946f5cfbfb7fe4c, type: 3}
   simpleClearShader: {fileID: 4800000, guid: f688f89ed5eb847c5b19c934a0f1e772, type: 3}
+--- !u!114 &11455800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweakMode: 0
+  screenBlendMode: 1
+  hdr: 2
+  sepBlurSpread: 2.25999999
+  quality: 1
+  bloomIntensity: .389999986
+  bloomThreshold: .670000017
+  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
+  bloomBlurIterations: 2
+  hollywoodFlareBlurIterations: 2
+  flareRotation: 0
+  lensflareMode: 1
+  hollyStretchWidth: 2.5
+  lensflareIntensity: 0
+  lensflareThreshold: .300000012
+  lensFlareSaturation: .75
+  flareColorA: {r: .400000006, g: .400000006, b: .800000012, a: .75}
+  flareColorB: {r: .400000006, g: .800000012, b: .800000012, a: .75}
+  flareColorC: {r: .800000012, g: .400000006, b: .800000012, a: .75}
+  flareColorD: {r: .800000012, g: .400000006, b: 0, a: .75}
+  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
+    type: 3}
+  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
+  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
+  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
+  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
+    type: 3}
 --- !u!114 &11461990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -402,10 +451,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
-  intensity: .375
+  intensity: 2.4000001
   chromaticAberration: .200000003
   axialAberration: .5
-  blur: 0
+  blur: .600000024
   blurSpread: .75
   luminanceDependency: .25
   blurDistance: 2.5

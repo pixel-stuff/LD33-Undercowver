@@ -27,11 +27,11 @@ GameObject:
   - 199: {fileID: 19995138}
   m_Layer: 0
   m_Name: Particle System
-  m_TagString: Untagged
+  m_TagString: ParticuleCaptureFeedback
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &129608
 GameObject:
   m_ObjectHideFlags: 1
@@ -240,7 +240,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129608}
   m_LocalRotation: {x: -.744880319, y: 0, z: 0, w: .667198122}
-  m_LocalPosition: {x: -3.00058699, y: -3.10378861, z: 2.95585942}
+  m_LocalPosition: {x: -3.00058699, y: -3.13000011, z: 2.95585942}
   m_LocalScale: {x: .670000017, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 413402}
@@ -252,7 +252,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.97000003, y: 2.07999992, z: -4.75585938}
+  m_LocalPosition: {x: 2.97000003, y: 2.07999992, z: -3.25999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 441650}
