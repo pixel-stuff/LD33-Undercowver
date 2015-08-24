@@ -219,6 +219,7 @@ public class Cow : MonoBehaviour {
 	void UpdateAffraid (){
 		Vector3 newLocalPos = m_localPosAffraidStart;
 		newLocalPos.x += UnityEngine.Random.Range (-0.03f, 0.03f);
+		newLocalPos.y = this.transform.localPosition.y;
 		this.transform.localPosition = newLocalPos;
 
 		if (Time.time - m_timeStateAffraidStart >= m_timeInAffraidAnim) {
