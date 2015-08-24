@@ -25,7 +25,7 @@ public class flash : MonoBehaviour {
 				MeshRenderer mr = GetComponent<MeshRenderer>();
 				mr.enabled = true;
 			}
-			if(m_timer>2.0f) {
+			if(m_timer>1.9f) {
 				MeshRenderer mr = GetComponent<MeshRenderer>();
 				mr.enabled = false;
 			}
