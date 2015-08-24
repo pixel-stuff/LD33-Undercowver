@@ -48,11 +48,11 @@ public class House : MonoBehaviour {
 		m_light.SetActive (false);
 		m_house_lighted.SetActive (false);
 
-		m_key_points.Add (new KeyPoint(40.0f,1.0f, 0.0f));
-		m_key_points.Add (new KeyPoint(20.0f,1.0f, 2.0f));
-		m_key_points.Add (new KeyPoint(0.0f,1.0f, 4.0f));
-		m_key_points.Add (new KeyPoint(-20.0f,1.0f, 6.0f));
-		m_key_points.Add (new KeyPoint(-40.0f,1.0f, 8.0f));
+		m_key_points.Add (new KeyPoint(40.0f,1.5f, 0.0f));
+		m_key_points.Add (new KeyPoint(20.0f,1.5f, 2.0f));
+		m_key_points.Add (new KeyPoint(0.0f,1.5f, 4.0f));
+		m_key_points.Add (new KeyPoint(-20.0f,1.5f, 6.0f));
+		m_key_points.Add (new KeyPoint(-40.0f,1.5f, 8.0f));
 	}
 	public void rude_awake() {
 		m_timer_awake = 0.0f;
