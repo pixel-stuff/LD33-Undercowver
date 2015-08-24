@@ -266,6 +266,7 @@ public class Cow : MonoBehaviour {
 			break;
 			case CowState.IdleWalking:
 				m_animator.SetBool ("isWalking", true);
+				AudioManager.Play("cow/cow_cloche");
 				m_timeStateWalkingStart = Time.time;
 				float dest = UnityEngine.Random.Range (m_minWalkArea,m_maxWalkArea);
 
