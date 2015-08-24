@@ -136,7 +136,7 @@ public class CowManager : MonoBehaviour {
 			//Debug.Log ("Cow Reference: " + cow.name);
 			for (int i = 0; i<m_listCow.Count; i++) {
 				//Debug.Log ("m_listCow[" + i + "]  : " + m_listCow[i]);
-				if (m_listCow [i].getId () != id && m_listCow[i].getCowState() != CowState.Dead) {
+				if (m_listCow [i].getId () != id && m_listCow[i].getCowState() != CowState.Dead && !m_listCow[i].getIsUFOCatched()) {
 					if (Vector3.Distance (m_listCow [i].transform.localPosition, cow.transform.localPosition) <= m_areaWhereCowBeAffraid) {
 						numbAffraid++;
 						m_listCow [i].setCowState (CowState.Affraid);
