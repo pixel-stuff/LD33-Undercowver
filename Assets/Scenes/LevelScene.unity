@@ -763,6 +763,10 @@ Prefab:
       propertyPath: tutoGameObject.Array.data[2]
       value: 
       objectReference: {fileID: 1443401076}
+    - target: {fileID: 11419274, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
+      propertyPath: timeBetweenChangeTuto
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
   m_IsPrefabParent: 0
