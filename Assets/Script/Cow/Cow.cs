@@ -99,6 +99,11 @@ public class Cow : MonoBehaviour {
 	public Action<int> onDeadEnter;
 	#endregion Dead State
 
+	[Space(10)]
+	[Header("Flying State")]
+	[SerializeField]
+	private bool isDebug = true;
+
 	private Animator m_animator;
 
 	// Use this for initialization
@@ -251,8 +256,9 @@ public class Cow : MonoBehaviour {
 			case CowState.IdleStatic:
 				m_timeStateStaticStart = Time.time;
 				//TODO: Lancer animation de static
-				
-				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white);
+				if(isDebug){
+					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white);
+				}
 			break;
 			case CowState.IdleWalking:
 				m_animator.SetBool ("isWalking", true);
@@ -269,29 +275,39 @@ public class Cow : MonoBehaviour {
 			   
 				//[-9;3.6]
 				//TODO: Lancer animation de walking
-				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.red);
+				if(isDebug){
+					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.red);
+				}
 				break;
 			case CowState.IdleEating:
 				m_animator.SetBool ("isEating", true);
 				m_timeStateEatingStart = Time.time;
 				//TODO: Lancer animation de Eating
-				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.green);
+				if(isDebug){
+					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.green);
+				}
 			break;
 			case CowState.BeingLiftToShip:
 				//TODO: stop all animation and play Being lift anim
-				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.blue);
+				if(isDebug){
+					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.blue);
+				}
 				if(onBeingLiftToShipEnter != null){
 					onBeingLiftToShipEnter(m_id);
 				}
 			break;
 			case CowState.Flying:
-				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white);
+				if(isDebug){
+					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white);
+				}
 				if(onFlyingEnter != null){
 					onFlyingEnter(m_id);
 				}
 				break;
 			case CowState.Lifted:
-				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.black);
+				if(isDebug){
+					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.black);
+				}
 				setIsUFOCatched(true);
 				m_timeStateLiftedStart = Time.time;
 				if(onLiftedEnter != null){
@@ -301,7 +317,9 @@ public class Cow : MonoBehaviour {
 				break;
 				
 			case CowState.Crashed:
-				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.red);
+				if(isDebug){
+					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.red);
+				}
 				//Debug.Log ("SPEED AU CALCUL : " + m_flyingSpeed);
 				//Avec les distances liées à la maquette, position possible de la cow en [-4.5;1]
 				//La vitesse à l'arrivée est comprise entre [0;10]
@@ -312,7 +330,7 @@ public class Cow : MonoBehaviour {
 				//-1.75		-> 5.7
 				//-0.3125	-> 9
 				//1			-> 10
-				Debug.Log("TOTO "+m_flyingSpeed);
+				//Debug.Log("TOTO "+m_flyingSpeed);
 				if(m_flyingSpeed <= m_cowAffraidIfSpeedOver){
 					setCowState(CowState.IdleStatic);
 					if(m_isUFOCatched){
@@ -339,12 +357,16 @@ public class Cow : MonoBehaviour {
 				
 			case CowState.Affraid:
 				m_timeStateAffraidStart = Time.time;
-				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.yellow);
+				if(isDebug){
+					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.yellow);
+				}
 				m_localPosAffraidStart = this.transform.localPosition;
 				break;
 				
 			case CowState.Dead:
-				GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.black);
+				if(isDebug){
+					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.black);
+				}
 			
 				this.GetComponent<Rigidbody2D>().isKinematic = true;
 				this.GetComponent<BoxCollider2D>().enabled = false;
