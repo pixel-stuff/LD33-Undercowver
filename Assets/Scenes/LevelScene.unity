@@ -328,20 +328,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 422800, guid: 96672d63f726b4842a6e460b87a3caba, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: .70710659
-      objectReference: {fileID: 0}
-    - target: {fileID: 422800, guid: 96672d63f726b4842a6e460b87a3caba, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -.707106948
-      objectReference: {fileID: 0}
-    - target: {fileID: 422800, guid: 96672d63f726b4842a6e460b87a3caba, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 10880430, guid: 96672d63f726b4842a6e460b87a3caba, type: 2}
-      propertyPath: m_DrawHalo
+    - target: {fileID: 133286, guid: 96672d63f726b4842a6e460b87a3caba, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
