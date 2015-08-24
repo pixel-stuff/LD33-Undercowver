@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class soundFeedBack : MonoBehaviour {
 	public float alertNoisePercent;
@@ -10,6 +11,7 @@ public class soundFeedBack : MonoBehaviour {
 
 	private Text percentText;
 	private bool isOnAlertNoise;
+
 
 	void Start(){
 		percentText = textPercent.GetComponent<Text> ();
@@ -21,6 +23,8 @@ public class soundFeedBack : MonoBehaviour {
 			isOnAlertNoise = true;
 			percentText.text = Mathf.Round(percent)+"%";
 			AlertSection.SetActive(true); 
+
+			PlayerManager.m_instance.AddAlerte();
 		}
 		if (percent < stopalertNoisePercent) {
 			AlertSection.SetActive(false);

@@ -42,6 +42,8 @@ public class PlayerManager : MonoBehaviour {
 
 	private float nextActionTime = 0.0f; 
 	private float period = 0.250f;
+	public int m_numberOfAlerte = 0;
+
 
 	[Header("SpaceShipNoise")]
 	[Space(10)]
@@ -262,6 +264,9 @@ public class PlayerManager : MonoBehaviour {
 		Invoke ("setSuccessLoadScene", 1.5f);
 	}
 	                    
+	public void AddAlerte(){
+		m_numberOfAlerte++;
+	}
 
 	#endregion Intéraction
 

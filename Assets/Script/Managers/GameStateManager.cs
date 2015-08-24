@@ -92,15 +92,16 @@ public class GameStateManager : MonoBehaviour {
 	float m_timeStartLevel;
 
 	public void GoToEndSceneWithLoose(){
+		m_playTime = Time.time - m_timeStartLevel;
 		this.setGameState (GameState.EndSceneGameOver);
 		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
 		m_level--;
-
 		//m_asynLoading.allowSceneActivation = false;
 		//m_timeStartLevel = Time.time;
 	}
 
 	public void GoToEndSceneWithSuccess(){
+		m_playTime = Time.time - m_timeStartLevel;
 		this.setGameState (GameState.EndSceneSuccess);
 		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
 		
