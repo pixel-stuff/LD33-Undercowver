@@ -17,13 +17,13 @@ public class soundFeedBack : MonoBehaviour {
 
 
 	public void setSoundPercent(float percent){
-		if (percent > alertNoisePercent) {
+		if (percent > alertNoisePercent || isOnAlertNoise) {
 			isOnAlertNoise = true;
 			percentText.text = Mathf.Round(percent)+"%";
 			AlertSection.SetActive(true); 
 		}
 		if (percent < stopalertNoisePercent) {
-			//todo if true hide warning
+			AlertSection.SetActive(false);
 			isOnAlertNoise = false;
 		}
 		soundFeedbackBar[] scripts = gameObject.GetComponentsInChildren<soundFeedbackBar> ();
