@@ -4,7 +4,7 @@ using System.Collections;
 public class AudioManager : MonoBehaviour {
 
 	#region Singleton
-	private static AudioManager m_instance;
+	public static AudioManager m_instance;
 	void Awake(){
 		if(m_instance == null){
 			//If I am the first instance, make me the Singleton
@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour {
 	private static Transform m_transform;
 
 	private AudioSource beamSound;
+	private bool isplayingBeam; 
 	private AudioSource spaceMove;
 	// Use this for initialization
 	void Start () {
@@ -52,6 +53,7 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void PlayStartBeam(){
+		isplayingBeam = true;
 		GameObject go = new GameObject ("Audio_" +  "beam/startBeam");
 		go.transform.parent = m_transform;
 		//Load clip from ressources folder
@@ -69,32 +71,36 @@ public class AudioManager : MonoBehaviour {
 
 
 	public void playLoopBeam(){
-		if (beamSound) {
+		/*if (beamSound) {
 			beamSound.Stop();
-		}
-		GameObject go = new GameObject ("Audio_" +  "beam/Beam");
-		go.transform.parent = m_transform;
-		//Load clip from ressources folder
-		AudioClip newClip =  Instantiate(Resources.Load ("beam/Beam", typeof(AudioClip))) as AudioClip;
+		}*/
+		if (isplayingBeam) {
+			GameObject go = new GameObject ("Audio_" + "beam/Beam");
+			go.transform.parent = m_transform;
+			//Load clip from ressources folder
+			AudioClip newClip = Instantiate (Resources.Load ("beam/Beam", typeof(AudioClip))) as AudioClip;
 		
-		//Add and bind an audio source
-		beamSound = go.AddComponent<AudioSource>();
-		beamSound.clip = newClip;
-		//Play and destroy the component
-		beamSound.loop =true;
-		beamSound.Play();
+			//Add and bind an audio source
+			beamSound = go.AddComponent<AudioSource> ();
+			beamSound.clip = newClip;
+			//Play and destroy the component
+			beamSound.loop = true;
+			beamSound.Play ();
+		}
 
 	}
 
 
 	public void StopBeam(){
+		isplayingBeam = false;
 		if (beamSound) {
 			beamSound.Stop();
 		}
-		GameObject go = new GameObject ("Audio_" +  "beam/stopBeam");
+	
+		GameObject go = new GameObject ("Audio_" +  "beam/EndBeam");
 		go.transform.parent = m_transform;
 		//Load clip from ressources folder
-		AudioClip newClip =  Instantiate(Resources.Load ("beam/stopBeam", typeof(AudioClip))) as AudioClip;
+		AudioClip newClip =  Instantiate(Resources.Load ("beam/EndBeam", typeof(AudioClip))) as AudioClip;
 		
 		//Add and bind an audio source
 		beamSound = go.AddComponent<AudioSource>();

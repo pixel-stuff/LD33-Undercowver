@@ -180,10 +180,12 @@ public class PlayerManager : MonoBehaviour {
 
 
 	public void BeanUp(){
+		AudioManager.m_instance.PlayStartBeam ();
 		bean.SetActive (true);
 	}
 
 	public void BeanDown(){
+		AudioManager.m_instance.StopBeam ();
 		bean.GetComponent<Beam>().clearCows();
 		bean.SetActive (false);
 	}
