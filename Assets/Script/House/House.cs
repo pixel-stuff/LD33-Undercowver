@@ -55,8 +55,10 @@ public class House : MonoBehaviour {
 		m_key_points.Add (new KeyPoint(-40.0f,1.5f, 8.0f));
 	}
 	public void rude_awake() {
-		m_timer_awake = 0.0f;
-		m_house_lighted.SetActive (true);
+		if (!isAwake ()) {
+			m_timer_awake = 0.0f;
+			m_house_lighted.SetActive (true);
+		}
 	}
 
 	void resizeLight(float size) {
