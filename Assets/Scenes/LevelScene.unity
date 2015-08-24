@@ -2805,7 +2805,7 @@ MonoBehaviour:
   m_timer_awake_length: 10
   m_timer_awake_lamp_length: 2
   m_house_unlighted: {fileID: 763732401}
-  m_house_lighted: {fileID: 0}
+  m_house_lighted: {fileID: 2124030555}
 --- !u!4 &1917375049
 Transform:
   m_ObjectHideFlags: 0
