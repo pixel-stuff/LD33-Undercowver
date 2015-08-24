@@ -64,8 +64,10 @@ public class PlayerManager : MonoBehaviour {
 	[Header("Bean")]
 	[Space(10)]
 	public GameObject bean;
+	private bool beamActivate = false;
 
-	[Header("Bean")]
+
+	[Header("Tuto")]
 	[Space(10)]
 	public bool LaunchTuto = false;
 	public float timeBetweenChangeTuto;
@@ -106,6 +108,10 @@ public class PlayerManager : MonoBehaviour {
 	#region Intéraction
 	// Update is called once per frame
 	void Update () {
+		if (!beamActivate) {
+			AudioManager.m_instance.clearBeam();
+		}
+
 		if (LaunchTuto) {
 			UpdateTuto();
 			return;
@@ -116,7 +122,7 @@ public class PlayerManager : MonoBehaviour {
 
 
 		if (Mathf.Abs (m_rigidbody.velocity.x) < velocityMinForBounce) {
-
+			AudioManager.m_instance.stopSpaceMove();
 			m_rigidbody.constraints = RigidbodyConstraints2D.None;
 			if (this.transform.position.y < thresholdBounce) {
 				if(!shipIsArrive){
@@ -182,12 +188,14 @@ public class PlayerManager : MonoBehaviour {
 	public void BeanUp(){
 		AudioManager.m_instance.PlayStartBeam ();
 		bean.SetActive (true);
+		beamActivate = true;
 	}
 
 	public void BeanDown(){
 		AudioManager.m_instance.StopBeam ();
 		bean.GetComponent<Beam>().clearCows();
 		bean.SetActive (false);
+		beamActivate = false;
 	}
 
 	public void UP(){
@@ -215,11 +223,13 @@ public class PlayerManager : MonoBehaviour {
 	private void moveLeft(){
 		m_rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
 		m_rigidbody.AddForce(new Vector2(-forceOnMove,0), ForceMode2D.Impulse);
+		AudioManager.m_instance.playSpaceMove ();
 	}
 	
 	private void moveRight(){
 		m_rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
 		m_rigidbody.AddForce (new Vector2 (forceOnMove, 0), ForceMode2D.Impulse);
+		AudioManager.m_instance.playSpaceMove ();
 	}
 	
 	private void noiseForVelocity(){
