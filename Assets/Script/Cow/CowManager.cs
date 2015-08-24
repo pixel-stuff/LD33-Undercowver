@@ -144,7 +144,7 @@ public class CowManager : MonoBehaviour {
 				}
 			}
 			//Debug.Log("TOTO  " + numbAffraid);
-			if(numbAffraid >=3){
+			if(numbAffraid >=2){
 				PlayerManager.m_instance.addNoise (m_multipleAffraidCowNoise);
 				AudioManager.Play ("cow/Multiple_CowMoo_Court");
 			}else{
