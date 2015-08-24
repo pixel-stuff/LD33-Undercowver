@@ -355,12 +355,12 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: 2
+      - time: 2.83333325
         value: 0
         inSlope: .300000012
         outSlope: .300000012
         tangentMode: 10
-      - time: 3
+      - time: 3.83333325
         value: .600000024
         inSlope: .600000024
         outSlope: .600000024
@@ -401,7 +401,7 @@ AnimationClip:
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: 3
+    m_StopTime: 3.83333325
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -486,12 +486,12 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: 2
+      - time: 2.83333325
         value: 0
         inSlope: .300000012
         outSlope: .300000012
         tangentMode: 10
-      - time: 3
+      - time: 3.83333325
         value: .600000024
         inSlope: .600000024
         outSlope: .600000024
@@ -1820,7 +1820,42 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 3
+  - time: 1.33333337
+    functionName: ActivateNewsPaper
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.5
+    functionName: ActivateNewsPaper
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.66666663
+    functionName: ActivateNewsPaper
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.83333337
+    functionName: ActivateNewsPaper
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2
+    functionName: ActivateNewsPaper
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.83333325
     functionName: EndAnimation
     data: 
     objectReferenceParameter: {fileID: 0}
