@@ -79,6 +79,7 @@ public class Cow : MonoBehaviour {
 	public Action<int> onLiftedEnter;
 	private float m_timeStateLiftedStart;
 	private float m_timeInLiftedAnim = 3.0f;
+	private bool m_pointAlreadyGive = false;
 	#endregion Lifted State
 
 	#region Flying State
@@ -357,7 +358,9 @@ public class Cow : MonoBehaviour {
 					setCowState(CowState.Dead);
 				}
 				if(onCrashedEnter != null && m_flyingSpeed > m_cowAffraidIfSpeedOver){
-					onCrashedEnter(m_id,m_flyingSpeed,m_cowState);
+					if(m_isUFOCatched && !m_pointAlreadyGive){
+				   		onCrashedEnter(m_id,m_flyingSpeed,m_cowState);
+					}
 				}
 			
 			break;

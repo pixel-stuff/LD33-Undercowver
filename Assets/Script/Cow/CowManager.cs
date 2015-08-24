@@ -23,7 +23,7 @@ public class CowManager : MonoBehaviour {
 	private int m_numberOfDeadCow = 0;
 
 	[SerializeField]
-	private float m_areaWhereCowBeAffraid = 1.5f;
+	private float m_areaWhereCowBeAffraid = 2.3f;
 	#endregion VarToRead
 
 	

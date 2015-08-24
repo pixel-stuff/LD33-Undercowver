@@ -151,7 +151,18 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public static void PlayBackgoundMusic(){
-		Play (m_backgroundAudioSource);
+		GameObject go = new GameObject ("Audio_" +  m_backgroundAudioSource);
+		go.transform.parent = m_transform;
+		//Load clip from ressources folder
+		AudioClip newClip =  Instantiate(Resources.Load (m_backgroundAudioSource, typeof(AudioClip))) as AudioClip;
+		
+		//Add and bind an audio source
+		AudioSource source = go.AddComponent<AudioSource>();
+		source.clip = newClip;
+		source.loop = true;
+		//Play and destroy the component
+		source.Play();
+		Destroy (go, newClip.length);
 	}
 
 	public static void Play(string clipname){
