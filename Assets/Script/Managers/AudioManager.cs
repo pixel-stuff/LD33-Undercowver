@@ -91,6 +91,7 @@ public class AudioManager : MonoBehaviour {
 			//Play and destroy the component
 			beamSound.Play();
 			Destroy (beamGameObbjectSound, newClip.length);
+			beamGameObbjectSound = null;
 
 			Invoke ("playLoopBeam", beamSound.clip.length);
 		}
@@ -101,7 +102,7 @@ public class AudioManager : MonoBehaviour {
 		/*if (beamSound) {
 			beamSound.Stop();
 		}*/
-		if (isplayingBeam) {
+		if (isplayingBeam && beamGameObbjectSound==null) {
 			beamGameObbjectSound = new GameObject ("Audio_" + "beam/Beam");
 			beamGameObbjectSound.transform.parent = m_transform;
 			//Load clip from ressources folder
@@ -119,23 +120,27 @@ public class AudioManager : MonoBehaviour {
 
 
 	public void StopBeam(){
-		if (beamSound.isPlaying) {
-			beamSound.Stop();
-			Destroy(beamGameObbjectSound);
-		}
-	
-		beamGameObbjectSound = new GameObject ("Audio_" +  "beam/EndBeam");
-		beamGameObbjectSound.transform.parent = m_transform;
-		//Load clip from ressources folder
-		AudioClip newClip =  Instantiate(Resources.Load ("beam/EndBeam", typeof(AudioClip))) as AudioClip;
+		if (isplayingBeam) {
+			if (beamSound.isPlaying) {
+				beamSound.Stop ();
+				Destroy (beamGameObbjectSound);
+				beamGameObbjectSound = null;
+			}
 		
-		//Add and bind an audio source
-		beamSound = beamGameObbjectSound.AddComponent<AudioSource>();
-		beamSound.clip = newClip;
-		//Play and destroy the component
-		beamSound.Play();
-		Destroy (beamGameObbjectSound, newClip.length);
-		isplayingBeam = false;
+			beamGameObbjectSound = new GameObject ("Audio_" + "beam/EndBeam");
+			beamGameObbjectSound.transform.parent = m_transform;
+			//Load clip from ressources folder
+			AudioClip newClip = Instantiate (Resources.Load ("beam/EndBeam", typeof(AudioClip))) as AudioClip;
+			
+			//Add and bind an audio source
+			beamSound = beamGameObbjectSound.AddComponent<AudioSource> ();
+			beamSound.clip = newClip;
+			//Play and destroy the component
+			beamSound.Play ();
+			Destroy (beamGameObbjectSound, newClip.length);
+			beamGameObbjectSound = null;
+			isplayingBeam = false;
+		}
 	}
 
 	public void clearBeam(){
