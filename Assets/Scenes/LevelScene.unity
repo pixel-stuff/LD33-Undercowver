@@ -1084,6 +1084,10 @@ Prefab:
       propertyPath: m_Range
       value: 15.3299999
       objectReference: {fileID: 0}
+    - target: {fileID: 11419274, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
+      propertyPath: velocityMinForBounce
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
   m_IsPrefabParent: 0
