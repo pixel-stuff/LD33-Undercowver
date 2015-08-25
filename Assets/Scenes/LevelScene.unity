@@ -222,6 +222,10 @@ Prefab:
       propertyPath: textPercent
       value: 
       objectReference: {fileID: 1143826853}
+    - target: {fileID: 104570, guid: 403dfce57b0264940af901d90bfbc965, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 403dfce57b0264940af901d90bfbc965, type: 2}
   m_IsPrefabParent: 0
@@ -661,6 +665,18 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 92.6299973
       objectReference: {fileID: 0}
+    - target: {fileID: 497778, guid: 98a9446b8158e02418df55876ab21e67, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.3829999
+      objectReference: {fileID: 0}
+    - target: {fileID: 497778, guid: 98a9446b8158e02418df55876ab21e67, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.09000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 497778, guid: 98a9446b8158e02418df55876ab21e67, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.72500002
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98a9446b8158e02418df55876ab21e67, type: 2}
   m_IsPrefabParent: 0
@@ -1088,6 +1104,10 @@ Prefab:
       propertyPath: velocityMinForBounce
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 132266, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eab1eb46dda525b4ebe08219315f9416, type: 2}
   m_IsPrefabParent: 0
@@ -1201,6 +1221,10 @@ Prefab:
     - target: {fileID: 108436, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 186910, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c3dc8a59de5d4b43b031b4741ce7e28, type: 2}
@@ -1895,6 +1919,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: b8a3ca790fd549b4eba3bf86bd6eb57a,
         type: 3}
+    - target: {fileID: 146296, guid: af8ec25d6de0fbe408b14a9da4d2a744, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11412102, guid: af8ec25d6de0fbe408b14a9da4d2a744, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: af8ec25d6de0fbe408b14a9da4d2a744, type: 2}
@@ -3191,6 +3219,10 @@ Prefab:
     - target: {fileID: 11448764, guid: 8116a6e5c83734d7e85998948687d5b3, type: 2}
       propertyPath: m_multipleAffraidCowNoise
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 106658, guid: 8116a6e5c83734d7e85998948687d5b3, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8116a6e5c83734d7e85998948687d5b3, type: 2}
