@@ -129,7 +129,7 @@ public class CowManager : MonoBehaviour {
 
 		Cow cow = getCowByID (id);
 
-		if (cow.getIsUFOCatched () && state != CowState.Dead) {
+		if (cow.getIsUFOCatched () && state != CowState.Dead && !cow.m_pointAlreadyGive) {
 			if (onNewUFOCow != null) {
 				onNewUFOCow ();
 			}
