@@ -45,16 +45,28 @@ MonoBehaviour:
   m_numberOfUFOCow: 0
   m_numberOfDeadCow: 0
   m_areaWhereCowBeAffraid: 1.5
-  m_deadCowNoise: 15
-  m_affraidCowNoise: 15
-  m_multipleAffraidCowNoise: 40
+  m_deadCowNoise: 10
+  m_affraidCowNoise: 7
+  m_multipleAffraidCowNoise: 25
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_multipleAffraidCowNoise
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_deadCowNoise
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_affraidCowNoise
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 106658}

@@ -115,9 +115,11 @@ public class Cow : MonoBehaviour {
 
 	private Animator m_animator;
 
+
+
 	// Use this for initialization
 	void Start () {
-		
+		m_flyingSpeed = 0f;
 		m_animator = this.GetComponent<Animator> ();
 
 		m_startLocalPosition = this.transform.localPosition;
@@ -363,8 +365,8 @@ public class Cow : MonoBehaviour {
 				}else{
 					setCowState(CowState.Dead);
 				}
-				if(onCrashedEnter != null && m_flyingSpeed > m_cowAffraidIfSpeedOver){
-					if(m_isUFOCatched && !m_pointAlreadyGive){
+				if(onCrashedEnter != null){
+					if(!m_isUFOCatched && !m_pointAlreadyGive){
 				   		onCrashedEnter(m_id,m_flyingSpeed,m_cowState);
 					}
 				}

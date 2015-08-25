@@ -36,7 +36,7 @@ public class CowManager : MonoBehaviour {
 	[SerializeField]
 	private float m_multipleAffraidCowNoise = 13.0f;
 
-
+	private float m_timeStarted;
 	public Action onNewUFOCow;
 
 
@@ -59,7 +59,7 @@ public class CowManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_listCow = new List<Cow> ();
-
+		m_timeStarted = Time.time;
 
 		m_numberOfUFOCowToReach = GameStateManager.m_instance.getNumberOfCowToLoad();
 
@@ -68,7 +68,7 @@ public class CowManager : MonoBehaviour {
 		//positionner cow entre [-4.75;-4.60] en Y
 		//positionner cow entre [-9;3.6] en X
 		for (int i=0; i < m_numberOfUFOCowToReach; i++) {
-			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,4f),-3.55f,0f ),Quaternion.identity);
+			obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,4f),-3.87f,0f ),Quaternion.identity);
 			obj.transform.parent = this.transform;
 
 			cow = obj.GetComponent<Cow>();
@@ -92,7 +92,7 @@ public class CowManager : MonoBehaviour {
 	}
 
 	public void createCow(){
-		GameObject obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.6f),-3.55f,0f ),Quaternion.identity);
+		GameObject obj = (GameObject)Instantiate(m_cowPrefab,new Vector3(UnityEngine.Random.Range(-9f,3.87f),-3.55f,0f ),Quaternion.identity);
 		obj.transform.parent = this.transform;
 		
 		Cow cow = obj.GetComponent<Cow>();
@@ -120,9 +120,12 @@ public class CowManager : MonoBehaviour {
 		
 	}
 
+
 	public void handleCowCrashed(int id,float speedCrashed,CowState state){
 		//Debug.Log ("COW CRASH ");
-
+		if (Time.time - m_timeStarted <= 1.0f) {
+			return;
+		}
 
 		Cow cow = getCowByID (id);
 
@@ -131,6 +134,7 @@ public class CowManager : MonoBehaviour {
 				onNewUFOCow ();
 			}
 		} else {
+			//Debug.Log("CRASHED OK");
 
 			int numbAffraid = 0;
 			//Debug.Log ("Cow Reference: " + cow.name);
@@ -145,9 +149,11 @@ public class CowManager : MonoBehaviour {
 			}
 			//Debug.Log("TOTO  " + numbAffraid);
 			if(numbAffraid >=2){
+				//Debug.Log("PLAY MULTIPLE SOUND");
 				PlayerManager.m_instance.addNoise (m_multipleAffraidCowNoise);
 				AudioManager.Play ("cow/Multiple_CowMoo_Court");
 			}else{
+				//Debug.Log("PLAY SOUND");
 				PlayerManager.m_instance.addNoise (m_affraidCowNoise);
 				AudioManager.Play ("cow/Cow_Moo"); 
 			}
