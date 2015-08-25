@@ -186,16 +186,20 @@ public class PlayerManager : MonoBehaviour {
 
 
 	public void BeanUp(){
-		AudioManager.m_instance.PlayStartBeam ();
-		bean.SetActive (true);
-		beamActivate = true;
+		if (shipIsArrive && !animDeCasseToi) {
+			AudioManager.m_instance.PlayStartBeam ();
+			bean.SetActive (true);
+			beamActivate = true;
+		}
 	}
 
 	public void BeanDown(){
-		AudioManager.m_instance.StopBeam ();
-		bean.GetComponent<Beam>().clearCows();
-		bean.SetActive (false);
-		beamActivate = false;
+		if (shipIsArrive && !animDeCasseToi) {
+			AudioManager.m_instance.StopBeam ();
+			bean.GetComponent<Beam> ().clearCows ();
+			bean.SetActive (false);
+			beamActivate = false;
+		}
 	}
 
 	public void UP(){
@@ -207,14 +211,14 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void LEFT(){
-		if (shipIsArrive) {
+		if (shipIsArrive && !animDeCasseToi) {
 			Debug.Log ("LEFT ! ");
 			moveLeft ();
 		}
 	}
 
 	public void RIGHT(){
-		if (shipIsArrive) {
+		if (shipIsArrive && !animDeCasseToi) {
 			Debug.Log ("RIGHT ! ");
 			moveRight ();
 		}
@@ -259,6 +263,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void setGameOver(){
 		Debug.Log ("GameOver");
+		BeanDown ();
 		animDeCasseToi = true;
 		Invoke ("setLooseLoadScene", 1.5f);
 	}
@@ -273,6 +278,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void setVictory(){
 		Debug.Log ("Victory");
+		BeanDown ();
 		animDeCasseToi = true;
 		Invoke ("setSuccessLoadScene", 1.5f);
 	}

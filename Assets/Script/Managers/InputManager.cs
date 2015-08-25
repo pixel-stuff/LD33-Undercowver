@@ -31,14 +31,20 @@ public class InputManager : MonoBehaviour {
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Space)){
-			PlayerManager.m_instance.BeanUp();
+			if(PlayerManager.m_instance){
+				PlayerManager.m_instance.BeanUp();
+			}
 		}
 		if(Input.GetKeyUp(KeyCode.Space)){
-			PlayerManager.m_instance.BeanDown();
+			if(PlayerManager.m_instance){
+				PlayerManager.m_instance.BeanDown();
+			}
 		}
 
 		if(Input.GetKey("q") || Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow)){
-			PlayerManager.m_instance.LEFT();
+			if(PlayerManager.m_instance){
+				PlayerManager.m_instance.LEFT();
+			}
 		}
 		/*
 		if(Input.GetKeyDown("s")){
@@ -46,7 +52,9 @@ public class InputManager : MonoBehaviour {
 		}
 		*/
 		if(Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow)){
-			PlayerManager.m_instance.RIGHT();
+			if(PlayerManager.m_instance){
+				PlayerManager.m_instance.RIGHT();
+			}
 		}
 	}
 
@@ -68,13 +76,19 @@ public class InputManager : MonoBehaviour {
 		}
 		*/
 		if(Input.GetKeyDown(KeyCode.Space)){
-			PlayerManager.m_instance.BeanUp();
+			if(PlayerManager.m_instance){
+				PlayerManager.m_instance.BeanUp();
+			}
 		}
 		if(Input.GetKeyUp(KeyCode.Space)){
-			PlayerManager.m_instance.BeanDown();
+			if(PlayerManager.m_instance){
+				PlayerManager.m_instance.BeanDown();
+			}
 		}
 		if(Input.GetKey("q") || Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow)){
-			PlayerManager.m_instance.LEFT();
+			if(PlayerManager.m_instance){
+				PlayerManager.m_instance.LEFT();
+			}
 		}
 		/*
 		if(Input.GetKeyDown("s")){
@@ -82,7 +96,9 @@ public class InputManager : MonoBehaviour {
 		}
 		*/
 		if(Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow)){
-			PlayerManager.m_instance.RIGHT();
+			if(PlayerManager.m_instance){
+				PlayerManager.m_instance.RIGHT();
+			}
 		}
 	}
 
