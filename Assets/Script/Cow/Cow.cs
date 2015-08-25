@@ -366,9 +366,8 @@ public class Cow : MonoBehaviour {
 					setCowState(CowState.Dead);
 				}
 				if(onCrashedEnter != null){
-					if(!m_isUFOCatched && !m_pointAlreadyGive){
 				   		onCrashedEnter(m_id,m_flyingSpeed,m_cowState);
-					}
+					
 				}
 			
 			break;
