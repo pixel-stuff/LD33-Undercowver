@@ -174,7 +174,14 @@ public class Beam : MonoBehaviour {
 			}
 		}
 	}
-	
+	private bool cowsAreLiftable(){
+		for(int i=0;i<m_catched_array.Count;i++) {
+			Cow lCow = (Cow)m_catched_array [i];
+			if(!lCow.m_pointAlreadyGive)
+				return true;
+		}
+		return false;
+	}
 	// Update is called once per frame
 	void Update () {
 
@@ -197,12 +204,17 @@ public class Beam : MonoBehaviour {
 				}*/
 			}
 		}
-		if (m_active && m_catched_array!=null && m_catched_array.Count>0) {
+		if (m_active && m_catched_array!=null && m_catched_array.Count>0 && cowsAreLiftable()) {
 			Cow cow = null;
-			cow = (Cow)m_catched_array[0];
+			//cow = (Cow)m_catched_array[0];
 			for(int i=0;i<m_catched_array.Count;i++) {
-				if(cow.transform.position.y<=((Cow)m_catched_array[i]).transform.position.y)
+				if(!cow && !((Cow)m_catched_array[i]).m_pointAlreadyGive){
 					cow = (Cow)m_catched_array[i];
+				}
+
+				if(cow && !((Cow)m_catched_array[i]).m_pointAlreadyGive && cow.transform.position.y<=((Cow)m_catched_array[i]).transform.position.y ){
+					cow = (Cow)m_catched_array[i];
+				}
 			}
 			if(cow!=null) {
 				Bounds cowBounds = cow.GetComponent<BoxCollider2D>().bounds;
