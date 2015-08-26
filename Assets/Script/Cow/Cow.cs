@@ -116,7 +116,7 @@ public class Cow : MonoBehaviour {
 	private Animator m_animator;
 
 
-
+	public float YGroundPLus;
 	// Use this for initialization
 	void Start () {
 		m_flyingSpeed = 0f;
@@ -130,6 +130,11 @@ public class Cow : MonoBehaviour {
 		m_timeInWalkingAnim += UnityEngine.Random.Range(-0.5f,0.5f);
 		m_timeInEatingAnim += UnityEngine.Random.Range(-0.5f,0.5f);
 		m_timeInAffraidAnim += UnityEngine.Random.Range(-0.5f,0.5f);
+
+		float cowColliderSize = this.GetComponent<BoxCollider2D>().size.y;
+		GameObject groundCollider = GameObject.Find ("Ground");
+
+		YGroundPLus = groundCollider.transform.position.y + groundCollider.GetComponent<BoxCollider2D> ().size.y/2 + cowColliderSize/2 + 0.001f;
 
 	}
 
@@ -445,5 +450,9 @@ public class Cow : MonoBehaviour {
 
 	public void setCowAtPosition(Vector3 position){
 		this.transform.position = position;
+	}
+
+	public void setOverGround(){
+		setCowAtPosition (new Vector3 (this.transform.position.x,YGroundPLus,this.transform.position.z));
 	}
 }

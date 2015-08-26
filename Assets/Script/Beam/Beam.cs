@@ -217,6 +217,10 @@ public class Beam : MonoBehaviour {
 				}
 			}
 			if(cow!=null) {
+				if(cow.transform.position.y < cow.YGroundPLus){
+					cow.setOverGround();
+				}
+
 				Bounds cowBounds = cow.GetComponent<BoxCollider2D>().bounds;
 				Vector3 v3t = cowBounds.center;
 				v3t.z = 0.0f;
