@@ -8,7 +8,7 @@ public class DisplayScoreOnEndScene : MonoBehaviour {
 	void Start () {
 		this.GetComponent<Text> ().text =	"Level " + GameStateManager.m_instance.m_level + " Completed\n" +
 											"Cow killed : " + GameStateManager.m_instance.m_CowKilled +"\n"+
-											"Game duration : " + GameStateManager.m_instance.m_playTime  +" seconds\n"+
+				"Game duration : " + GameStateManager.m_instance.m_playTime.ToString("#.00")  +" seconds\n"+
 											"Alert started : " + GameStateManager.m_instance.m_alerteStarted;
 	}
 	
