@@ -164,6 +164,18 @@ public class PlayerManager : MonoBehaviour {
 		if (animDeCasseToi) {
 			m_rigidbody.AddForce (new Vector2(0,150), ForceMode2D.Impulse);
 		}
+
+
+#if UNITY_ANDROID || UNITY_IOS
+		this.transform.Translate (Input.acceleration.x*4f/5f, 0f, 0f);
+
+
+		if(Input.touchCount > 0){
+			BeanUp();
+		}else{
+			BeanDown();
+		}
+#endif
 	}
 
 

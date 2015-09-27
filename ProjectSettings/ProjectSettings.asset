@@ -5,12 +5,12 @@ PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 7
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 2
   targetDevice: 2
   targetResolution: 0
   accelerometerFrequency: 60
   companyName: PixelStuff
-  productName: TemplateGameJam
+  productName: UnderCowver
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
@@ -71,7 +71,7 @@ PlayerSettings:
     16:10: 0
     16:9: 1
     Others: 0
-  bundleIdentifier: com.pixelstuff.template
+  bundleIdentifier: com.pixelstuff.undercowver
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
