@@ -417,6 +417,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
@@ -536,8 +537,8 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 8
-  m_Range: 40
-  m_SpotAngle: 57
+  m_Range: 15.3299999
+  m_SpotAngle: 17
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -601,7 +602,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 8
   m_Range: 13
-  m_SpotAngle: 57
+  m_SpotAngle: 74
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -634,13 +635,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounceForce: {x: 0, y: 100}
   Ybounce: 1.15999997
-  velocityMinForBounce: .300000012
+  velocityMinForBounce: 20
   shipIsArrive: 0
   arriveForce: 800
   forceOnMove: 150
   deltaRotate: 1
   rotateMultiplicator: 2
   xLimite: 8.98999977
+  mobileMultiplicateur: .800000012
   checkNoise: 100
   actualNoise: 0
   loseNoisePer250ms: 2

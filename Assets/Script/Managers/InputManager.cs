@@ -56,6 +56,16 @@ public class InputManager : MonoBehaviour {
 				PlayerManager.m_instance.RIGHT();
 			}
 		}
+		#if UNITY_ANDROID || UNITY_IOS
+		//this.transform.Translate (Input.acceleration.x*4f/5f, 0f, 0f);
+		//PlayerManager.m_instance.
+		PlayerManager.m_instance.MOVEDEVICE(Input.acceleration.x);
+		if(Input.touchCount > 0){
+			PlayerManager.m_instance.BeanUp();
+		}else{
+			PlayerManager.m_instance.BeanDown();
+		}
+		#endif
 	}
 
 	void UpdateMenuState(){

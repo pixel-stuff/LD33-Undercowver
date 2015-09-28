@@ -33,6 +33,8 @@ public class PlayerManager : MonoBehaviour {
 	public float rotateMultiplicator;
 	public float xLimite;
 
+	public float mobileMultiplicateur;
+
 	[Header("Noise")]
 	[Space(10)]
 	public float checkNoise;
@@ -164,18 +166,6 @@ public class PlayerManager : MonoBehaviour {
 		if (animDeCasseToi) {
 			m_rigidbody.AddForce (new Vector2(0,150), ForceMode2D.Impulse);
 		}
-
-
-#if UNITY_ANDROID || UNITY_IOS
-		this.transform.Translate (Input.acceleration.x*4f/5f, 0f, 0f);
-
-
-		if(Input.touchCount > 0){
-			BeanUp();
-		}else{
-			BeanDown();
-		}
-#endif
 	}
 
 
@@ -240,18 +230,27 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
+	public void MOVEDEVICE(float x){
+		addHorizontalForce (mobileMultiplicateur * x);
+	}
+
 	private void moveLeft(){
 		m_rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
-		m_rigidbody.AddForce(new Vector2(-forceOnMove,0), ForceMode2D.Impulse);
+		addHorizontalForce(-forceOnMove);
 		AudioManager.m_instance.playSpaceMove ();
 	}
 	
 	private void moveRight(){
 		m_rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
-		m_rigidbody.AddForce (new Vector2 (forceOnMove, 0), ForceMode2D.Impulse);
+		addHorizontalForce(forceOnMove);
 		AudioManager.m_instance.playSpaceMove ();
 	}
-	
+
+
+	private void addHorizontalForce(float force){
+		m_rigidbody.AddForce(new Vector2(force,0), ForceMode2D.Impulse);
+	}
+
 	private void noiseForVelocity(){
 		addNoise (Mathf.Abs (m_rigidbody.velocity.x)* velocityFactor);
 	}
