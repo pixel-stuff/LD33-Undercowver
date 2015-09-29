@@ -16,6 +16,10 @@ public class AudioManager : MonoBehaviour {
 			if(this != m_instance)
 				Destroy(this.gameObject);
 		}
+		if (m_audioSourceBackground != null) {
+			Debug.Log ("AWAKE + AUDIO NOT NULL");
+			m_audioSourceBackground.Play ();
+		}
 	}
 	#endregion Singleton
 
@@ -31,6 +35,8 @@ public class AudioManager : MonoBehaviour {
 	private AudioSource spaceMove;
 	private bool isplayingMovingSound; 
 	private GameObject shipGameObbjectSound;
+
+	private static AudioSource m_audioSourceBackground;
 	// Use this for initialization
 	void Start () {
 		m_transform = this.transform;
@@ -157,12 +163,13 @@ public class AudioManager : MonoBehaviour {
 		AudioClip newClip =  Instantiate(Resources.Load (m_backgroundAudioSource, typeof(AudioClip))) as AudioClip;
 		
 		//Add and bind an audio source
-		AudioSource source = go.AddComponent<AudioSource>();
-		source.clip = newClip;
-		source.loop = true;
+		m_audioSourceBackground = go.AddComponent<AudioSource>();
+		m_audioSourceBackground.clip = newClip;
+		m_audioSourceBackground.loop = true;
 		//Play and destroy the component
-		source.Play();
+		m_audioSourceBackground.Play();
 	}
+
 
 	public static void Play(string clipname){
 		//Create an empty game object
@@ -184,5 +191,16 @@ public class AudioManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void OnApplicationPause(bool pauseStatus) {
+		if (m_audioSourceBackground == null)
+			return;
+
+		if (pauseStatus) {
+			m_audioSourceBackground.Pause ();
+		} else {
+			m_audioSourceBackground.Play();
+		}
 	}
 }
