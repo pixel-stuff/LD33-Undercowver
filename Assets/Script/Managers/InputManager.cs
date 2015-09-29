@@ -31,6 +31,7 @@ public class InputManager : MonoBehaviour {
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Space)){
+			Debug.Log ("SPACE DOWN");
 			if(PlayerManager.m_instance){
 				PlayerManager.m_instance.BeanUp();
 			}
@@ -59,11 +60,14 @@ public class InputManager : MonoBehaviour {
 		#if UNITY_ANDROID || UNITY_IOS
 		//this.transform.Translate (Input.acceleration.x*4f/5f, 0f, 0f);
 		//PlayerManager.m_instance.
-		PlayerManager.m_instance.MOVEDEVICE(Input.acceleration.x);
-		if(Input.touchCount > 0){
-			PlayerManager.m_instance.BeanUp();
-		}else{
-			PlayerManager.m_instance.BeanDown();
+		if(PlayerManager.m_instance != null){
+			PlayerManager.m_instance.MOVEDEVICE(Input.acceleration.x);
+		
+			if(Input.touchCount > 0){
+				PlayerManager.m_instance.BeanUp();
+			}else{
+				PlayerManager.m_instance.BeanDown();
+			}
 		}
 		#endif
 	}
@@ -85,6 +89,7 @@ public class InputManager : MonoBehaviour {
 			PlayerManager.UP();
 		}
 		*/
+
 		if(Input.GetKeyDown(KeyCode.Space)){
 			if(PlayerManager.m_instance){
 				PlayerManager.m_instance.BeanUp();
