@@ -417,7 +417,6 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
@@ -642,7 +641,7 @@ MonoBehaviour:
   deltaRotate: 1
   rotateMultiplicator: 2
   xLimite: 8.98999977
-  mobileMultiplicateur: .800000012
+  mobileMultiplicateur: 500
   checkNoise: 100
   actualNoise: 0
   loseNoisePer250ms: 2
