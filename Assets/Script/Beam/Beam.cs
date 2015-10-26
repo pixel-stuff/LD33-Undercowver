@@ -39,9 +39,9 @@ public class Beam : MonoBehaviour {
 		BoxCollider2D mesh_boxCollider2D = beam.GetComponent<BoxCollider2D> ();
 		mesh_rigidBody2D.isKinematic = true;
 		mesh_boxCollider2D.isTrigger = true;
-		//Vector2 boxColl2D_center = mesh_boxCollider2D.offset;
-		//boxColl2D_center = new Vector2 (0, (m_y_top-m_y_base)/2.0f);
-		//mesh_boxCollider2D.offset = boxColl2D_center;
+		Vector2 boxColl2D_center = mesh_boxCollider2D.offset;
+		boxColl2D_center = new Vector2 (0, (m_y_top-m_y_base)/2.0f);
+		mesh_boxCollider2D.offset = boxColl2D_center;
 		Vector2 boxColl2D_size = mesh_boxCollider2D.size;
 		boxColl2D_size = new Vector2 ((m_x_base>m_x_top?m_x_base:m_x_top), (m_y_top>m_y_base?m_y_top:m_y_base));
 		mesh_boxCollider2D.size = boxColl2D_size;
