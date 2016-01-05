@@ -191,7 +191,7 @@ public class Beam : MonoBehaviour {
 			if(ps[i].name=="ground-light") {
 				int layerMask = 1 << 10;
 				GameObject ground = GameObject.Find("Ground");
-				Debug.Log (ground.name);
+				//Debug.Log (ground.name);
 				Quaternion quat = Quaternion.identity;
 				Vector3 quatv = quat.eulerAngles;
 				quatv.x = 5.0f;

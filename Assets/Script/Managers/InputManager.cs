@@ -25,23 +25,45 @@ public class InputManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
+			UpdateSmartphone ();
+		} else {
+			UpdateKeyboard();
+		}
+	}
+
+	void UpdateSmartphone(){
+		if(PlayerManager.m_instance != null){
+			PlayerManager.m_instance.MOVEDEVICE(Input.acceleration.x);
+			
+			if(Input.touchCount > 0){
+				PlayerManager.m_instance.BeanUp();
+			}else{
+				Debug.Log ("Bean Down due to PORTABLE DEVICE ");
+				PlayerManager.m_instance.BeanDown();
+			}
+		}
+	}
+
+	void UpdateKeyboard(){
 		if(Input.GetKeyDown("p")){
 			Debug.Log("PAUSE ! ");
 			GameStateManager.setGameState(GameState.Pause);
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Space)){
-			Debug.Log ("SPACE DOWN");
+			//Debug.Log ("SPACE DOWN -> BEAN UP");
 			if(PlayerManager.m_instance){
 				PlayerManager.m_instance.BeanUp();
 			}
 		}
 		if(Input.GetKeyUp(KeyCode.Space)){
+			//Debug.Log ("SPACE UP - > BEAN DOWN");
 			if(PlayerManager.m_instance){
 				PlayerManager.m_instance.BeanDown();
 			}
 		}
-
+		
 		if(Input.GetKey("q") || Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow)){
 			if(PlayerManager.m_instance){
 				PlayerManager.m_instance.LEFT();
@@ -57,19 +79,6 @@ public class InputManager : MonoBehaviour {
 				PlayerManager.m_instance.RIGHT();
 			}
 		}
-		#if UNITY_ANDROID || UNITY_IOS
-		//this.transform.Translate (Input.acceleration.x*4f/5f, 0f, 0f);
-		//PlayerManager.m_instance.
-		if(PlayerManager.m_instance != null){
-			PlayerManager.m_instance.MOVEDEVICE(Input.acceleration.x);
-		
-			if(Input.touchCount > 0){
-				PlayerManager.m_instance.BeanUp();
-			}else{
-				PlayerManager.m_instance.BeanDown();
-			}
-		}
-		#endif
 	}
 
 	void UpdateMenuState(){
@@ -96,6 +105,7 @@ public class InputManager : MonoBehaviour {
 			}
 		}
 		if(Input.GetKeyUp(KeyCode.Space)){
+			Debug.Log ("SPACE UP -> BEAN DOWN FROM UPDATE PLAYING STATE");
 			if(PlayerManager.m_instance){
 				PlayerManager.m_instance.BeanDown();
 			}

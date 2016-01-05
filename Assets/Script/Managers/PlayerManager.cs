@@ -193,6 +193,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void BeanUp(){
 		if (shipIsArrive && !animDeCasseToi) {
+			//Debug.Log("ACTIV BEAN");
 			AudioManager.m_instance.PlayStartBeam ();
 			bean.SetActive (true);
 			beamActivate = true;
@@ -201,6 +202,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void BeanDown(){
 		if (shipIsArrive && !animDeCasseToi) {
+			//Debug.Log("DESAC BEAN");
 			AudioManager.m_instance.StopBeam ();
 			bean.GetComponent<Beam> ().clearCows ();
 			bean.SetActive (false);
@@ -218,14 +220,14 @@ public class PlayerManager : MonoBehaviour {
 
 	public void LEFT(){
 		if (shipIsArrive && !animDeCasseToi) {
-			Debug.Log ("LEFT ! ");
+  			//Debug.Log ("LEFT ! ");
 			moveLeft ();
 		}
 	}
 
 	public void RIGHT(){
 		if (shipIsArrive && !animDeCasseToi) {
-			Debug.Log ("RIGHT ! ");
+			//Debug.Log ("RIGHT ! ");
 			moveRight ();
 		}
 	}
@@ -286,13 +288,17 @@ public class PlayerManager : MonoBehaviour {
 
 	public void setGameOver(){
 		Debug.Log ("GameOver");
-		BeanDown ();
+		//BeanDown ();
 		animDeCasseToi = true;
 		Invoke ("setLooseLoadScene", 1.5f);
 	}
 
 	public void setLooseLoadScene(){
-		GameStateManager.m_instance.GoToEndSceneWithLoose ();
+		if (GameStateManager.m_instance != null) {
+			GameStateManager.m_instance.GoToEndSceneWithLoose ();
+		} else {
+			Debug.Log ("GAME STATE MANAGER IS NULL");
+		}
 	}
 
 	public void setSuccessLoadScene(){
@@ -301,7 +307,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void setVictory(){
 		Debug.Log ("Victory");
-		BeanDown ();
+		//BeanDown ();
 		animDeCasseToi = true;
 		Invoke ("setSuccessLoadScene", 1.5f);
 	}
