@@ -198,12 +198,17 @@ public class Cow : MonoBehaviour {
 
 	//La vache ne peut se déplacer qu'entre [-9;4] en X
 	void UpdateIdleWalking (){
-		//Debug.Log ("DISTANCE : " + Vector2.Distance(this.transform.localPosition,m_targetDestination));
+        //Debug.Log ("DISTANCE : " + Vector2.Distance(this.transform.localPosition,m_targetDestination));
 
-
-		this.transform.position = Vector2.Lerp(this.transform.position, m_targetDestination, Time.deltaTime* m_cowSpeed/Vector2.Distance(this.transform.localPosition,m_targetDestination));
+        float _oldZ = this.transform.position.z;
 		
-		if (Time.time - m_timeStateWalkingStart >= m_timeInWalkingAnim || Vector2.Distance(this.transform.localPosition,m_targetDestination) <= float.Epsilon ) {
+        Vector2 newPos2D = Vector2.Lerp(
+                this.transform.position, m_targetDestination, Time.deltaTime* m_cowSpeed/Vector2.Distance(this.transform.localPosition,m_targetDestination
+                ));
+        this.transform.position = new Vector3(newPos2D.x, newPos2D.y, _oldZ);
+
+
+        if (Time.time - m_timeStateWalkingStart >= m_timeInWalkingAnim || Vector2.Distance(this.transform.localPosition,m_targetDestination) <= float.Epsilon ) {
 			CowState[] futurState = new CowState[2]{
 				CowState.IdleStatic,
 				CowState.IdleEating

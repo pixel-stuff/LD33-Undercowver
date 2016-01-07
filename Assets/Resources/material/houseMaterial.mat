@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: houseMaterial
-  m_Shader: {fileID: 30, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: a7dd8d926367ec64d9e8b6cfe095ccf1, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -97,7 +97,7 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: .476999998
+        second: 0.477
       data:
         first:
           name: PixelSnap
@@ -105,7 +105,7 @@ Material:
       data:
         first:
           name: _Parallax
-        second: .0487999991
+        second: 0.0488
       data:
         first:
           name: _ZWrite
@@ -141,7 +141,7 @@ Material:
       data:
         first:
           name: _BlurAmount
-        second: .702000022
+        second: 0.702
       data:
         first:
           name: _Specular
@@ -154,12 +154,12 @@ Material:
       data:
         first:
           name: _EmissionColor
-        second: {r: .0294117928, g: .0289792661, b: .0289792661, a: 1}
+        second: {r: 0.029411793, g: 0.028979266, b: 0.028979266, a: 1}
       data:
         first:
           name: _Color
-        second: {r: .882352948, g: .882352948, b: .882352948, a: 1}
+        second: {r: 0.30882353, g: 0.30882353, b: 0.30882353, a: 1}
       data:
         first:
           name: _Emission
-        second: {r: .867647052, g: .867647052, b: .867647052, a: 1}
+        second: {r: 0.86764705, g: 0.86764705, b: 0.86764705, a: 1}

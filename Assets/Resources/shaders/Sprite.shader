@@ -64,19 +64,19 @@
         fixed4 frag(v2f IN) : SV_Target
         {
             fixed4 c = tex2D(_MainTex, IN.texcoord) * IN.color;
-            c.rgb *= c.a;
+            //c.rgb *= c.a;
             return c;
         }
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
-			float atten = LIGHT_ATTENUATION(IN);
+			//float atten = LIGHT_ATTENUATION(IN);
 			// Albedo comes from a texture tinted by color
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-			o.Albedo = atten*c.rgb*c.a;
+			o.Albedo = /*atten*/c.rgb/*c.a*/;
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
-			o.Alpha = c.a;
+			o.Alpha = c.a*0.0;
 		}
 		ENDCG
 	} 
