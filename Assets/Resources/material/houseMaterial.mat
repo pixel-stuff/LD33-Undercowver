@@ -150,6 +150,14 @@ Material:
         first:
           name: _Gloss
         second: 1
+      data:
+        first:
+          name: _XUVRatio
+        second: 0.5
+      data:
+        first:
+          name: _YUVRatio
+        second: 0.5
     m_Colors:
       data:
         first:
@@ -163,3 +171,11 @@ Material:
         first:
           name: _Emission
         second: {r: 0.86764705, g: 0.86764705, b: 0.86764705, a: 1}
+      data:
+        first:
+          name: _LightRay
+        second: {r: 0, g: -1, b: 0, a: 0}
+      data:
+        first:
+          name: _NormalRay
+        second: {r: 0, g: 1, b: 0, a: 0}
