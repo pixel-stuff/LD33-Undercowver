@@ -233,6 +233,9 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void MOVEDEVICE(float x){
+		if (!shipIsArrive || animDeCasseToi) {
+			return;
+		}
 		addHorizontalForce (mobileMultiplicateur * x);
 	}
 
