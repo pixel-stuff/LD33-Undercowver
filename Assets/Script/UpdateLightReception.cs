@@ -38,8 +38,8 @@ public class UpdateLightReception : MonoBehaviour {
             this.gameObject.GetComponent<SpriteRenderer>().material.SetFloat("_XUVRatio", ratio);
             ratio = tex2D.height / tex2D.width;
             this.gameObject.GetComponent<SpriteRenderer>().material.SetFloat("_YUVRatio", ratio);
-            float spriteWorldSize = (Camera.main.ScreenToWorldPoint(new Vector3(tex2D.width, 0.0f, 0.0f)) - Camera.main.ScreenToWorldPoint(new Vector3(0.0f, 0.0f, 0.0f))).x;
-            Debug.Log(tex2D.name + " " + spriteWorldSize);
+            //float spriteWorldSize = (Camera.main.ScreenToWorldPoint(new Vector3(tex2D.width, 0.0f, 0.0f)) - Camera.main.ScreenToWorldPoint(new Vector3(0.0f, 0.0f, 0.0f))).x;
+            //Debug.Log(tex2D.name + " " + spriteWorldSize);
         }
         else
         {
