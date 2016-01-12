@@ -99,6 +99,7 @@ public class GameStateManager : MonoBehaviour {
 		m_isEndSceneSuccess = false;
 		m_playTime = Time.time - m_timeStartLevel;
 		this.setGameState (GameState.EndSceneGameOver);
+		AudioManager.m_instance.StopAllSouds ();
 		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
 		//m_level--;
 		//m_asynLoading.allowSceneActivation = false;
@@ -111,6 +112,7 @@ public class GameStateManager : MonoBehaviour {
 		m_isEndSceneSuccess = true;
 		m_playTime = Time.time - m_timeStartLevel;
 		this.setGameState (GameState.EndSceneSuccess);
+		AudioManager.m_instance.StopAllSouds ();
 		m_asynLoading =  Application.LoadLevelAsync ("EndScene");
 		
 		//m_asynLoading.allowSceneActivation = false;
@@ -119,9 +121,9 @@ public class GameStateManager : MonoBehaviour {
 
 	public void GoToLevelScene (){
 		this.setGameState (GameState.Playing);
+		AudioManager.PlayBackgoundMusic ();
 		//m_level++;
 		/*m_asynLoading = */ Application.LoadLevelAsync ("LevelScene");
-		AudioManager.PlayBackgoundMusic ();
 		//m_asynLoading.allowSceneActivation = false;
 		m_timeStartLevel = Time.time;
 	}

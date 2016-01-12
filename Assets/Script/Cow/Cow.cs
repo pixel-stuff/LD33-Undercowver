@@ -392,24 +392,30 @@ public class Cow : MonoBehaviour {
 				m_localPosAffraidStart = this.transform.localPosition;
 				break;
 				
-			case CowState.Dead:
+		case CowState.Dead:
 			
-				m_animator.SetBool ("isDead", true);
-				Vector3 vect = this.transform.localPosition;
-				vect.y = m_startLocalPosition.y-0.4f;
-				this.transform.localPosition = vect;
-				if(isDebug){
-					GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.black);
-				}
-				m_DeadAnim.SetActive(true);
+			m_animator.SetBool ("isDead", true);
+			Vector3 vect = this.transform.localPosition;
+			vect.y = m_startLocalPosition.y - 0.4f;
+			this.transform.localPosition = vect;
+			if (isDebug) {
+				GetComponent<SpriteRenderer> ().material.SetColor ("_Color", Color.black);
+			}
+			m_DeadAnim.SetActive (true);
 				
 			
-				this.GetComponent<Rigidbody2D>().isKinematic = true;
-				this.GetComponent<BoxCollider2D>().enabled = false;
-				if(onDeadEnter != null){
-					onDeadEnter(m_id);
-				}
-				break;
+			this.GetComponent<Rigidbody2D> ().isKinematic = true;
+			this.GetComponent<BoxCollider2D> ().enabled = false;
+			if (onDeadEnter != null) {
+				onDeadEnter (m_id);
+			}
+			Light[] lights = gameObject.GetComponentsInChildren<Light> ();
+			for (int i = 0; i < lights.Length; i++) {
+				lights [i].enabled = false;
+				lights [i].gameObject.SetActive (false);
+			}
+			lights = null;
+			break;
 		}
 	}
 

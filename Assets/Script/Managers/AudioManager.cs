@@ -17,8 +17,8 @@ public class AudioManager : MonoBehaviour {
 				Destroy(this.gameObject);
 		}
 		if (m_audioSourceBackground != null) {
-			Debug.Log ("AWAKE + AUDIO NOT NULL");
-			m_audioSourceBackground.Play ();
+			//Debug.Log ("AWAKE + AUDIO NOT NULL");
+			//m_audioSourceBackground.Play ();
 		}
 	}
 	#endregion Singleton
@@ -157,6 +157,7 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public static void PlayBackgoundMusic(){
+		//Debug.Log ("PLAY BACKGROUND MENU");
 		GameObject go = new GameObject ("Audio_" +  m_backgroundAudioSource);
 		go.transform.parent = m_transform;
 		//Load clip from ressources folder
@@ -168,6 +169,14 @@ public class AudioManager : MonoBehaviour {
 		m_audioSourceBackground.loop = true;
 		//Play and destroy the component
 		m_audioSourceBackground.Play();
+	}
+
+	public void StopAllSouds(){
+		Transform[] children = gameObject.GetComponentsInChildren<Transform> ();
+		for (int i= 0; i<children.Length;i++){
+			Destroy (children[i].gameObject);
+		}
+		children = null;
 	}
 
 
