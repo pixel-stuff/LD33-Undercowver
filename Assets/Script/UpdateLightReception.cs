@@ -32,11 +32,18 @@ public class UpdateLightReception : MonoBehaviour {
              0.0f,
              0.0f);
         Texture tex2D = this.gameObject.GetComponent<SpriteRenderer>().material.GetTexture("_MainTex");
-        if (tex2D != null) {
+        if (tex2D != null)
+        {
             float ratio = tex2D.width / tex2D.height;
             this.gameObject.GetComponent<SpriteRenderer>().material.SetFloat("_XUVRatio", ratio);
             ratio = tex2D.height / tex2D.width;
             this.gameObject.GetComponent<SpriteRenderer>().material.SetFloat("_YUVRatio", ratio);
+            float spriteWorldSize = (Camera.main.ScreenToWorldPoint(new Vector3(tex2D.width, 0.0f, 0.0f)) - Camera.main.ScreenToWorldPoint(new Vector3(0.0f, 0.0f, 0.0f))).x;
+            Debug.Log(tex2D.name + " " + spriteWorldSize);
+        }
+        else
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().material.SetFloat("_SpriteSize", 0.2f);
         }
         this.gameObject.GetComponent<SpriteRenderer>().material.SetVector("_NormalRay", oPos);
         this.gameObject.GetComponent<SpriteRenderer>().material.SetVector("_LightRay", pPos);

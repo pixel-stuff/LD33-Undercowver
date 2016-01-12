@@ -5,6 +5,7 @@
 		_NormalRay("Object pos", Vector) = (0, 1, 0, 0)
 		_XUVRatio("X Ratio for UV coordinates", Range(0.0, 1.0)) = 0.5
 		_YUVRatio("Y Ratio for UV coordinates", Range(0.0, 1.0)) = 0.5
+		_SpriteSize("Sprite Size in World Units", float) = 1.0
 		_MainTex("Base (RGB) Trans (A)", 2D) = "white" {}
 	}
 
@@ -21,6 +22,7 @@
 	half4 _LightRay;
 	float _XUVRatio;
 	float _YUVRatio;
+	float _SpriteSize;
 
 	half4 LightingOwn(SurfaceOutput s, half3 lightDir, half atten) {
 		//half NdotL = dot(s.Normal, lightDir);
@@ -46,9 +48,8 @@
 		fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 		half3 pPos = mul(_Object2World, _LightRay).xyz;
 		half3 oPos = mul(_Object2World, _NormalRay).xyz;
-		half2 uvw = IN.uv_MainTex;// mul(_Object2World, half4(IN.uv_MainTex, 0.0f, 0.0f)).xyz;
-		half2 uv = half2(uvw.x*_XUVRatio*2.0 - 1.0, uvw.y);//half2(uvw.x*_XUVRatio*2.0-1.0, uvw.y*_YUVRatio*2.0 + 1.0);
-		half3 lDir = half3(pPos.xy - (oPos.xy + (-1.0+2.0*uv)), 0.0f);
+		half2 uv = half2(IN.uv_MainTex.x*_XUVRatio*2.0 - 1.0, IN.uv_MainTex.y);//half2(uvw.x*_XUVRatio*2.0-1.0, uvw.y*_YUVRatio*2.0 + 1.0);
+		half3 lDir = half3(pPos.xy - (oPos.xy + (-1.0+2.0*uv)*_SpriteSize), 0.0f);
 		half NdotL = dot(half3(0.0, 1.0, 0.0), -normalize(-lDir));
 		if (NdotL > 0.0) {
 			if (abs(NdotL) > 0.98) NdotL = 1.0;
