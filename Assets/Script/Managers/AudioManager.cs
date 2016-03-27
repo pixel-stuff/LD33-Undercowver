@@ -60,26 +60,12 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void stopSpaceMove(){
-		if (spaceMove && spaceMove.isPlaying) {
+		/*if (spaceMove && spaceMove.isPlaying) {
 			isplayingMovingSound = false;
 			spaceMove.Stop();
 			Destroy(shipGameObbjectSound);
-		}
+		}*/
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	public void PlayStartBeam(){
@@ -98,6 +84,9 @@ public class AudioManager : MonoBehaviour {
 			Destroy (beamGameObbjectSound, newClip.length);
 			beamGameObbjectSound = null;
 
+			if (beamSound.clip == null) {
+				Debug.Log ("IS NULL");
+			}
 			Invoke ("playLoopBeam", beamSound.clip.length);
 		}
 	}
@@ -149,11 +138,11 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void clearBeam(){
-		/*isplayingBeam = false;
+		isplayingBeam = false;
 		if (beamSound) {
 			beamSound.Stop();
 			Destroy(beamGameObbjectSound);
-		}*/
+		}
 	}
 
 	public static void PlayBackgoundMusic(){
@@ -174,7 +163,11 @@ public class AudioManager : MonoBehaviour {
 	public void StopAllSouds(){
 		Transform[] children = gameObject.GetComponentsInChildren<Transform> ();
 		for (int i= 0; i<children.Length;i++){
-			Destroy (children[i].gameObject);
+			if (children [i] != null) {
+				if(!children[i].Equals(this.transform)){
+					Destroy (children [i].gameObject);
+				}
+			}
 		}
 		children = null;
 	}
@@ -193,13 +186,27 @@ public class AudioManager : MonoBehaviour {
 		//Play and destroy the component
 		source.Play();
 		Destroy (go, newClip.length);
-
 	}
 
-	
+	public static void PlayPersitente(string clipname){
+		//Create an empty game object
+		GameObject go = new GameObject ("Audio_" +  clipname);
+		go.transform.parent = null;
+		//Load clip from ressources folder
+		AudioClip newClip =  Instantiate(Resources.Load (clipname, typeof(AudioClip))) as AudioClip;
+
+		//Add and bind an audio source
+		AudioSource source = go.AddComponent<AudioSource>();
+		source.clip = newClip;
+		//Play and destroy the component
+		DontDestroyOnLoad(go);
+		source.Play();
+		Destroy (go, newClip.length);
+	}
+
 	// Update is called once per frame
 	void Update () {
-	
+		//Debug.Log ("is dont = " + this.gameObject.don);
 	}
 
 	void OnApplicationPause(bool pauseStatus) {

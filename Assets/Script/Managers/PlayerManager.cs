@@ -104,7 +104,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	void handleChangeGameState(GameState newState){
-		Debug.Log ("PLAYER SEE THE NEW STATE : " + newState);
+		//Debug.Log ("PLAYER SEE THE NEW STATE : " + newState);
 	}
 
 	#region Intéraction
@@ -290,7 +290,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void setGameOver(){
-		Debug.Log ("GameOver");
+		//Debug.Log ("GameOver");
 		//BeanDown ();
 		animDeCasseToi = true;
 		Invoke ("setLooseLoadScene", 1.5f);

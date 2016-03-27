@@ -27,7 +27,7 @@ public class Beam_borders_collider : MonoBehaviour {
 			if (cow!=null && !cow.getIsUFOCatched() && parent.isCowInBeam(cow)) {
 				liftCow = cow;
 				liftCow.setCowState(CowState.Lifted);
-				Debug.Log ("Lifted");
+				//Debug.Log ("Lifted");
 				liftCow.hideAndFreeze();
 				//particuleCaptureFeedback.SetActive(true);
 				Invoke("releaseCow",1); 

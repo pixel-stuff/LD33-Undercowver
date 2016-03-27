@@ -31,7 +31,7 @@ public class flash : MonoBehaviour {
 				m_flash.SetActive (true);
 			}
 			if(m_timer>1.0f && !m_sound_played) {
-				AudioManager.Play ("camera_shutter");
+				AudioManager.PlayPersitente ("camera_shutter");
 				m_sound_played = true;
 			}
 			if(m_timer>1.5f) {
